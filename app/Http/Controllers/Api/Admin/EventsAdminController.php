@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Item;
@@ -10,6 +10,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * @group Admin - Events
+ *
+ * Administration des événements.
+ */
 class EventsAdminController extends Controller
 {
     public function index(Request $request): JsonResponse
@@ -123,7 +128,6 @@ class EventsAdminController extends Controller
 
     public function restoreOwner(int $id): JsonResponse
     {
-        // Placeholder: owner history table not defined in the spec list.
         $event = Item::query()->findOrFail($id);
 
         return response()->json([
@@ -137,7 +141,6 @@ class EventsAdminController extends Controller
 
     public function ownerHistory(int $id): JsonResponse
     {
-        // Placeholder: owner history table not defined in the spec list.
         Item::query()->findOrFail($id);
 
         return response()->json([

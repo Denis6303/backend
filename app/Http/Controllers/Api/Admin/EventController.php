@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
-
-use App\Http\Controllers\Admin\EventsAdminController;
+namespace App\Http\Controllers\Api\Admin;
 
 class EventController extends EventsAdminController
 {

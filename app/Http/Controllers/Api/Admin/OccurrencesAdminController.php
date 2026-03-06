@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ItemEarning;
@@ -9,6 +9,11 @@ use App\Models\TicketType;
 use App\Services\Stats\EventStatsService;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * @group Admin - Occurrences
+ *
+ * Administration des occurrences (résumé/earnings/ticket types).
+ */
 class OccurrencesAdminController extends Controller
 {
     public function summary(int $id, EventStatsService $stats): JsonResponse

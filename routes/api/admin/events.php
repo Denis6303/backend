@@ -1,7 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\EventController as AdminEventController;
+
+/**
+ * @group Admin - Events
+ *
+ * Endpoints d'administration des événements.
+ */
+use App\Http\Controllers\Api\Admin\EventController as AdminEventController;
 
 Route::get('events', [AdminEventController::class, 'index']);
 Route::post('events/{id}/verify', [AdminEventController::class, 'verify']);
