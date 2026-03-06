@@ -23,6 +23,7 @@
         /* starts out as display none and is replaced with js later  */
                     body .content .bash-example code { display: none; }
                     body .content .javascript-example code { display: none; }
+                    body .content .json-example code { display: none; }
             </style>
 
     <script>
@@ -36,7 +37,7 @@
 
 </head>
 
-<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;,&quot;json&quot;]">
 
 <a href="#" id="nav-button">
     <span>
@@ -49,6 +50,7 @@
             <div class="lang-selector">
                                             <button type="button" class="lang-button" data-language-name="bash">bash</button>
                                             <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                            <button type="button" class="lang-button" data-language-name="json">json</button>
                     </div>
     
     <div class="search">
@@ -304,6 +306,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-user">
@@ -430,6 +436,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -578,6 +588,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -764,6 +778,24 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{
+    "item_occurrence_id": 16,
+    "currency": "ngz",
+    "customer_email": "rempel.chadrick@example.org",
+    "customer_phone": "architecto",
+    "delivery_method": "architecto",
+    "discount_code": "architecto",
+    "payment_method_code": "architecto",
+    "lines": [
+        {
+            "ticket_type_id": 16,
+            "quantity": 22
+        }
+    ]
+}</code></pre></div>
 
 </span>
 
@@ -1030,6 +1062,12 @@ fetch(url, {
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{
+    "provider_code": "architecto"
+}</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi--version--order-intents--key--checkout">
@@ -1191,6 +1229,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi--version--order-intents--key--verify">
@@ -1326,6 +1368,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -1469,6 +1515,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi--version--me">
@@ -1608,6 +1658,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -1750,6 +1804,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -1901,6 +1959,12 @@ fetch(url, {
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{
+    "code": "architecto"
+}</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi--version--discount-codes-validate">
@@ -2037,6 +2101,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -2177,6 +2245,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -2320,6 +2392,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi--version--partners-orders">
@@ -2444,6 +2520,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi--version--partners-order-intents">
@@ -2567,6 +2647,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -2710,6 +2794,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi--version--partners-webhooks--provider-">
@@ -2845,6 +2933,10 @@ fetch(url, {
     method: "POST",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -2982,6 +3074,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi--version--validator-scan">
@@ -3105,6 +3201,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -3246,6 +3346,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-events">
@@ -3373,6 +3477,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi-admin-events--id--verify">
@@ -3497,6 +3605,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi-admin-events--id--publish">
@@ -3620,6 +3732,10 @@ fetch(url, {
     method: "POST",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -3756,6 +3872,14 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{
+    "occurrence_id": 16,
+    "commission_percentage": 39,
+    "commission_amount": 84
+}</code></pre></div>
 
 </span>
 
@@ -3938,6 +4062,18 @@ fetch(url, {
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{
+    "occurrence_id": 16,
+    "costs": [
+        {
+            "label": "b",
+            "amount": 39
+        }
+    ]
+}</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi-admin-events--id--service-costs">
@@ -4119,6 +4255,12 @@ fetch(url, {
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{
+    "user_id": 16
+}</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi-admin-events--id--assign-admin-owner">
@@ -4256,6 +4398,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi-admin-events--id--restore-owner">
@@ -4379,6 +4525,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -4520,6 +4670,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-ticket-tags">
@@ -4646,6 +4800,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -4774,6 +4932,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-tickets">
@@ -4900,6 +5062,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -5028,6 +5194,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-wallets">
@@ -5154,6 +5324,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -5282,6 +5456,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-payment-report">
@@ -5408,6 +5586,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -5536,6 +5718,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-customers">
@@ -5662,6 +5848,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -5790,6 +5980,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-distributors">
@@ -5916,6 +6110,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -6044,6 +6242,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-oauth-clients">
@@ -6170,6 +6372,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -6298,6 +6504,10 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-admin-communications">
@@ -6424,6 +6634,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -6557,11 +6771,15 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-GETapi-auth-email-verify--id---hash-">
             <blockquote>
-            <p>Example response (200, success_json):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <pre>
 
@@ -6571,24 +6789,6 @@ fetch(url, {
         &quot;id&quot;: 1,
         &quot;email&quot;: &quot;user@example.com&quot;
     }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, invalid_link):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Invalid verification link&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, not_found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;User not found&quot;
 }</code>
  </pre>
     </span>
@@ -6704,18 +6904,18 @@ Sinon retourne JSON <code>{ token, email }</code>.</p>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/reset-password/&amp;quot;abc123&amp;quot;?email=%22user%40example.com%22" \
+    --get "http://localhost/api/reset-password/abc123?email=user%40example.com" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/reset-password/&amp;quot;abc123&amp;quot;"
+    "http://localhost/api/reset-password/abc123"
 );
 
 const params = {
-    "email": ""user@example.com"",
+    "email": "user@example.com",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -6730,6 +6930,10 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
 
 </span>
 
@@ -6749,8 +6953,8 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;token&quot;: &quot;\&quot;abc123\&quot;&quot;,
-    &quot;email&quot;: &quot;\&quot;user@example.com\&quot;&quot;
+    &quot;token&quot;: &quot;abc123&quot;,
+    &quot;email&quot;: &quot;user@example.com&quot;
 }</code>
  </pre>
     </span>
@@ -6833,10 +7037,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="token"                data-endpoint="GETapi-reset-password--token-"
-               value=""abc123""
+               value="abc123"
                data-component="url">
     <br>
-<p>Reset token. Example: <code>"abc123"</code></p>
+<p>Reset token. Example: <code>abc123</code></p>
             </div>
                         <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
                                     <div style="padding-left: 28px; clear: unset;">
@@ -6846,10 +7050,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="GETapi-reset-password--token-"
-               value=""user@example.com""
+               value="user@example.com"
                data-component="query">
     <br>
-<p>Email. Example: <code>"user@example.com"</code></p>
+<p>Email. Example: <code>user@example.com</code></p>
             </div>
                 </form>
 
@@ -6871,22 +7075,22 @@ puis renvoie un token (Bearer). Déclenche aussi l'email de vérification.</p>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"\\\"user@example.com\\\"\",
-    \"password\": \"\\\"SecretPass123\\\"\",
-    \"first_name\": \"\\\"John\\\"\",
-    \"last_name\": \"\\\"Doe\\\"\",
-    \"phone\": \"\\\"+33123456789\\\"\",
-    \"city\": \"\\\"Paris\\\"\",
-    \"address\": \"\\\"123 Rue Lafayette\\\"\",
-    \"birthday\": \"\\\"1998-05-03\\\"\",
-    \"company_name\": \"\\\"Acme Corp\\\"\",
-    \"fcm_token\": \"\\\"eQ8XsH7VQ9KnZCwJ6b4Ayz:APA91bG5LjK7\\\"\",
-    \"device_id\": \"\\\"123e4567-e89b-12d3-a456-426614174000\\\"\",
-    \"platform\": \"\\\"ios\\\"\",
-    \"app_version\": \"\\\"1.2.3\\\"\",
-    \"os_version\": \"\\\"iOS 15.0\\\"\",
-    \"device_model\": \"\\\"iPhone 13\\\"\",
-    \"permission_status\": \"\\\"authorized\\\"\"
+    \"email\": \"user@example.com\",
+    \"password\": \"SecretPass123\",
+    \"first_name\": \"John\",
+    \"last_name\": \"Doe\",
+    \"phone\": \"+33123456789\",
+    \"city\": \"Paris\",
+    \"address\": \"123 Rue Lafayette\",
+    \"birthday\": \"1998-05-03\",
+    \"company_name\": \"Acme Corp\",
+    \"fcm_token\": \"eQ8XsH7VQ9KnZCwJ6b4Ayz\",
+    \"device_id\": \"123e4567-e89b-12d3-a456-426614174000\",
+    \"platform\": \"ios\",
+    \"app_version\": \"1.2.3\",
+    \"os_version\": \"iOS 15.0\",
+    \"device_model\": \"iPhone 13\",
+    \"permission_status\": \"authorized\"
 }"
 </code></pre></div>
 
@@ -6902,22 +7106,22 @@ const headers = {
 };
 
 let body = {
-    "email": "\"user@example.com\"",
-    "password": "\"SecretPass123\"",
-    "first_name": "\"John\"",
-    "last_name": "\"Doe\"",
-    "phone": "\"+33123456789\"",
-    "city": "\"Paris\"",
-    "address": "\"123 Rue Lafayette\"",
-    "birthday": "\"1998-05-03\"",
-    "company_name": "\"Acme Corp\"",
-    "fcm_token": "\"eQ8XsH7VQ9KnZCwJ6b4Ayz:APA91bG5LjK7\"",
-    "device_id": "\"123e4567-e89b-12d3-a456-426614174000\"",
-    "platform": "\"ios\"",
-    "app_version": "\"1.2.3\"",
-    "os_version": "\"iOS 15.0\"",
-    "device_model": "\"iPhone 13\"",
-    "permission_status": "\"authorized\""
+    "email": "user@example.com",
+    "password": "SecretPass123",
+    "first_name": "John",
+    "last_name": "Doe",
+    "phone": "+33123456789",
+    "city": "Paris",
+    "address": "123 Rue Lafayette",
+    "birthday": "1998-05-03",
+    "company_name": "Acme Corp",
+    "fcm_token": "eQ8XsH7VQ9KnZCwJ6b4Ayz",
+    "device_id": "123e4567-e89b-12d3-a456-426614174000",
+    "platform": "ios",
+    "app_version": "1.2.3",
+    "os_version": "iOS 15.0",
+    "device_model": "iPhone 13",
+    "permission_status": "authorized"
 };
 
 fetch(url, {
@@ -6925,6 +7129,27 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{
+    "email": "user@example.com",
+    "password": "SecretPass123",
+    "first_name": "John",
+    "last_name": "Doe",
+    "phone": "+33123456789",
+    "city": "Paris",
+    "address": "123 Rue Lafayette",
+    "birthday": "1998-05-03",
+    "company_name": "Acme Corp",
+    "fcm_token": "eQ8XsH7VQ9KnZCwJ6b4Ayz",
+    "device_id": "123e4567-e89b-12d3-a456-426614174000",
+    "platform": "ios",
+    "app_version": "1.2.3",
+    "os_version": "iOS 15.0",
+    "device_model": "iPhone 13",
+    "permission_status": "authorized"
+}</code></pre></div>
 
 </span>
 
@@ -7035,10 +7260,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi--version--auth-register"
-               value=""user@example.com""
+               value="user@example.com"
                data-component="body">
     <br>
-<p>Email. Example: <code>"user@example.com"</code></p>
+<p>Email. Example: <code>user@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -7047,10 +7272,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi--version--auth-register"
-               value=""SecretPass123""
+               value="SecretPass123"
                data-component="body">
     <br>
-<p>Mot de passe (min 8). Example: <code>"SecretPass123"</code></p>
+<p>Mot de passe (min 8). Example: <code>SecretPass123</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>first_name</code></b>&nbsp;&nbsp;
@@ -7059,10 +7284,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="first_name"                data-endpoint="POSTapi--version--auth-register"
-               value=""John""
+               value="John"
                data-component="body">
     <br>
-<p>optional Prénom. Example: <code>"John"</code></p>
+<p>optional Prénom. Example: <code>John</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>last_name</code></b>&nbsp;&nbsp;
@@ -7071,10 +7296,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="last_name"                data-endpoint="POSTapi--version--auth-register"
-               value=""Doe""
+               value="Doe"
                data-component="body">
     <br>
-<p>optional Nom. Example: <code>"Doe"</code></p>
+<p>optional Nom. Example: <code>Doe</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
@@ -7083,10 +7308,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="phone"                data-endpoint="POSTapi--version--auth-register"
-               value=""+33123456789""
+               value="+33123456789"
                data-component="body">
     <br>
-<p>optional Numéro de téléphone. Example: <code>"+33123456789"</code></p>
+<p>optional Numéro de téléphone. Example: <code>+33123456789</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>city</code></b>&nbsp;&nbsp;
@@ -7095,10 +7320,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="city"                data-endpoint="POSTapi--version--auth-register"
-               value=""Paris""
+               value="Paris"
                data-component="body">
     <br>
-<p>optional Ville. Example: <code>"Paris"</code></p>
+<p>optional Ville. Example: <code>Paris</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -7107,10 +7332,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="address"                data-endpoint="POSTapi--version--auth-register"
-               value=""123 Rue Lafayette""
+               value="123 Rue Lafayette"
                data-component="body">
     <br>
-<p>optional Adresse. Example: <code>"123 Rue Lafayette"</code></p>
+<p>optional Adresse. Example: <code>123 Rue Lafayette</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>birthday</code></b>&nbsp;&nbsp;
@@ -7119,10 +7344,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="birthday"                data-endpoint="POSTapi--version--auth-register"
-               value=""1998-05-03""
+               value="1998-05-03"
                data-component="body">
     <br>
-<p>optional Date de naissance (YYYY-MM-DD). Example: <code>"1998-05-03"</code></p>
+<p>optional Date de naissance (YYYY-MM-DD). Example: <code>1998-05-03</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>company_name</code></b>&nbsp;&nbsp;
@@ -7131,10 +7356,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="company_name"                data-endpoint="POSTapi--version--auth-register"
-               value=""Acme Corp""
+               value="Acme Corp"
                data-component="body">
     <br>
-<p>optional Nom de l'entreprise. Example: <code>"Acme Corp"</code></p>
+<p>optional Nom de l'entreprise. Example: <code>Acme Corp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>fcm_token</code></b>&nbsp;&nbsp;
@@ -7143,10 +7368,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="fcm_token"                data-endpoint="POSTapi--version--auth-register"
-               value=""eQ8XsH7VQ9KnZCwJ6b4Ayz:APA91bG5LjK7""
+               value="eQ8XsH7VQ9KnZCwJ6b4Ayz"
                data-component="body">
     <br>
-<p>optional Jeton FCM. Example: <code>"eQ8XsH7VQ9KnZCwJ6b4Ayz:APA91bG5LjK7"</code></p>
+<p>optional Jeton FCM. Example: <code>eQ8XsH7VQ9KnZCwJ6b4Ayz</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>device_id</code></b>&nbsp;&nbsp;
@@ -7155,10 +7380,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="device_id"                data-endpoint="POSTapi--version--auth-register"
-               value=""123e4567-e89b-12d3-a456-426614174000""
+               value="123e4567-e89b-12d3-a456-426614174000"
                data-component="body">
     <br>
-<p>optional Identifiant unique de l'appareil. Example: <code>"123e4567-e89b-12d3-a456-426614174000"</code></p>
+<p>optional Identifiant unique de l'appareil. Example: <code>123e4567-e89b-12d3-a456-426614174000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>platform</code></b>&nbsp;&nbsp;
@@ -7167,10 +7392,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="platform"                data-endpoint="POSTapi--version--auth-register"
-               value=""ios""
+               value="ios"
                data-component="body">
     <br>
-<p>optional Plateforme de l'appareil. Example: <code>"ios"</code></p>
+<p>optional Plateforme de l'appareil. Example: <code>ios</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>app_version</code></b>&nbsp;&nbsp;
@@ -7179,10 +7404,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="app_version"                data-endpoint="POSTapi--version--auth-register"
-               value=""1.2.3""
+               value="1.2.3"
                data-component="body">
     <br>
-<p>optional Version de l'application. Example: <code>"1.2.3"</code></p>
+<p>optional Version de l'application. Example: <code>1.2.3</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>os_version</code></b>&nbsp;&nbsp;
@@ -7191,10 +7416,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="os_version"                data-endpoint="POSTapi--version--auth-register"
-               value=""iOS 15.0""
+               value="iOS 15.0"
                data-component="body">
     <br>
-<p>optional Version de l'OS. Example: <code>"iOS 15.0"</code></p>
+<p>optional Version de l'OS. Example: <code>iOS 15.0</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>device_model</code></b>&nbsp;&nbsp;
@@ -7203,10 +7428,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="device_model"                data-endpoint="POSTapi--version--auth-register"
-               value=""iPhone 13""
+               value="iPhone 13"
                data-component="body">
     <br>
-<p>optional Modèle de l'appareil. Example: <code>"iPhone 13"</code></p>
+<p>optional Modèle de l'appareil. Example: <code>iPhone 13</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>permission_status</code></b>&nbsp;&nbsp;
@@ -7215,10 +7440,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="permission_status"                data-endpoint="POSTapi--version--auth-register"
-               value=""authorized""
+               value="authorized"
                data-component="body">
     <br>
-<p>optional Statut des permissions de notifications. Example: <code>"authorized"</code></p>
+<p>optional Statut des permissions. Example: <code>authorized</code></p>
         </div>
         </form>
 
@@ -7239,22 +7464,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"\\\"user@example.com\\\"\",
-    \"password\": \"\\\"SecretPass123\\\"\",
-    \"first_name\": \"\\\"John\\\"\",
-    \"last_name\": \"\\\"Doe\\\"\",
-    \"phone\": \"\\\"+33123456789\\\"\",
-    \"city\": \"\\\"Paris\\\"\",
-    \"address\": \"\\\"123 Rue Lafayette\\\"\",
-    \"birthday\": \"\\\"1998-05-03\\\"\",
-    \"company_name\": \"\\\"Acme Corp\\\"\",
-    \"fcm_token\": \"\\\"eQ8XsH7VQ9KnZCwJ6b4Ayz:APA91bG5LjK7\\\"\",
-    \"device_id\": \"\\\"123e4567-e89b-12d3-a456-426614174000\\\"\",
-    \"platform\": \"\\\"ios\\\"\",
-    \"app_version\": \"\\\"1.2.3\\\"\",
-    \"os_version\": \"\\\"iOS 15.0\\\"\",
-    \"device_model\": \"\\\"iPhone 13\\\"\",
-    \"permission_status\": \"\\\"authorized\\\"\"
+    \"email\": \"user@example.com\",
+    \"password\": \"SecretPass123\"
 }"
 </code></pre></div>
 
@@ -7270,22 +7481,8 @@ const headers = {
 };
 
 let body = {
-    "email": "\"user@example.com\"",
-    "password": "\"SecretPass123\"",
-    "first_name": "\"John\"",
-    "last_name": "\"Doe\"",
-    "phone": "\"+33123456789\"",
-    "city": "\"Paris\"",
-    "address": "\"123 Rue Lafayette\"",
-    "birthday": "\"1998-05-03\"",
-    "company_name": "\"Acme Corp\"",
-    "fcm_token": "\"eQ8XsH7VQ9KnZCwJ6b4Ayz:APA91bG5LjK7\"",
-    "device_id": "\"123e4567-e89b-12d3-a456-426614174000\"",
-    "platform": "\"ios\"",
-    "app_version": "\"1.2.3\"",
-    "os_version": "\"iOS 15.0\"",
-    "device_model": "\"iPhone 13\"",
-    "permission_status": "\"authorized\""
+    "email": "user@example.com",
+    "password": "SecretPass123"
 };
 
 fetch(url, {
@@ -7293,6 +7490,13 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{
+    "email": "user@example.com",
+    "password": "SecretPass123"
+}</code></pre></div>
 
 </span>
 
@@ -7403,10 +7607,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi--version--auth-login"
-               value=""user@example.com""
+               value="user@example.com"
                data-component="body">
     <br>
-<p>Email. Example: <code>"user@example.com"</code></p>
+<p>Email. Example: <code>user@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -7415,178 +7619,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi--version--auth-login"
-               value=""SecretPass123""
+               value="SecretPass123"
                data-component="body">
     <br>
-<p>Mot de passe. Example: <code>"SecretPass123"</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>first_name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="first_name"                data-endpoint="POSTapi--version--auth-login"
-               value=""John""
-               data-component="body">
-    <br>
-<p>optional (non utilisé ici, pour homogénéité du payload). Example: <code>"John"</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>last_name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="last_name"                data-endpoint="POSTapi--version--auth-login"
-               value=""Doe""
-               data-component="body">
-    <br>
-<p>optional Example: <code>"Doe"</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="phone"                data-endpoint="POSTapi--version--auth-login"
-               value=""+33123456789""
-               data-component="body">
-    <br>
-<p>optional Example: <code>"+33123456789"</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>city</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="city"                data-endpoint="POSTapi--version--auth-login"
-               value=""Paris""
-               data-component="body">
-    <br>
-<p>optional Example: <code>"Paris"</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="address"                data-endpoint="POSTapi--version--auth-login"
-               value=""123 Rue Lafayette""
-               data-component="body">
-    <br>
-<p>optional Example: <code>"123 Rue Lafayette"</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>birthday</code></b>&nbsp;&nbsp;
-<small>date</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="birthday"                data-endpoint="POSTapi--version--auth-login"
-               value=""1998-05-03""
-               data-component="body">
-    <br>
-<p>optional Example: <code>"1998-05-03"</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>company_name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="company_name"                data-endpoint="POSTapi--version--auth-login"
-               value=""Acme Corp""
-               data-component="body">
-    <br>
-<p>optional Example: <code>"Acme Corp"</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>fcm_token</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="fcm_token"                data-endpoint="POSTapi--version--auth-login"
-               value=""eQ8XsH7VQ9KnZCwJ6b4Ayz:APA91bG5LjK7""
-               data-component="body">
-    <br>
-<p>optional Example: <code>"eQ8XsH7VQ9KnZCwJ6b4Ayz:APA91bG5LjK7"</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>device_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="device_id"                data-endpoint="POSTapi--version--auth-login"
-               value=""123e4567-e89b-12d3-a456-426614174000""
-               data-component="body">
-    <br>
-<p>optional Example: <code>"123e4567-e89b-12d3-a456-426614174000"</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>platform</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="platform"                data-endpoint="POSTapi--version--auth-login"
-               value=""ios""
-               data-component="body">
-    <br>
-<p>optional Example: <code>"ios"</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>app_version</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="app_version"                data-endpoint="POSTapi--version--auth-login"
-               value=""1.2.3""
-               data-component="body">
-    <br>
-<p>optional Example: <code>"1.2.3"</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>os_version</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="os_version"                data-endpoint="POSTapi--version--auth-login"
-               value=""iOS 15.0""
-               data-component="body">
-    <br>
-<p>optional Example: <code>"iOS 15.0"</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>device_model</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="device_model"                data-endpoint="POSTapi--version--auth-login"
-               value=""iPhone 13""
-               data-component="body">
-    <br>
-<p>optional Example: <code>"iPhone 13"</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>permission_status</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="permission_status"                data-endpoint="POSTapi--version--auth-login"
-               value=""authorized""
-               data-component="body">
-    <br>
-<p>optional Example: <code>"authorized"</code></p>
+<p>Mot de passe. Example: <code>SecretPass123</code></p>
         </div>
         </form>
 
@@ -7627,25 +7663,20 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi--version--auth-logout">
             <blockquote>
-            <p>Example response (200, success):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;message&quot;: &quot;Logged out&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (401, unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -7784,34 +7815,20 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi--version--auth-email-resend">
             <blockquote>
-            <p>Example response (200, sent):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;message&quot;: &quot;Verification link sent&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (400, already_verified):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Email already verified&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (401, unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated&quot;
 }</code>
  </pre>
     </span>
@@ -7930,7 +7947,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"\\\"user@example.com\\\"\"
+    \"email\": \"user@example.com\"
 }"
 </code></pre></div>
 
@@ -7946,7 +7963,7 @@ const headers = {
 };
 
 let body = {
-    "email": "\"user@example.com\""
+    "email": "user@example.com"
 };
 
 fetch(url, {
@@ -7955,25 +7972,22 @@ fetch(url, {
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="json-example">
+    <pre><code class="language-json">{
+    "email": "user@example.com"
+}</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi--version--auth-forgot-password">
             <blockquote>
-            <p>Example response (200, sent):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;message&quot;: &quot;We have emailed your password reset link.&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (400, error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;We can&#039;t find a user with that email address.&quot;
 }</code>
  </pre>
     </span>
@@ -8069,10 +8083,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi--version--auth-forgot-password"
-               value=""user@example.com""
+               value="user@example.com"
                data-component="body">
     <br>
-<p>Email. Example: <code>"user@example.com"</code></p>
+<p>Email. Example: <code>user@example.com</code></p>
         </div>
         </form>
 
@@ -8084,6 +8098,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <div class="lang-selector">
                                                         <button type="button" class="lang-button" data-language-name="bash">bash</button>
                                                         <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                                        <button type="button" class="lang-button" data-language-name="json">json</button>
                             </div>
             </div>
 </div>

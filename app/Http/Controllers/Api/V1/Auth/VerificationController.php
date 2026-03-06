@@ -25,9 +25,7 @@ class VerificationController extends Controller
      * @urlParam id integer required ID user. Example: 1
      * @urlParam hash string required SHA1(email). Example: 6b1b36cbb04b41490bfc0ab2bfa26f86a4f37e58
      *
-     * @response 200 scenario="success_json" { "message": "Email verified", "user": { "id": 1, "email": "user@example.com" } }
-     * @response 403 scenario="invalid_link" { "message": "Invalid verification link" }
-     * @response 404 scenario="not_found" { "message": "User not found" }
+     * @response 200 { "message": "Email verified", "user": { "id": 1, "email": "user@example.com" } }
      */
     public function verify(Request $request, int $id, string $hash): JsonResponse|RedirectResponse
     {
@@ -62,9 +60,7 @@ class VerificationController extends Controller
      *
      * Renvoie un email de vérification si l'utilisateur est authentifié et non vérifié.
      *
-     * @response 200 scenario="sent" { "message": "Verification link sent" }
-     * @response 400 scenario="already_verified" { "message": "Email already verified" }
-     * @response 401 scenario="unauthenticated" { "message": "Unauthenticated" }
+     * @response 200 { "message": "Verification link sent" }
      *
      * @authenticated
      */

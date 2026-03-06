@@ -33,6 +33,8 @@ return [
         'enabled' => true,
     ],
 
+    'example_languages' => ['bash', 'javascript', 'json'],
+
     // Ensure Scribe reads docblocks (including class-level @group).
     'strategies' => [
         'metadata' => [

@@ -23,10 +23,9 @@ class PasswordResetController extends Controller
      *
      * Envoie un email avec un lien de réinitialisation.
      *
-     * @bodyParam email string required Email. Example: "user@example.com"
+     * @bodyParam email string required Email. Example: user@example.com
      *
-     * @response 200 scenario="sent" { "message": "We have emailed your password reset link." }
-     * @response 400 scenario="error" { "message": "We can't find a user with that email address." }
+     * @response 200 { "message": "We have emailed your password reset link." }
      */
     public function sendResetLinkEmail(Request $request): JsonResponse
     {
@@ -55,8 +54,8 @@ class PasswordResetController extends Controller
      * Endpoint backend appelé depuis l'email; redirige vers le frontend si `FRONTEND_URL` est défini.
      * Sinon retourne JSON `{ token, email }`.
      *
-     * @urlParam token string required Reset token. Example: "abc123"
-     * @queryParam email string required Email. Example: "user@example.com"
+     * @urlParam token string required Reset token. Example: abc123
+     * @queryParam email string required Email. Example: user@example.com
      */
     public function redirectToFrontend(Request $request, string $token): JsonResponse|RedirectResponse
     {
@@ -85,13 +84,12 @@ class PasswordResetController extends Controller
      *
      * Applique le nouveau mot de passe à partir du token.
      *
-     * @bodyParam token string required Reset token. Example: "abc123"
-     * @bodyParam email string required Email. Example: "user@example.com"
-     * @bodyParam password string required Nouveau mot de passe. Example: "NewPass123"
-     * @bodyParam password_confirmation string required Confirmation. Example: "NewPass123"
+     * @bodyParam token string required Reset token. Example: abc123
+     * @bodyParam email string required Email. Example: user@example.com
+     * @bodyParam password string required Nouveau mot de passe. Example: NewPass123
+     * @bodyParam password_confirmation string required Confirmation. Example: NewPass123
      *
-     * @response 200 scenario="success" { "message": "Your password has been reset." }
-     * @response 400 scenario="invalid_token" { "message": "This password reset token is invalid." }
+     * @response 200 { "message": "Your password has been reset." }
      */
     public function reset(Request $request): JsonResponse
     {
