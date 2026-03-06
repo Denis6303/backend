@@ -2,7 +2,6 @@
 
 namespace App\Services\Finance;
 
-use App\Models\FundraisingContribution;
 use App\Models\Ticket;
 
 class RefundRateResolver
@@ -40,18 +39,6 @@ class RefundRateResolver
         }
 
         return (float) ($cfg['default'] ?? 1.0);
-    }
-
-    public function resolveForFundraisingContribution(FundraisingContribution $contribution): float
-    {
-        $cfg = config('refunds.fundraising', []);
-
-        $fundraisingStatus = $contribution->fundraising?->status;
-        if ($fundraisingStatus === 'stopped') {
-            return (float) ($cfg['when_stopped'] ?? 1.0);
-        }
-
-        return (float) ($cfg['default'] ?? 0.0);
     }
 }
 

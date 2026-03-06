@@ -3,7 +3,6 @@
 namespace App\Services\Finance;
 
 use App\Models\EmailWalletReservation;
-use App\Models\FundraisingContribution;
 use App\Models\Ticket;
 use App\Models\UserWalletTransaction;
 use Illuminate\Support\Facades\DB;
@@ -24,24 +23,6 @@ class WalletService
             [
                 'ticket_id' => $ticket->id,
                 'order_id' => $ticket->order_id,
-            ]
-        );
-    }
-
-    public function refundFundraisingContribution(FundraisingContribution $contribution, float $amount, ?string $reason = null): ?UserWalletTransaction
-    {
-        $currency = $contribution->fundraising?->currency ?? 'XOF';
-
-        return $this->creditUserOrEmail(
-            $contribution->payer,
-            $contribution->email,
-            $currency,
-            $amount,
-            'refund',
-            $reason ?? 'fundraising_refund',
-            [
-                'fundraising_id' => $contribution->fundraising_id,
-                'contribution_id' => $contribution->id,
             ]
         );
     }

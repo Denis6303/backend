@@ -36,6 +36,10 @@
         }
     },
     "scripts": {
+        "docs": [
+            "@php artisan scribe:generate",
+            "@php -r \"$s=file_get_contents('storage/app/scribe/collection.json');@mkdir('public/docs',0755,true);file_put_contents('public/docs/collection.json',$s);\""
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

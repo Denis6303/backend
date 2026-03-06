@@ -30,10 +30,5 @@ class Category extends Model
     {
         return $this->hasMany(Item::class);
     }
-
-    public function fundraisings(): HasMany
-    {
-        return $this->hasMany(Fundraising::class);
-    }
 }
 

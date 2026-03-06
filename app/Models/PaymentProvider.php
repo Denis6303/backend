@@ -25,10 +25,5 @@ class PaymentProvider extends Model
     {
         return $this->hasOne(OrderIntent::class);
     }
-
-    public function fundraisingPaymentIntent(): HasOne
-    {
-        return $this->hasOne(FundraisingPaymentIntent::class, 'payment_provider_id');
-    }
 }
 

@@ -12,10 +12,5 @@ return [
             ['max_hours_before_start' => 6, 'rate' => 0.5],
         ],
     ],
-
-    'fundraising' => [
-        'when_stopped' => 1.0,
-        'default' => 0.0,
-    ],
 ];
 

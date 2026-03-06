@@ -8,8 +8,7 @@ return [
         [
             'match' => [
                 'domains' => ['*'],
-                'prefixes' => ['api/v1/*', 'admin/*'],
-                'versions' => ['v1'],
+                'prefixes' => ['api/*'],
             ],
             'include' => [],
             'exclude' => [],
@@ -23,6 +22,9 @@ return [
         'in' => 'bearer',
         'name' => 'Authorization',
         'use_value' => env('SCRIBE_AUTH_TOKEN'),
+    ],
+    'postman' => [
+        'enabled' => true,
     ],
 ];
 
