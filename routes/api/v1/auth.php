@@ -23,4 +23,6 @@ Route::prefix('auth')->group(function () {
     // Password reset
     Route::post('forgot-password', [PasswordResetController::class, 'sendResetLinkEmail'])
         ->name('password.email');
+    Route::post('reset-password', [PasswordResetController::class, 'reset'])
+        ->name('password.update');
 });

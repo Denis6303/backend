@@ -89,7 +89,7 @@ class VerificationController extends Controller
         $frontendUrl = env('FRONTEND_URL');
 
         if ($frontendUrl) {
-            $url = rtrim($frontendUrl, '/').'/email-verified';
+            $url = rtrim($frontendUrl, '/').'/email-verified?verified=1';
 
             return redirect()->away($url);
         }
