@@ -13,9 +13,14 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Item extends Model implements HasMedia
+class Event extends Model implements HasMedia
 {
     use InteractsWithMedia;
+
+    /**
+     * Table des événements.
+     */
+    protected $table = 'events';
 
     protected $fillable = [
         'user_id',
@@ -87,16 +92,16 @@ class Item extends Model implements HasMedia
 
     public function occurrences(): HasMany
     {
-        return $this->hasMany(ItemOccurrence::class);
+        return $this->hasMany(EventOccurrence::class, 'event_id');
     }
 
     public function ticketTypes(): HasManyThrough
     {
         return $this->hasManyThrough(
             TicketType::class,
-            ItemOccurrence::class,
-            'item_id',
-            'item_occurrence_id',
+            EventOccurrence::class,
+            'event_id',
+            'event_occurrence_id',
             'id',
             'id',
         );
@@ -114,7 +119,7 @@ class Item extends Model implements HasMedia
 
     public function drafts(): HasMany
     {
-        return $this->hasMany(ItemDraft::class);
+        return $this->hasMany(EventDraft::class, 'event_id');
     }
 
     public function publish(): void
@@ -151,27 +156,27 @@ class Item extends Model implements HasMedia
         return $slug;
     }
 
-    public static function saveItemWithRelations(ItemDraft $draft): self
+    public static function saveEventWithRelations(EventDraft $draft): self
     {
         /** @var array<string,mixed> $data */
         $data = $draft->data ?? [];
 
         return DB::transaction(function () use ($draft, $data) {
-            $itemAttributes = (array) ($data['item'] ?? []);
+            $eventAttributes = (array) ($data['event'] ?? []);
             $occurrencesData = (array) ($data['occurrences'] ?? []);
 
-            $item = $draft->item ?? new self();
-            $item->fill($itemAttributes);
-            $item->user_id ??= $draft->user_id;
+            $event = $draft->event ?? new self();
+            $event->fill($eventAttributes);
+            $event->user_id ??= $draft->user_id;
 
-            if (empty($item->slug)) {
-                $item->slug = self::generateUniqueSlug((string) ($item->title ?? 'event'));
+            if (empty($event->slug)) {
+                $event->slug = self::generateUniqueSlug((string) ($event->title ?? 'event'));
             }
 
-            $item->save();
+            $event->save();
 
             foreach ($occurrencesData as $occData) {
-                $occ = $item->occurrences()->updateOrCreate(
+                $occ = $event->occurrences()->updateOrCreate(
                     ['id' => $occData['id'] ?? null],
                     [
                         'subtitle' => $occData['subtitle'] ?? null,
@@ -203,11 +208,11 @@ class Item extends Model implements HasMedia
                 }
             }
 
-            $draft->item()->associate($item);
+            $draft->event()->associate($event);
             $draft->published_at = now();
             $draft->save();
 
-            return $item->fresh(['occurrences.ticketTypes']);
+            return $event->fresh(['occurrences.ticketTypes']);
         });
     }
 
@@ -233,7 +238,7 @@ class Item extends Model implements HasMedia
             'nb_visites' => $this->nb_visites,
             'category' => $this->category?->only(['id', 'name', 'slug', 'level']),
             'cover_url' => $this->getFirstMediaUrl('cover') ?: null,
-            'occurrences' => $this->occurrences->map(fn (ItemOccurrence $o) => $o->toArrayApi())->values()->all(),
+            'occurrences' => $this->occurrences->map(fn (EventOccurrence $o) => $o->toArrayApi())->values()->all(),
         ];
     }
 }

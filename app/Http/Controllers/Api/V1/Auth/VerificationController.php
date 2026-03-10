@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\LoginTicket;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 /**
  * @group User authentication
@@ -89,7 +91,18 @@ class VerificationController extends Controller
         $frontendUrl = env('FRONTEND_URL');
 
         if ($frontendUrl) {
-            $url = rtrim($frontendUrl, '/').'/email-verified?verified=1';
+            // Génère un login_ticket à usage unique, valable quelques minutes.
+            $ticket = Str::uuid()->toString();
+
+            LoginTicket::query()->create([
+                'user_id' => $user->id,
+                'ticket' => $ticket,
+                'expires_at' => now()->addMinutes(5),
+            ]);
+
+            // Redirige vers le frontend avec le ticket, le frontend l'échangera contre un access_token.
+            $baseUrl = rtrim($frontendUrl, '/').'/';
+            $url = $baseUrl.'email-verified?login_ticket='.urlencode($ticket);
 
             return redirect()->away($url);
         }

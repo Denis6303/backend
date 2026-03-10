@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\DiscountCode;
-use App\Models\ItemOccurrence;
+use App\Models\EventOccurrence;
 use App\Models\OrderIntent;
 use App\Services\Payments\FeeCalculator;
 use Illuminate\Http\JsonResponse;
@@ -16,7 +16,7 @@ class OrderIntentsController extends Controller
     public function create(Request $request, FeeCalculator $feeCalculator): JsonResponse
     {
         $data = $request->validate([
-            'item_occurrence_id' => ['required', 'integer', 'exists:item_occurrences,id'],
+            'event_occurrence_id' => ['required', 'integer', 'exists:event_occurrences,id'],
             'currency' => ['nullable', 'string', 'size:3'],
             'customer_email' => ['nullable', 'email'],
             'customer_phone' => ['nullable', 'string'],
@@ -29,8 +29,8 @@ class OrderIntentsController extends Controller
             'meta' => ['nullable', 'array'],
         ]);
 
-        /** @var ItemOccurrence $occurrence */
-        $occurrence = ItemOccurrence::query()->with('item')->findOrFail((int) $data['item_occurrence_id']);
+        /** @var EventOccurrence $occurrence */
+        $occurrence = EventOccurrence::query()->with('event')->findOrFail((int) $data['event_occurrence_id']);
         if ($occurrence->status !== 'upcoming') {
             throw ValidationException::withMessages(['occurrence' => 'Occurrence is not available.']);
         }
@@ -48,10 +48,10 @@ class OrderIntentsController extends Controller
             'claim_code' => $data['meta']['claim_code'] ?? null,
             'price' => 0,
             'fees' => 0,
-            'currency' => strtoupper($data['currency'] ?? ($occurrence->item?->currency ?? 'XOF')),
+            'currency' => strtoupper($data['currency'] ?? ($occurrence->event?->currency ?? 'XOF')),
             'status' => 'pending',
             'discount_id' => $discount?->id,
-            'item_occurrence_id' => $occurrence->id,
+            'event_occurrence_id' => $occurrence->id,
             'customer_user_id' => $request->user()?->id,
             'customer_email' => $data['customer_email'] ?? null,
             'customer_phone' => $data['customer_phone'] ?? null,

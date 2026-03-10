@@ -21,7 +21,7 @@ class OrderIntent extends Model
         'status',
         'discount_id',
         'payment_provider_id',
-        'item_occurrence_id',
+        'event_occurrence_id',
         'customer_user_id',
         'customer_email',
         'customer_phone',
@@ -39,7 +39,7 @@ class OrderIntent extends Model
 
     public function occurrence(): BelongsTo
     {
-        return $this->belongsTo(ItemOccurrence::class, 'item_occurrence_id');
+        return $this->belongsTo(EventOccurrence::class, 'event_occurrence_id');
     }
 
     public function customer(): BelongsTo
@@ -78,7 +78,7 @@ class OrderIntent extends Model
             foreach ($lines as $line) {
                 $type = TicketType::query()
                     ->where('id', $line['ticket_type_id'])
-                    ->where('item_occurrence_id', $occurrence->id)
+                    ->where('event_occurrence_id', $occurrence->id)
                     ->lockForUpdate()
                     ->firstOrFail();
 

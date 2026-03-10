@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class TicketType extends Model
 {
     protected $fillable = [
-        'item_occurrence_id',
+        'event_occurrence_id',
         'name',
         'description',
         'general_conditions',
@@ -31,7 +31,7 @@ class TicketType extends Model
 
     public function occurrence(): BelongsTo
     {
-        return $this->belongsTo(ItemOccurrence::class, 'item_occurrence_id');
+        return $this->belongsTo(EventOccurrence::class, 'event_occurrence_id');
     }
 
     public function tagModel(): BelongsTo

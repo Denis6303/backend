@@ -5,10 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ItemOccurrenceCommission extends Model
+class EventOccurrenceCommission extends Model
 {
+    /**
+     * Table des commissions par occurrence d'événement.
+     */
+    protected $table = 'event_occurrence_commissions';
+
     protected $fillable = [
-        'item_occurrence_id',
+        'event_occurrence_id',
         'commission_percentage',
         'commission_amount',
         'meta',
@@ -22,7 +27,7 @@ class ItemOccurrenceCommission extends Model
 
     public function occurrence(): BelongsTo
     {
-        return $this->belongsTo(ItemOccurrence::class, 'item_occurrence_id');
+        return $this->belongsTo(EventOccurrence::class, 'event_occurrence_id');
     }
 }
 

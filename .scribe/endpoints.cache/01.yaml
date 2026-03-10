@@ -126,11 +126,24 @@ endpoints:
     responses:
       -
         custom: []
-        status: 200
-        content: '{"token":"abc123","email":"user@example.com"}'
+        status: 302
+        content: |-
+          <!DOCTYPE html>
+          <html>
+              <head>
+                  <meta charset="UTF-8" />
+                  <meta http-equiv="refresh" content="0;url='http://localhost:3000/reset-password?token=abc123&amp;email=user%40example.com'" />
+
+                  <title>Redirecting to http://localhost:3000/reset-password?token=abc123&amp;email=user%40example.com</title>
+              </head>
+              <body>
+                  Redirecting to <a href="http://localhost:3000/reset-password?token=abc123&amp;email=user%40example.com">http://localhost:3000/reset-password?token=abc123&amp;email=user%40example.com</a>.
+              </body>
+          </html>
         headers:
           cache-control: 'no-cache, private'
-          content-type: application/json
+          location: 'http://localhost:3000/reset-password?token=abc123&email=user%40example.com'
+          content-type: 'text/html; charset=utf-8'
           x-ratelimit-limit: '60'
           x-ratelimit-remaining: '59'
           access-control-allow-origin: '*'
@@ -160,8 +173,8 @@ endpoints:
       subgroupDescription: ''
       title: 'Register a new user.'
       description: |-
-        Crée un utilisateur avec uniquement email et mot de passe obligatoires,
-        puis renvoie un token (Bearer). Déclenche aussi l'email de vérification.
+        Body minimal : email + password. Champs optionnels : first_name, last_name, etc.
+        Après inscription, un email de vérification est envoyé.
       authenticated: false
       deprecated: false
     headers:
@@ -211,10 +224,10 @@ endpoints:
         name: first_name
         description: 'optional Prénom.'
         required: false
-        example: John
+        example: architecto
         type: string
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: true
         deprecated: false
       last_name:
@@ -222,176 +235,19 @@ endpoints:
         name: last_name
         description: 'optional Nom.'
         required: false
-        example: Doe
+        example: architecto
         type: string
         enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-      phone:
-        custom: []
-        name: phone
-        description: 'optional Numéro de téléphone.'
-        required: false
-        example: '+33123456789'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-      city:
-        custom: []
-        name: city
-        description: 'optional Ville.'
-        required: false
-        example: Paris
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-      address:
-        custom: []
-        name: address
-        description: 'optional Adresse.'
-        required: false
-        example: '123 Rue Lafayette'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-      birthday:
-        custom: []
-        name: birthday
-        description: 'optional Date de naissance (YYYY-MM-DD).'
-        required: false
-        example: '1998-05-03'
-        type: date
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-      company_name:
-        custom: []
-        name: company_name
-        description: "optional Nom de l'entreprise."
-        required: false
-        example: 'Acme Corp'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-      fcm_token:
-        custom: []
-        name: fcm_token
-        description: 'optional Jeton FCM.'
-        required: false
-        example: eQ8XsH7VQ9KnZCwJ6b4Ayz
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-      device_id:
-        custom: []
-        name: device_id
-        description: "optional Identifiant unique de l'appareil."
-        required: false
-        example: 123e4567-e89b-12d3-a456-426614174000
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-      platform:
-        custom: []
-        name: platform
-        description: "optional Plateforme de l'appareil."
-        required: false
-        example: ios
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-      app_version:
-        custom: []
-        name: app_version
-        description: "optional Version de l'application."
-        required: false
-        example: 1.2.3
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-      os_version:
-        custom: []
-        name: os_version
-        description: "optional Version de l'OS."
-        required: false
-        example: 'iOS 15.0'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-      device_model:
-        custom: []
-        name: device_model
-        description: "optional Modèle de l'appareil."
-        required: false
-        example: 'iPhone 13'
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-      permission_status:
-        custom: []
-        name: permission_status
-        description: 'optional Statut des permissions.'
-        required: false
-        example: authorized
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: true
         deprecated: false
     cleanBodyParameters:
       email: user@example.com
       password: SecretPass123
-      first_name: John
-      last_name: Doe
-      phone: '+33123456789'
-      city: Paris
-      address: '123 Rue Lafayette'
-      birthday: '1998-05-03'
-      company_name: 'Acme Corp'
-      fcm_token: eQ8XsH7VQ9KnZCwJ6b4Ayz
-      device_id: 123e4567-e89b-12d3-a456-426614174000
-      platform: ios
-      app_version: 1.2.3
-      os_version: 'iOS 15.0'
-      device_model: 'iPhone 13'
-      permission_status: authorized
+      first_name: architecto
+      last_name: architecto
     fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 201
-        content: |-
-          {
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9...",
-            "user": {
-              "id": 1,
-              "email": "user@example.com"
-            }
-          }
-        headers: []
-        description: ''
+    responses: []
     responseFields: []
     auth: []
     controller: null
@@ -416,7 +272,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: Login.
-      description: 'Authentifie un utilisateur et retourne un token Bearer Passport.'
+      description: 'Body : email + password uniquement.'
       authenticated: false
       deprecated: false
     headers:
@@ -465,17 +321,7 @@ endpoints:
       email: user@example.com
       password: SecretPass123
     fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: |-
-          {
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9...",
-            "user": { "id": 1, "email": "user@example.com" }
-          }
-        headers: []
-        description: ''
+    responses: []
     responseFields: []
     auth: []
     controller: null
@@ -500,7 +346,7 @@ endpoints:
       subgroup: ''
       subgroupDescription: ''
       title: Logout.
-      description: 'Révoque le token courant.'
+      description: ''
       authenticated: true
       deprecated: false
     headers:
@@ -526,13 +372,7 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: '{ "message": "Logged out" }'
-        headers: []
-        description: ''
+    responses: []
     responseFields: []
     auth:
       - headers
@@ -656,6 +496,166 @@ endpoints:
         description: ''
     responseFields: []
     auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/{version}/auth/reset-password'
+    metadata:
+      custom: []
+      groupName: 'User authentication'
+      groupDescription: |-
+
+        Réinitialisation du mot de passe.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Reset password.'
+      description: 'Applique le nouveau mot de passe à partir du token.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      version:
+        custom: []
+        name: version
+        description: ''
+        required: true
+        example: v1
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      version: v1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      token:
+        custom: []
+        name: token
+        description: 'Reset token.'
+        required: true
+        example: abc123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      email:
+        custom: []
+        name: email
+        description: Email.
+        required: true
+        example: user@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      password:
+        custom: []
+        name: password
+        description: 'Nouveau mot de passe.'
+        required: true
+        example: NewPass123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      password_confirmation:
+        custom: []
+        name: password_confirmation
+        description: Confirmation.
+        required: true
+        example: NewPass123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      token: abc123
+      email: user@example.com
+      password: NewPass123
+      password_confirmation: NewPass123
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{ "message": "Your password has been reset." }'
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/{version}/me'
+    metadata:
+      custom: []
+      groupName: 'User authentication'
+      groupDescription: |-
+
+        Endpoints liés à l'utilisateur connecté.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mon profil (user courant).'
+      description: "Retourne les informations de l'utilisateur authentifié associé au token Bearer."
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      version:
+        custom: []
+        name: version
+        description: ''
+        required: true
+        example: v1
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      version: v1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "data": {
+              "id": 1,
+              "email": "user@example.com"
+            }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null

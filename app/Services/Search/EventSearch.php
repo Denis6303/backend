@@ -2,7 +2,7 @@
 
 namespace App\Services\Search;
 
-use App\Models\Item;
+use App\Models\Event;
 use Illuminate\Database\Eloquent\Builder;
 
 class EventSearch
@@ -16,7 +16,7 @@ class EventSearch
      */
     public function query(array $filters = []): Builder
     {
-        $q = Item::query()->with(['occurrences.ticketTypes', 'category']);
+        $q = Event::query()->with(['occurrences.ticketTypes', 'category']);
 
         if (! empty($filters['status'])) {
             $q->where('status', $filters['status']);

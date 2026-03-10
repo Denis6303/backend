@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Services\Finance\RefundRateResolver;
-use App\Services\Finance\WalletService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -17,7 +16,7 @@ class Ticket extends Model
         'ticket_number',
         'order_id',
         'ticket_type_id',
-        'item_occurrence_id',
+        'event_occurrence_id',
         'price',
         'status',
         'is_cancellable',
@@ -56,7 +55,7 @@ class Ticket extends Model
 
     public function occurrence(): BelongsTo
     {
-        return $this->belongsTo(ItemOccurrence::class, 'item_occurrence_id');
+        return $this->belongsTo(EventOccurrence::class, 'event_occurrence_id');
     }
 
     public function user(): BelongsTo
@@ -110,24 +109,23 @@ class Ticket extends Model
             $rate = app(RefundRateResolver::class)->resolveForTicket($this);
             $amount = round(((float) $this->price) * $rate, 2);
 
+            $currency = $this->order?->currency ?? 'XOF';
+
             if ($amount <= 0) {
                 return TicketRefund::create([
                     'ticket_id' => $this->id,
                     'order_id' => $this->order_id,
-                    'currency' => $this->order?->currency ?? ($this->occurrence?->item?->currency ?? 'XOF'),
+                    'currency' => $currency,
                     'amount' => 0,
                     'rate' => $rate,
                     'reason' => $reason ?? 'no_refund',
                 ]);
             }
 
-            $walletTx = app(WalletService::class)->refundTicket($this, $amount, $reason);
-
             return TicketRefund::create([
                 'ticket_id' => $this->id,
                 'order_id' => $this->order_id,
-                'user_wallet_transaction_id' => $walletTx?->id,
-                'currency' => $walletTx?->currency ?? ($this->order?->currency ?? 'XOF'),
+                'currency' => $currency,
                 'amount' => $amount,
                 'rate' => $rate,
                 'reason' => $reason ?? 'ticket_cancelled',

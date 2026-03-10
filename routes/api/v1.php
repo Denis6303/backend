@@ -37,7 +37,6 @@ require base_path('routes/api/v1/user/orders.php');
 require base_path('routes/api/v1/user/invitations.php');
 require base_path('routes/api/v1/user/prints.php');
 require base_path('routes/api/v1/user/discount-codes.php');
-require base_path('routes/api/v1/user/wallet.php');
 require base_path('routes/api/v1/user/subscriptions.php');
 require base_path('routes/api/v1/user/favorites.php');
 require base_path('routes/api/v1/user/notifications.php');

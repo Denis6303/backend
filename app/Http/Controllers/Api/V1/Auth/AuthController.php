@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\LoginTicket;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -123,6 +124,63 @@ class AuthController extends Controller
             'locale' => self::LOCALE,
             'message' => 'Déconnexion réussie',
             'data' => null,
+        ]);
+    }
+
+    /**
+     * Exchange a login_ticket (one-time) for an access token.
+     *
+     * Utilisé après clic sur le lien de vérification d'email depuis le frontend.
+     *
+     * @bodyParam login_ticket string required Ticket unique reçu en query string. Example: 8d9e0a1b-2f6b-4b9b-8f4b-2c9c1f6a1b2c
+     */
+    public function exchangeTicket(Request $request): JsonResponse
+    {
+        $data = $request->validate([
+            'login_ticket' => ['required', 'string'],
+        ]);
+
+        $ticket = LoginTicket::query()
+            ->where('ticket', $data['login_ticket'])
+            ->whereNull('used_at')
+            ->where('expires_at', '>', now())
+            ->first();
+
+        if (! $ticket) {
+            return response()->json([
+                'success' => false,
+                'code' => 400,
+                'locale' => self::LOCALE,
+                'message' => 'Login ticket invalide ou expiré',
+                'data' => null,
+            ], 400);
+        }
+
+        /** @var User $user */
+        $user = $ticket->user;
+
+        if (! $user) {
+            return response()->json([
+                'success' => false,
+                'code' => 404,
+                'locale' => self::LOCALE,
+                'message' => 'Utilisateur introuvable pour ce ticket',
+                'data' => null,
+            ], 404);
+        }
+
+        // Marque le ticket comme utilisé pour empêcher toute réutilisation.
+        $ticket->forceFill(['used_at' => now()])->save();
+
+        $tokenResult = $user->createToken('api');
+        $dataResponse = $this->buildAuthData($tokenResult, $user);
+
+        return response()->json([
+            'success' => true,
+            'code' => 0,
+            'locale' => self::LOCALE,
+            'message' => 'Connexion réussie',
+            'data' => $dataResponse,
         ]);
     }
 

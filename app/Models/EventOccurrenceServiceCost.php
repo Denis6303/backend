@@ -5,10 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ItemOccurrenceServiceCost extends Model
+class EventOccurrenceServiceCost extends Model
 {
+    /**
+     * Table des coûts de service par occurrence d'événement.
+     */
+    protected $table = 'event_occurrence_service_costs';
+
     protected $fillable = [
-        'item_occurrence_id',
+        'event_occurrence_id',
         'label',
         'amount',
         'meta',
@@ -21,7 +26,7 @@ class ItemOccurrenceServiceCost extends Model
 
     public function occurrence(): BelongsTo
     {
-        return $this->belongsTo(ItemOccurrence::class, 'item_occurrence_id');
+        return $this->belongsTo(EventOccurrence::class, 'event_occurrence_id');
     }
 }
 

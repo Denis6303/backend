@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\ItemOccurrence;
+use App\Models\EventOccurrence;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -24,8 +24,8 @@ class HandleEventOccurrenceCancellation implements ShouldQueue
     public function handle(): void
     {
         DB::transaction(function () {
-            /** @var ItemOccurrence $occurrence */
-            $occurrence = ItemOccurrence::query()->lockForUpdate()->findOrFail($this->occurrenceId);
+            /** @var EventOccurrence $occurrence */
+            $occurrence = EventOccurrence::query()->lockForUpdate()->findOrFail($this->occurrenceId);
 
             $occurrence->tickets()
                 ->whereIn('status', ['active', 'validated', 'transferred'])

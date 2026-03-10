@@ -66,32 +66,6 @@ return new class extends Migration
             $table->index(['subscribable_type', 'subscribable_id'], 'subscriptions_morph_index');
         });
 
-        Schema::create('email_wallet_reservations', function (Blueprint $table) {
-            $table->id();
-            $table->string('email')->index();
-            $table->char('currency', 3);
-            $table->decimal('amount', 14, 2);
-            $table->string('reason')->nullable();
-            $table->json('meta')->nullable();
-            $table->timestamp('released_at')->nullable();
-            $table->timestamps();
-        });
-
-        Schema::create('user_wallet_transactions', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('email_wallet_reservation_id')->nullable()->constrained('email_wallet_reservations')->nullOnDelete();
-
-            $table->char('currency', 3);
-            $table->decimal('amount', 14, 2);
-            $table->string('type'); // credit/debit/refund/...
-            $table->string('reason')->nullable();
-            $table->json('meta')->nullable();
-            $table->timestamps();
-
-            $table->index(['user_id', 'type']);
-        });
-
         Schema::create('media', function (Blueprint $table) {
             $table->id();
 
@@ -116,8 +90,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('media');
-        Schema::dropIfExists('user_wallet_transactions');
-        Schema::dropIfExists('email_wallet_reservations');
         Schema::dropIfExists('subscriptions');
         Schema::dropIfExists('favorites');
         Schema::dropIfExists('payment_providers');

@@ -2,7 +2,7 @@
 
 namespace App\Services\Stats;
 
-use App\Models\ItemOccurrence;
+use App\Models\EventOccurrence;
 use Illuminate\Support\Facades\DB;
 
 class EventStatsService
@@ -11,12 +11,12 @@ class EventStatsService
     {
     }
 
-    public function summary(ItemOccurrence $occurrence): array
+    public function summary(EventOccurrence $occurrence): array
     {
         $row = (array) $this->query->forOccurrence($occurrence->id)->first();
 
         $ticketsCount = (int) DB::table('tickets')
-            ->where('item_occurrence_id', $occurrence->id)
+            ->where('event_occurrence_id', $occurrence->id)
             ->count();
 
         return [

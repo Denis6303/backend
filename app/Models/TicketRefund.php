@@ -10,7 +10,6 @@ class TicketRefund extends Model
     protected $fillable = [
         'ticket_id',
         'order_id',
-        'user_wallet_transaction_id',
         'currency',
         'amount',
         'rate',
@@ -30,11 +29,6 @@ class TicketRefund extends Model
     public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
-    }
-
-    public function walletTransaction(): BelongsTo
-    {
-        return $this->belongsTo(UserWalletTransaction::class, 'user_wallet_transaction_id');
     }
 }
 

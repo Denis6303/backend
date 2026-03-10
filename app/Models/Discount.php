@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Discount extends Model
 {
     protected $fillable = [
-        'item_occurrence_id',
+        'event_occurrence_id',
         'name',
         'type',
         'value',
@@ -28,7 +28,7 @@ class Discount extends Model
 
     public function occurrence(): BelongsTo
     {
-        return $this->belongsTo(ItemOccurrence::class, 'item_occurrence_id');
+        return $this->belongsTo(EventOccurrence::class, 'event_occurrence_id');
     }
 
     public function codes(): HasMany

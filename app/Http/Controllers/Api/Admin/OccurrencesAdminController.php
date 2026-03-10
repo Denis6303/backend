@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\ItemEarning;
-use App\Models\ItemOccurrence;
+use App\Models\EventEarning;
+use App\Models\EventOccurrence;
 use App\Models\TicketType;
 use App\Services\Stats\EventStatsService;
 use Illuminate\Http\JsonResponse;
@@ -18,7 +18,7 @@ class OccurrencesAdminController extends Controller
 {
     public function summary(int $id, EventStatsService $stats): JsonResponse
     {
-        $occurrence = ItemOccurrence::query()->with(['commission', 'serviceCosts'])->findOrFail($id);
+        $occurrence = EventOccurrence::query()->with(['commission', 'serviceCosts'])->findOrFail($id);
 
         return response()->json([
             'data' => $stats->summary($occurrence),
@@ -27,7 +27,7 @@ class OccurrencesAdminController extends Controller
 
     public function earnings(int $id): JsonResponse
     {
-        $occurrence = ItemOccurrence::query()->with(['commission', 'serviceCosts'])->findOrFail($id);
+        $occurrence = EventOccurrence::query()->with(['commission', 'serviceCosts'])->findOrFail($id);
 
         $earning = $occurrence->itemEarning;
         if (! $earning) {
@@ -36,8 +36,8 @@ class OccurrencesAdminController extends Controller
             $fees = (float) $occurrence->orders()->where('status', 'confirmed')->sum('fees');
             $recipe = $occurrence->calculateRecipe();
 
-            $earning = ItemEarning::create([
-                'item_occurrence_id' => $occurrence->id,
+            $earning = EventEarning::create([
+                'event_occurrence_id' => $occurrence->id,
                 'gross_revenue' => $gross,
                 'discount_total' => $discount,
                 'fees_total' => $fees,
@@ -54,10 +54,10 @@ class OccurrencesAdminController extends Controller
 
     public function ticketTypes(int $id): JsonResponse
     {
-        $occurrence = ItemOccurrence::query()->findOrFail($id);
+        $occurrence = EventOccurrence::query()->findOrFail($id);
 
         $types = TicketType::query()
-            ->where('item_occurrence_id', $occurrence->id)
+            ->where('event_occurrence_id', $occurrence->id)
             ->orderBy('id')
             ->get();
 

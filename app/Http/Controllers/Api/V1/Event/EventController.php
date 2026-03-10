@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Event;
 
 use App\Http\Controllers\Controller;
-use App\Models\Item;
+use App\Models\Event;
 use App\Services\Search\EventSearch;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class EventController extends Controller
         $events = $search->query($filters)->paginate((int) $request->get('per_page', 15));
 
         return response()->json([
-            'data' => $events->getCollection()->map(fn (Item $i) => $i->toArrayApi())->values(),
+            'data' => $events->getCollection()->map(fn (Event $e) => $e->toArrayApi())->values(),
             'meta' => [
                 'current_page' => $events->currentPage(),
                 'last_page' => $events->lastPage(),
@@ -29,7 +29,7 @@ class EventController extends Controller
 
     public function show(string $idOrSlug): JsonResponse
     {
-        $query = Item::query()->with(['occurrences.ticketTypes', 'category']);
+        $query = Event::query()->with(['occurrences.ticketTypes', 'category']);
 
         $event = is_numeric($idOrSlug)
             ? $query->findOrFail((int) $idOrSlug)
@@ -51,7 +51,7 @@ class EventController extends Controller
         $events = $query->paginate((int) $request->get('per_page', 15));
 
         return response()->json([
-            'data' => $events->getCollection()->map(fn (Item $i) => $i->toArrayApi())->values(),
+            'data' => $events->getCollection()->map(fn (Event $e) => $e->toArrayApi())->values(),
             'meta' => [
                 'current_page' => $events->currentPage(),
                 'last_page' => $events->lastPage(),

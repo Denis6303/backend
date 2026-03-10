@@ -8,13 +8,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class ItemDraft extends Model implements HasMedia
+class EventDraft extends Model implements HasMedia
 {
     use InteractsWithMedia;
     use SoftDeletes;
 
+    /**
+     * Table des brouillons d'événements.
+     */
+    protected $table = 'event_drafts';
+
     protected $fillable = [
-        'item_id',
+        'event_id',
         'user_id',
         'data',
         'published_at',
@@ -31,9 +36,9 @@ class ItemDraft extends Model implements HasMedia
         $this->addMediaCollection('gallery');
     }
 
-    public function item(): BelongsTo
+    public function event(): BelongsTo
     {
-        return $this->belongsTo(Item::class);
+        return $this->belongsTo(Event::class, 'event_id');
     }
 
     public function user(): BelongsTo

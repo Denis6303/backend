@@ -32,7 +32,7 @@ class HandleConfirmedOrder implements ShouldQueue
     {
         DB::transaction(function () use ($feeCalculator) {
             /** @var OrderIntent $intent */
-            $intent = OrderIntent::query()->lockForUpdate()->with(['occurrence.item', 'discount', 'paymentProvider'])->findOrFail($this->orderIntentId);
+            $intent = OrderIntent::query()->lockForUpdate()->with(['occurrence.event', 'discount', 'paymentProvider'])->findOrFail($this->orderIntentId);
 
             if ($intent->status !== 'confirmed') {
                 throw new RuntimeException('Order intent is not confirmed.');
@@ -52,7 +52,7 @@ class HandleConfirmedOrder implements ShouldQueue
             $order = Order::create([
                 'number' => $this->newOrderNumber(),
                 'claim_code' => $intent->claim_code,
-                'item_occurrence_id' => $intent->item_occurrence_id,
+                'event_occurrence_id' => $intent->event_occurrence_id,
                 'user_id' => $intent->customer_user_id,
                 'amount' => max(0.0, (float) $intent->price - $discountAmount + $fees),
                 'fees' => $fees,
@@ -82,7 +82,7 @@ class HandleConfirmedOrder implements ShouldQueue
                         'ticket_number' => $this->newTicketNumber(),
                         'order_id' => $order->id,
                         'ticket_type_id' => $type->id,
-                        'item_occurrence_id' => $intent->item_occurrence_id,
+                        'event_occurrence_id' => $intent->event_occurrence_id,
                         'price' => $type->price,
                         'status' => 'active',
                         'is_cancellable' => true,

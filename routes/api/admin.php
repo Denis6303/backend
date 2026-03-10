@@ -15,7 +15,6 @@ require base_path('routes/api/admin/ticket-tags.php');
 require base_path('routes/api/admin/transferred-tickets.php');
 require base_path('routes/api/admin/tickets.php');
 require base_path('routes/api/admin/finance.php');
-require base_path('routes/api/admin/wallets.php');
 require base_path('routes/api/admin/reconciliation.php');
 require base_path('routes/api/admin/payment-report.php');
 require base_path('routes/api/admin/users.php');

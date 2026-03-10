@@ -5,23 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Validator extends Model
+class LoginTicket extends Model
 {
     protected $fillable = [
-        'event_occurrence_id',
         'user_id',
-        'status',
-        'permissions',
+        'ticket',
+        'expires_at',
+        'used_at',
     ];
 
     protected $casts = [
-        'permissions' => 'array',
+        'expires_at' => 'datetime',
+        'used_at' => 'datetime',
     ];
-
-    public function occurrence(): BelongsTo
-    {
-        return $this->belongsTo(EventOccurrence::class, 'event_occurrence_id');
-    }
 
     public function user(): BelongsTo
     {

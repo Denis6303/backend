@@ -26,9 +26,9 @@ class Category extends Model
         return $this->hasMany(self::class, 'parent_id');
     }
 
-    public function items(): HasMany
+    public function events(): HasMany
     {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Event::class, 'category_id');
     }
 }
 

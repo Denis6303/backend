@@ -130,15 +130,15 @@ endpoints:
         name: idOrSlug
         description: ''
         required: true
-        example: architecto
-        type: string
+        example: 16
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
       version: v1
-      idOrSlug: architecto
+      idOrSlug: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -150,7 +150,7 @@ endpoints:
         status: 404
         content: |-
           {
-              "message": "No query results for model [App\\Models\\Item]."
+              "message": "No query results for model [App\\Models\\Event]."
           }
         headers:
           cache-control: 'no-cache, private'
@@ -199,10 +199,10 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      item_occurrence_id:
+      event_occurrence_id:
         custom: []
-        name: item_occurrence_id
-        description: 'The <code>id</code> of an existing record in the item_occurrences table.'
+        name: event_occurrence_id
+        description: 'The <code>id</code> of an existing record in the event_occurrences table.'
         required: true
         example: 16
         type: integer
@@ -322,7 +322,7 @@ endpoints:
         nullable: false
         deprecated: false
     cleanBodyParameters:
-      item_occurrence_id: 16
+      event_occurrence_id: 16
       currency: ngz
       customer_email: rempel.chadrick@example.org
       customer_phone: architecto
@@ -520,58 +520,6 @@ endpoints:
           content-type: application/json
           x-ratelimit-limit: '60'
           x-ratelimit-remaining: '56'
-          access-control-allow-origin: '*'
-        description: null
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - GET
-    uri: 'api/{version}/me'
-    metadata:
-      custom: []
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      version:
-        custom: []
-        name: version
-        description: ''
-        required: true
-        example: v1
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      version: v1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
           access-control-allow-origin: '*'
         description: null
     responseFields: []
@@ -1257,14 +1205,14 @@ endpoints:
         name: id
         description: 'The ID of the event.'
         required: true
-        example: architecto
-        type: string
+        example: 16
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: architecto
+      id: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1300,14 +1248,14 @@ endpoints:
         name: id
         description: 'The ID of the event.'
         required: true
-        example: architecto
-        type: string
+        example: 16
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: architecto
+      id: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1343,14 +1291,14 @@ endpoints:
         name: id
         description: 'The ID of the event.'
         required: true
-        example: architecto
-        type: string
+        example: 16
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: architecto
+      id: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1386,21 +1334,21 @@ endpoints:
         name: id
         description: 'The ID of the event.'
         required: true
-        example: architecto
-        type: string
+        example: 16
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: architecto
+      id: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
       occurrence_id:
         custom: []
         name: occurrence_id
-        description: 'The <code>id</code> of an existing record in the item_occurrences table.'
+        description: 'The <code>id</code> of an existing record in the event_occurrences table.'
         required: false
         example: 16
         type: integer
@@ -1465,21 +1413,21 @@ endpoints:
         name: id
         description: 'The ID of the event.'
         required: true
-        example: architecto
-        type: string
+        example: 16
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: architecto
+      id: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
       occurrence_id:
         custom: []
         name: occurrence_id
-        description: 'The <code>id</code> of an existing record in the item_occurrences table.'
+        description: 'The <code>id</code> of an existing record in the event_occurrences table.'
         required: true
         example: 16
         type: integer
@@ -1558,14 +1506,14 @@ endpoints:
         name: id
         description: 'The ID of the event.'
         required: true
-        example: architecto
-        type: string
+        example: 16
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: architecto
+      id: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1613,14 +1561,14 @@ endpoints:
         name: id
         description: 'The ID of the event.'
         required: true
-        example: architecto
-        type: string
+        example: 16
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: architecto
+      id: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1656,14 +1604,14 @@ endpoints:
         name: id
         description: 'The ID of the event.'
         required: true
-        example: architecto
-        type: string
+        example: 16
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: architecto
+      id: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1809,46 +1757,6 @@ endpoints:
     httpMethods:
       - GET
     uri: api/admin/finance
-    metadata:
-      custom: []
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - GET
-    uri: api/admin/wallets
     metadata:
       custom: []
       groupName: Endpoints

@@ -11,7 +11,7 @@ class Order extends Model
     protected $fillable = [
         'number',
         'claim_code',
-        'item_occurrence_id',
+        'event_occurrence_id',
         'user_id',
         'distributor_user_id',
         'amount',
@@ -36,7 +36,7 @@ class Order extends Model
 
     public function occurrence(): BelongsTo
     {
-        return $this->belongsTo(ItemOccurrence::class, 'item_occurrence_id');
+        return $this->belongsTo(EventOccurrence::class, 'event_occurrence_id');
     }
 
     public function user(): BelongsTo

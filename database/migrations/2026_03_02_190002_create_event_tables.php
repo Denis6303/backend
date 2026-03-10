@@ -8,7 +8,8 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('items', function (Blueprint $table) {
+        // Table principale des événements
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
@@ -52,9 +53,10 @@ return new class extends Migration
             $table->index(['status', 'is_private', 'is_verified']);
         });
 
-        Schema::create('item_occurrences', function (Blueprint $table) {
+        // Occurrences d'événements
+        Schema::create('event_occurrences', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_id')->constrained('items')->cascadeOnDelete();
+            $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
 
             $table->string('subtitle')->nullable();
             $table->dateTime('start_date');
@@ -65,7 +67,7 @@ return new class extends Migration
             $table->timestamp('cancelled_at')->nullable();
             $table->timestamps();
 
-            $table->index(['item_id', 'status']);
+            $table->index(['event_id', 'status']);
         });
 
         Schema::create('ticket_tags', function (Blueprint $table) {
@@ -77,7 +79,7 @@ return new class extends Migration
 
         Schema::create('ticket_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_occurrence_id')->constrained('item_occurrences')->cascadeOnDelete();
+            $table->foreignId('event_occurrence_id')->constrained('event_occurrences')->cascadeOnDelete();
 
             $table->string('name');
             $table->text('description')->nullable();
@@ -96,7 +98,7 @@ return new class extends Migration
             $table->string('status')->default('active'); // active/disabled
             $table->timestamps();
 
-            $table->index(['item_occurrence_id', 'status']);
+            $table->index(['event_occurrence_id', 'status']);
         });
 
         Schema::create('ticket_type_promotions', function (Blueprint $table) {
@@ -112,7 +114,7 @@ return new class extends Migration
 
         Schema::create('discounts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_occurrence_id')->constrained('item_occurrences')->cascadeOnDelete();
+            $table->foreignId('event_occurrence_id')->constrained('event_occurrences')->cascadeOnDelete();
             $table->string('name');
             $table->string('type')->default('percentage'); // percentage/fixed
             $table->decimal('value', 14, 2);
@@ -137,13 +139,13 @@ return new class extends Migration
 
         Schema::create('validators', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_occurrence_id')->constrained('item_occurrences')->cascadeOnDelete();
+            $table->foreignId('event_occurrence_id')->constrained('event_occurrences')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('status')->default('active');
             $table->json('permissions')->nullable();
             $table->timestamps();
 
-            $table->unique(['item_occurrence_id', 'user_id']);
+            $table->unique(['event_occurrence_id', 'user_id']);
         });
 
         Schema::create('orders', function (Blueprint $table) {
@@ -151,7 +153,7 @@ return new class extends Migration
             $table->string('number')->unique();
             $table->string('claim_code')->nullable()->index();
 
-            $table->foreignId('item_occurrence_id')->constrained('item_occurrences')->cascadeOnDelete();
+            $table->foreignId('event_occurrence_id')->constrained('event_occurrences')->cascadeOnDelete();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('distributor_user_id')->nullable()->constrained('users')->nullOnDelete();
 
@@ -185,7 +187,7 @@ return new class extends Migration
             $table->foreignId('discount_id')->nullable()->constrained('discounts')->nullOnDelete();
             $table->foreignId('payment_provider_id')->nullable()->constrained('payment_providers')->nullOnDelete();
 
-            $table->foreignId('item_occurrence_id')->constrained('item_occurrences')->cascadeOnDelete();
+            $table->foreignId('event_occurrence_id')->constrained('event_occurrences')->cascadeOnDelete();
             $table->foreignId('customer_user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->string('customer_email')->nullable();
             $table->string('customer_phone')->nullable();
@@ -195,7 +197,7 @@ return new class extends Migration
             $table->dateTime('expired_at')->nullable();
             $table->timestamps();
 
-            $table->index(['item_occurrence_id', 'status']);
+            $table->index(['event_occurrence_id', 'status']);
         });
 
         Schema::create('tickets', function (Blueprint $table) {
@@ -205,7 +207,7 @@ return new class extends Migration
 
             $table->foreignId('order_id')->nullable()->constrained('orders')->nullOnDelete();
             $table->foreignId('ticket_type_id')->constrained('ticket_types')->cascadeOnDelete();
-            $table->foreignId('item_occurrence_id')->constrained('item_occurrences')->cascadeOnDelete();
+            $table->foreignId('event_occurrence_id')->constrained('event_occurrences')->cascadeOnDelete();
 
             $table->decimal('price', 14, 2)->default(0);
             $table->string('status')->default('active'); // active/validated/cancelled/expired/transferred
@@ -222,7 +224,7 @@ return new class extends Migration
             $table->string('full_name')->nullable();
             $table->timestamps();
 
-            $table->index(['item_occurrence_id', 'status']);
+            $table->index(['event_occurrence_id', 'status']);
         });
 
         Schema::create('ticket_transfers', function (Blueprint $table) {
@@ -239,7 +241,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('ticket_id')->nullable()->constrained('tickets')->nullOnDelete();
             $table->foreignId('order_id')->nullable()->constrained('orders')->nullOnDelete();
-            $table->foreignId('user_wallet_transaction_id')->nullable()->constrained('user_wallet_transactions')->nullOnDelete();
             $table->char('currency', 3);
             $table->decimal('amount', 14, 2);
             $table->decimal('rate', 6, 3)->nullable();
@@ -247,27 +248,27 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('item_occurrence_commissions', function (Blueprint $table) {
+        Schema::create('event_occurrence_commissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_occurrence_id')->constrained('item_occurrences')->cascadeOnDelete();
+            $table->foreignId('event_occurrence_id')->constrained('event_occurrences')->cascadeOnDelete();
             $table->decimal('commission_percentage', 6, 3)->nullable();
             $table->decimal('commission_amount', 14, 2)->nullable();
             $table->json('meta')->nullable();
             $table->timestamps();
         });
 
-        Schema::create('item_occurrence_service_costs', function (Blueprint $table) {
+        Schema::create('event_occurrence_service_costs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_occurrence_id')->constrained('item_occurrences')->cascadeOnDelete();
+            $table->foreignId('event_occurrence_id')->constrained('event_occurrences')->cascadeOnDelete();
             $table->string('label');
             $table->decimal('amount', 14, 2)->default(0);
             $table->json('meta')->nullable();
             $table->timestamps();
         });
 
-        Schema::create('item_earnings', function (Blueprint $table) {
+        Schema::create('event_earnings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_occurrence_id')->constrained('item_occurrences')->cascadeOnDelete();
+            $table->foreignId('event_occurrence_id')->constrained('event_occurrences')->cascadeOnDelete();
             $table->decimal('gross_revenue', 14, 2)->default(0);
             $table->decimal('discount_total', 14, 2)->default(0);
             $table->decimal('fees_total', 14, 2)->default(0);
@@ -277,9 +278,9 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('item_drafts', function (Blueprint $table) {
+        Schema::create('event_drafts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_id')->nullable()->constrained('items')->nullOnDelete();
+            $table->foreignId('event_id')->nullable()->constrained('events')->nullOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->json('data')->nullable();
             $table->timestamp('published_at')->nullable();
@@ -290,10 +291,10 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('item_drafts');
-        Schema::dropIfExists('item_earnings');
-        Schema::dropIfExists('item_occurrence_service_costs');
-        Schema::dropIfExists('item_occurrence_commissions');
+        Schema::dropIfExists('event_drafts');
+        Schema::dropIfExists('event_earnings');
+        Schema::dropIfExists('event_occurrence_service_costs');
+        Schema::dropIfExists('event_occurrence_commissions');
         Schema::dropIfExists('ticket_refunds');
         Schema::dropIfExists('ticket_transfers');
         Schema::dropIfExists('tickets');
@@ -305,8 +306,8 @@ return new class extends Migration
         Schema::dropIfExists('ticket_type_promotions');
         Schema::dropIfExists('ticket_types');
         Schema::dropIfExists('ticket_tags');
-        Schema::dropIfExists('item_occurrences');
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('event_occurrences');
+        Schema::dropIfExists('events');
     }
 };
 
