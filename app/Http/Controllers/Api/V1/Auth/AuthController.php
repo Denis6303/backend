@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Events\UserAuthenticated;
 use App\Models\LoginTicket;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -50,9 +52,7 @@ class AuthController extends Controller
             'last_name' => $data['last_name'] ?? null,
         ]);
 
-        if (method_exists($user, 'sendEmailVerificationNotification')) {
-            $user->sendEmailVerificationNotification();
-        }
+        event(new Registered($user));
 
         $tokenResult = $user->createToken('api');
         $dataResponse = $this->buildAuthData($tokenResult, $user);
@@ -96,6 +96,8 @@ class AuthController extends Controller
 
         $tokenResult = $user->createToken('api');
         $dataResponse = $this->buildAuthData($tokenResult, $user);
+
+        event(new UserAuthenticated($user));
 
         return response()->json([
             'success' => true,
@@ -175,6 +177,8 @@ class AuthController extends Controller
         $tokenResult = $user->createToken('api');
         $dataResponse = $this->buildAuthData($tokenResult, $user);
 
+        event(new UserAuthenticated($user));
+
         return response()->json([
             'success' => true,
             'code' => 0,
@@ -217,6 +221,7 @@ class AuthController extends Controller
             'last_name' => $user->last_name,
             'email' => $user->email,
             'email_verified_at' => $user->email_verified_at?->toIso8601String(),
+            'last_login_at' => $user->last_login_at?->toIso8601String(),
             'is_admin' => (bool) $user->is_admin,
             'created_at' => $user->created_at->toIso8601String(),
             'updated_at' => $user->updated_at->toIso8601String(),

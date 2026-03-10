@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\UserAuthenticated;
+use App\Listeners\LogSuccessfulLogin;
+use App\Listeners\SendPasswordChangedNotification;
+use App\Listeners\SendVerificationEmailOnRegistered;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
@@ -16,7 +20,13 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [
-            SendEmailVerificationNotification::class,
+            SendVerificationEmailOnRegistered::class,
+        ],
+        UserAuthenticated::class => [
+            LogSuccessfulLogin::class,
+        ],
+        PasswordReset::class => [
+            SendPasswordChangedNotification::class,
         ],
     ];
 
