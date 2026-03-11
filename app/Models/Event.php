@@ -17,6 +17,17 @@ class Event extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
+    public const STATUS_SAVED = 'saved';
+    public const STATUS_UPCOMING = 'upcoming';
+    public const STATUS_COMPLETED = 'completed';
+    public const STATUS_CANCELLED = 'cancelled';
+    public const STATUSES = [
+        self::STATUS_SAVED,
+        self::STATUS_UPCOMING,
+        self::STATUS_COMPLETED,
+        self::STATUS_CANCELLED,
+    ];
+
     public const ATTENDANCE_IN_PERSON = 'in_person';
     public const ATTENDANCE_ONLINE = 'online';
     public const ATTENDANCE_TYPES = [
@@ -35,7 +46,6 @@ class Event extends Model implements HasMedia
         'user_id',
         'category_id',
         'slug',
-        'group',
         'title',
         'description',
         'images',
@@ -55,9 +65,6 @@ class Event extends Model implements HasMedia
         'nb_visites',
         'invitations_is_free',
         'print_is_free',
-        'category_level_1',
-        'category_level_2',
-        'category_level_3',
         'timezone_name',
         'cancelled_at',
     ];
@@ -133,21 +140,21 @@ class Event extends Model implements HasMedia
 
     public function publish(): void
     {
-        if ($this->status === 'cancelled') {
+        if ($this->status === self::STATUS_CANCELLED) {
             return;
         }
 
-        $this->status = 'upcoming';
+        $this->status = self::STATUS_UPCOMING;
         $this->save();
     }
 
     public function unpublish(): void
     {
-        if ($this->status === 'cancelled') {
+        if ($this->status === self::STATUS_CANCELLED) {
             return;
         }
 
-        $this->status = 'saved';
+        $this->status = self::STATUS_SAVED;
         $this->save();
     }
 
@@ -174,6 +181,9 @@ class Event extends Model implements HasMedia
             $eventAttributes = (array) ($data['event'] ?? []);
             $occurrencesData = (array) ($data['occurrences'] ?? []);
 
+            $publishNow = (bool) ($data['publish_now'] ?? true);
+            $defaultStatus = $publishNow ? self::STATUS_UPCOMING : self::STATUS_SAVED;
+
             $event = $draft->event ?? new self();
             $event->fill($eventAttributes);
             $event->user_id ??= $draft->user_id;
@@ -182,16 +192,19 @@ class Event extends Model implements HasMedia
                 $event->slug = self::generateUniqueSlug((string) ($event->title ?? 'event'));
             }
 
+            if (empty($event->status)) {
+                $event->status = $defaultStatus;
+            }
+
             $event->save();
 
             foreach ($occurrencesData as $occData) {
                 $occ = $event->occurrences()->updateOrCreate(
                     ['id' => $occData['id'] ?? null],
                     [
-                        'subtitle' => $occData['subtitle'] ?? null,
                         'start_date' => $occData['start_date'] ?? null,
                         'end_date' => $occData['end_date'] ?? null,
-                        'status' => $occData['status'] ?? 'upcoming',
+                        'status' => $occData['status'] ?? $defaultStatus,
                         'free_event' => (bool) ($occData['free_event'] ?? false),
                     ]
                 );
@@ -245,7 +258,7 @@ class Event extends Model implements HasMedia
             'price_min' => $this->price_min,
             'likes_count' => $this->likes_count,
             'nb_visites' => $this->nb_visites,
-            'category' => $this->category?->only(['id', 'name', 'slug', 'level']),
+            'category' => $this->category?->only(['id', 'name', 'name_en', 'description']),
             'cover_url' => $this->getFirstMediaUrl('cover') ?: null,
             'occurrences' => $this->occurrences->map(fn (EventOccurrence $o) => $o->toArrayApi())->values()->all(),
         ];

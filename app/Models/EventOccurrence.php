@@ -10,6 +10,11 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class EventOccurrence extends Model
 {
+    public const STATUS_SAVED = Event::STATUS_SAVED;
+    public const STATUS_UPCOMING = Event::STATUS_UPCOMING;
+    public const STATUS_COMPLETED = Event::STATUS_COMPLETED;
+    public const STATUS_CANCELLED = Event::STATUS_CANCELLED;
+
     /**
      * Table des occurrences d'événements.
      */
@@ -17,7 +22,6 @@ class EventOccurrence extends Model
 
     protected $fillable = [
         'event_id',
-        'subtitle',
         'start_date',
         'end_date',
         'status',
@@ -85,11 +89,11 @@ class EventOccurrence extends Model
 
     public function cancel(?string $reason = null): void
     {
-        if ($this->status === 'cancelled') {
+        if ($this->status === self::STATUS_CANCELLED) {
             return;
         }
 
-        $this->status = 'cancelled';
+        $this->status = self::STATUS_CANCELLED;
         $this->cancelled_at = now();
         $this->save();
 
@@ -98,11 +102,11 @@ class EventOccurrence extends Model
 
     public function markAsComplete(): void
     {
-        if ($this->status === 'completed') {
+        if ($this->status === self::STATUS_COMPLETED) {
             return;
         }
 
-        $this->status = 'completed';
+        $this->status = self::STATUS_COMPLETED;
         $this->save();
 
         $this->tickets()

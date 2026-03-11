@@ -15,12 +15,12 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
 
             $table->string('slug')->unique();
-            $table->string('group')->nullable();
             $table->string('title');
             $table->longText('description')->nullable();
             $table->json('images')->nullable();
 
-            $table->string('country_code', 5)->nullable();
+            // tg = Togo, other = autre pays
+            $table->enum('country_code', ['tg', 'other'])->nullable();
             $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->string('online_link')->nullable();
@@ -28,7 +28,8 @@ return new class extends Migration
             $table->char('currency', 3)->nullable();
             $table->decimal('price_min', 14, 2)->nullable();
 
-            $table->string('status')->default('saved'); // upcoming/completed/cancelled/saved
+            // saved = non publié, upcoming = publié et à venir, completed = terminé, cancelled = annulé
+            $table->enum('status', ['saved', 'upcoming', 'completed', 'cancelled'])->default('saved');
             $table->boolean('is_private')->default(false);
             $table->boolean('is_verified')->default(false);
 
@@ -42,10 +43,6 @@ return new class extends Migration
             $table->boolean('invitations_is_free')->default(false);
             $table->boolean('print_is_free')->default(false);
 
-            $table->unsignedBigInteger('category_level_1')->nullable();
-            $table->unsignedBigInteger('category_level_2')->nullable();
-            $table->unsignedBigInteger('category_level_3')->nullable();
-
             $table->string('timezone_name')->nullable();
             $table->timestamp('cancelled_at')->nullable();
             $table->timestamps();
@@ -57,11 +54,10 @@ return new class extends Migration
         Schema::create('event_occurrences', function (Blueprint $table) {
             $table->id();
             $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
-
-            $table->string('subtitle')->nullable();
             $table->dateTime('start_date');
             $table->dateTime('end_date')->nullable();
-            $table->string('status')->default('upcoming'); // upcoming/completed/cancelled
+            // même statut que l'événement : saved/upcoming/completed/cancelled
+            $table->enum('status', ['saved', 'upcoming', 'completed', 'cancelled'])->default('upcoming');
             $table->boolean('free_event')->default(false);
             $table->unsignedBigInteger('nb_visites')->default(0);
             $table->timestamp('cancelled_at')->nullable();
@@ -95,7 +91,8 @@ return new class extends Migration
             $table->string('tag')->nullable();
             $table->foreignId('tag_id')->nullable()->constrained('ticket_tags')->nullOnDelete();
 
-            $table->string('status')->default('active'); // active/disabled
+            // statut du type de ticket : active ou disabled
+            $table->enum('status', ['active', 'disabled'])->default('active');
             $table->timestamps();
 
             $table->index(['event_occurrence_id', 'status']);

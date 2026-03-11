@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Events\UserAuthenticated;
+use App\Events\EventPublished;
 use App\Listeners\LogSuccessfulLogin;
 use App\Listeners\SendPasswordChangedNotification;
 use App\Listeners\SendVerificationEmailOnRegistered;
+use App\Listeners\SendEventPublishedNotifications;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -27,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         PasswordReset::class => [
             SendPasswordChangedNotification::class,
+        ],
+        EventPublished::class => [
+            SendEventPublishedNotifications::class,
         ],
     ];
 

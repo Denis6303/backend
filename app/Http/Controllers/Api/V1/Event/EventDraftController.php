@@ -338,10 +338,9 @@ class EventDraftController extends Controller
         $occurrences = [];
         foreach ($startDates as $idx => $startDate) {
             $occurrences[] = [
-                'subtitle' => null,
                 'start_date' => $startDate,
                 'end_date' => $endDates[$idx] ?? null,
-                'status' => 'upcoming',
+                'status' => Event::STATUS_UPCOMING,
                 'free_event' => (bool) $draft->getData('free_event', false),
                 'ticket_types' => $this->normalizeTicketTypes($tickets),
             ];
@@ -462,7 +461,7 @@ class EventDraftController extends Controller
             'occurrences' => $occurrences,
         ];
 
-        $draft->updatePartialData($partial, 5);
+        $draft->updatePartialData($partial, 4);
 
         return ResponseBuilder::asSuccess()
             ->withMessage(__('messages.event.step4_saved'))
@@ -500,7 +499,7 @@ class EventDraftController extends Controller
             ->unpublished()
             ->findOrFail($id);
 
-        if ((int) $draft->current_step < 5) {
+        if ((int) $draft->current_step < 4) {
             return ResponseBuilder::asError(ApiCodes::VALIDATION_EXCEPTION)
                 ->withHttpCode(Response::HTTP_UNPROCESSABLE_ENTITY)
                 ->withMessage(__('messages.event.incomplete_draft'))
@@ -516,7 +515,7 @@ class EventDraftController extends Controller
             'event' => $eventData,
         ];
 
-        $draft->updatePartialData($draftData, 6);
+        $draft->updatePartialData($draftData, 4);
 
         $printTicket = $this->getHasPrintTicket($draft);
         $scheduled = ! $draftData['publish_now'];
