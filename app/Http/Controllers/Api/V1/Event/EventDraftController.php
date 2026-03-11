@@ -74,7 +74,8 @@ class EventDraftController extends Controller
         return $this->buildPaginatedResponse(
             $query,
             $validated,
-            'messages.event.drafts_retrieved'
+            'messages.event.drafts_retrieved',
+            fn (EventDraft $draft) => $this->toDraftArray($draft)
         );
     }
 
@@ -87,12 +88,11 @@ class EventDraftController extends Controller
      *
      * @authenticated
      */
-    public function myEventDraft(int $id): JsonResponse
+    public function myEventDraft($id): JsonResponse
     {
-        $draft = EventDraft::where('user_id', auth()->id())
-            ->event()
+        $draft = EventDraft::query()
             ->unpublished()
-            ->findOrFail($id);
+            ->findOrFail((int) $id);
 
         return ResponseBuilder::asSuccess()
             ->withMessage(__('messages.event.draft_retrieved'))
@@ -109,7 +109,7 @@ class EventDraftController extends Controller
      *
      * @authenticated
      */
-    public function myDestroy(int $id): JsonResponse
+    public function myDestroy($id): JsonResponse
     {
         $draft = EventDraft::where('user_id', auth()->id())
             ->event()
@@ -221,7 +221,7 @@ class EventDraftController extends Controller
 
         return ResponseBuilder::asSuccess()
             ->withMessage(__('messages.event.step1_saved'))
-            ->withData($draft->fresh()->makeHidden(['media'])->toArray())
+            ->withData($this->toDraftArray($draft->fresh()))
             ->build();
     }
 
@@ -267,26 +267,47 @@ class EventDraftController extends Controller
      *
      * @authenticated
      */
-    public function storeStep2(Request $request, int $id): JsonResponse
+    public function storeStep2(Request $request, string $version, $id): JsonResponse
     {
         $countries = config('custom.allowed_countries');
 
         $validated = $this->validateOrFail($request->all(), [
-            'attendance_type' => 'required|string|in:' . implode(',', Event::ATTENDANCE_TYPES),
             'country_code' => 'required|string|in:' . implode(',', array_keys($countries)),
             'currency' => 'required|string|in:' . implode(',', Event::CURRENCIES),
-            'address' => 'nullable|string|max:100|required_if:attendance_type,' . Event::ATTENDANCE_IN_PERSON,
-            'city' => 'nullable|string|max:50|required_if:attendance_type,' . Event::ATTENDANCE_IN_PERSON,
+            'address' => 'nullable|string|max:100',
+            'city' => 'nullable|string|max:50',
             'start_dates' => 'required|array|min:1',
             'start_dates.*' => 'required|date',
             'end_dates' => 'required|array|min:1',
             'end_dates.*' => 'required|date',
         ]);
 
-        $draft = EventDraft::where('user_id', auth()->id())
-            ->event()
+        $draft = EventDraft::query()
+            ->where('user_id', auth()->id())
             ->unpublished()
             ->findOrFail($id);
+
+        // attendance_type now comes from step 1
+        $attendanceType = (string) ($draft->getData('event.attendance_type') ?? Event::ATTENDANCE_IN_PERSON);
+
+        // Manual validation for address/city when in_person
+        if ($attendanceType === Event::ATTENDANCE_IN_PERSON) {
+            $errors = [];
+            if (empty($validated['address'] ?? null)) {
+                $errors['address'][] = __('validation.required', ['attribute' => 'address']);
+            }
+            if (empty($validated['city'] ?? null)) {
+                $errors['city'][] = __('validation.required', ['attribute' => 'city']);
+            }
+
+            if (! empty($errors)) {
+                return ResponseBuilder::asError(ApiCodes::VALIDATION_EXCEPTION)
+                    ->withHttpCode(Response::HTTP_UNPROCESSABLE_ENTITY)
+                    ->withMessage(__('validation.failed'))
+                    ->withData(['errors' => $errors])
+                    ->build();
+            }
+        }
 
         $offsets = $this->getUtcOffsetsByCountry($validated['country_code']);
 
@@ -327,7 +348,6 @@ class EventDraftController extends Controller
         }
 
         $partial = [
-            'attendance_type' => $validated['attendance_type'],
             'country_code' => $validated['country_code'],
             'currency' => $validated['currency'],
             'timezones' => $offsets,
@@ -351,7 +371,7 @@ class EventDraftController extends Controller
 
         return ResponseBuilder::asSuccess()
             ->withMessage(__('messages.event.step2_saved'))
-            ->withData($draft->fresh()->makeHidden(['media'])->toArray())
+            ->withData($this->toDraftArray($draft->fresh()))
             ->build();
     }
 
@@ -374,7 +394,7 @@ class EventDraftController extends Controller
      *
      * @authenticated
      */
-    public function storeStep3(Request $request, int $id): JsonResponse
+    public function storeStep3(Request $request, string $version, $id): JsonResponse
     {
         $validated = $this->validateOrFail($request->all(), [
             'free_event' => ['required', new BooleanString],
@@ -417,8 +437,8 @@ class EventDraftController extends Controller
                 ->build();
         }
 
-        $draft = EventDraft::where('user_id', auth()->id())
-            ->event()
+        $draft = EventDraft::query()
+            ->where('user_id', auth()->id())
             ->unpublished()
             ->findOrFail($id);
 
@@ -446,7 +466,7 @@ class EventDraftController extends Controller
 
         return ResponseBuilder::asSuccess()
             ->withMessage(__('messages.event.step4_saved'))
-            ->withData($draft->fresh()->makeHidden(['media'])->toArray())
+            ->withData($this->toDraftArray($draft->fresh()))
             ->build();
     }
 
@@ -464,7 +484,7 @@ class EventDraftController extends Controller
      *
      * @authenticated
      */
-    public function finalizeEventDraft(Request $request, int $id): JsonResponse
+    public function finalizeEventDraft(Request $request, string $version, $id): JsonResponse
     {
         $validated = $this->validateOrFail($request->all(), [
             'publish_now' => ['required', new BooleanString],
@@ -475,8 +495,8 @@ class EventDraftController extends Controller
         $validated['publish_now'] = filter_var($validated['publish_now'], FILTER_VALIDATE_BOOLEAN);
         $validated['is_private'] = filter_var($validated['is_private'], FILTER_VALIDATE_BOOLEAN);
 
-        $draft = EventDraft::where('user_id', auth()->id())
-            ->event()
+        $draft = EventDraft::query()
+            ->where('user_id', auth()->id())
             ->unpublished()
             ->findOrFail($id);
 
@@ -556,6 +576,38 @@ class EventDraftController extends Controller
         }
 
         return $result;
+    }
+
+    /**
+     * Normalize an EventDraft model into an API-friendly array.
+     *
+     * @return array<string,mixed>
+     */
+    private function toDraftArray(EventDraft $draft): array
+    {
+        /** @var array<string,mixed> $data */
+        $data = $draft->data ?? [];
+        $eventData = (array) ($data['event'] ?? []);
+
+        // Avoid duplicating event information at both "event" and "data.event" levels
+        if (array_key_exists('event', $data)) {
+            unset($data['event']);
+        }
+
+        return [
+            'id' => $draft->id,
+            'event_id' => $draft->event_id,
+            'user_id' => $draft->user_id,
+            'category_id' => $draft->category_id,
+            'current_step' => (int) ($draft->current_step ?? 1),
+            'event' => $eventData,
+            'cover_url' => $draft->getFirstMediaUrl('cover') ?: null,
+            'data' => $data,
+            'published_at' => optional($draft->published_at)?->toIso8601String(),
+            'deleted_at' => optional($draft->deleted_at)?->toIso8601String(),
+            'created_at' => optional($draft->created_at)?->toIso8601String(),
+            'updated_at' => optional($draft->updated_at)?->toIso8601String(),
+        ];
     }
 }
 

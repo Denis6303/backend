@@ -453,7 +453,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>v1</code></p>
             </div>
-                        </form>
+                    </form>
 
                 <h1 id="endpoints">Endpoints</h1>
 
@@ -588,7 +588,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                    </form>
+                        </form>
 
                     <h2 id="endpoints-GETapi--version--events">GET api/{version}/events</h2>
 
@@ -785,7 +785,7 @@ fetch(url, {
 <span id="example-responses-GETapi--version--events--idOrSlug-">
             <blockquote>
             <p>Example response (404):</p>
-    </blockquote>
+        </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
@@ -801,7 +801,7 @@ access-control-allow-origin: *
     &quot;message&quot;: &quot;No query results for model [App\\Models\\Event].&quot;
 }</code>
  </pre>
-</span>
+    </span>
 <span id="execution-results-GETapi--version--events--idOrSlug-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-GETapi--version--events--idOrSlug-"></span>:
@@ -6437,7 +6437,7 @@ the basic event information and optional cover image.</p>
     --form "category_id=1"\
     --form "description=This is a great event."\
     --form "attendance_type=in_person"\
-    --form "image=@C:\Users\NUC - PC\AppData\Local\Temp\php9446.tmp" </code></pre></div>
+    --form "image=@C:\Users\NUC - PC\AppData\Local\Temp\php81D1.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -6622,7 +6622,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>optional Event cover image (required when creating a new draft). Example: <code>C:\Users\NUC - PC\AppData\Local\Temp\php9446.tmp</code></p>
+<p>optional Event cover image (required when creating a new draft). Example: <code>C:\Users\NUC - PC\AppData\Local\Temp\php81D1.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
@@ -7473,8 +7473,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </label>
     <br>
 <p>Whether the event is private. Example: <code>false</code></p>
-            </div>
-                        </form>
+        </div>
+        </form>
 
                 <h1 id="user-authentication">User authentication</h1>
 
@@ -7871,7 +7871,7 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi--version--auth-register">
-    </span>
+</span>
 <span id="execution-results-POSTapi--version--auth-register" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi--version--auth-register"></span>:
@@ -8061,7 +8061,7 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi--version--auth-login">
-    </span>
+</span>
 <span id="execution-results-POSTapi--version--auth-login" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi--version--auth-login"></span>:
@@ -8217,7 +8217,7 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi--version--auth-logout">
-    </span>
+</span>
 <span id="execution-results-POSTapi--version--auth-logout" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi--version--auth-logout"></span>:
@@ -8464,8 +8464,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>Ticket unique reçu en query string. Example: <code>8d9e0a1b-2f6b-4b9b-8f4b-2c9c1f6a1b2c</code></p>
-            </div>
-                    </form>
+        </div>
+        </form>
 
                     <h2 id="user-authentication-POSTapi--version--auth-email-resend">Resend verification email.</h2>
 
