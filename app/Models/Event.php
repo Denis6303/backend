@@ -17,6 +17,15 @@ class Event extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
+    public const ATTENDANCE_IN_PERSON = 'in_person';
+    public const ATTENDANCE_ONLINE = 'online';
+    public const ATTENDANCE_TYPES = [
+        self::ATTENDANCE_IN_PERSON,
+        self::ATTENDANCE_ONLINE,
+    ];
+
+    public const CURRENCIES = ['XOF', 'EUR', 'USD'];
+
     /**
      * Table des événements.
      */

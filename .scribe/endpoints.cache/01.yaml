@@ -385,6 +385,68 @@ endpoints:
     custom: []
     httpMethods:
       - POST
+    uri: 'api/{version}/auth/exchange-ticket'
+    metadata:
+      custom: []
+      groupName: 'User authentication'
+      groupDescription: |-
+
+        Authentification utilisateur (Passport Bearer token).
+
+        Ce groupe couvre:
+        - Inscription (création de compte)
+        - Connexion (retourne un Bearer token)
+        - Déconnexion (révoque le token courant)
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Exchange a login_ticket (one-time) for an access token.'
+      description: "Utilisé après clic sur le lien de vérification d'email depuis le frontend."
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      version:
+        custom: []
+        name: version
+        description: ''
+        required: true
+        example: v1
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      version: v1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      login_ticket:
+        custom: []
+        name: login_ticket
+        description: 'Ticket unique reçu en query string.'
+        required: true
+        example: 8d9e0a1b-2f6b-4b9b-8f4b-2c9c1f6a1b2c
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      login_ticket: 8d9e0a1b-2f6b-4b9b-8f4b-2c9c1f6a1b2c
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
     uri: 'api/{version}/auth/email/resend'
     metadata:
       custom: []
@@ -608,11 +670,11 @@ endpoints:
       groupName: 'User authentication'
       groupDescription: |-
 
-        Endpoints liés à l'utilisateur connecté.
+        Endpoints related to the authenticated user.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Mon profil (user courant).'
-      description: "Retourne les informations de l'utilisateur authentifié associé au token Bearer."
+      title: 'My profile (current user).'
+      description: "Returns the authenticated user's information associated with the Bearer token."
       authenticated: true
       deprecated: false
     headers:

@@ -10,11 +10,9 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('parent_id')->nullable()->constrained('categories')->nullOnDelete();
             $table->string('name');
-            $table->string('slug')->unique();
-            $table->unsignedTinyInteger('level')->default(1);
-            $table->unsignedInteger('order_priority')->default(0);
+            $table->string('name_en')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
 

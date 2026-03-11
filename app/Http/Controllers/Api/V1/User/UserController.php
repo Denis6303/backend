@@ -9,14 +9,14 @@ use Illuminate\Http\Request;
 /**
  * @group User authentication
  *
- * Endpoints liés à l'utilisateur connecté.
+ * Endpoints related to the authenticated user.
  */
 class UserController extends Controller
 {
     /**
-     * Mon profil (user courant).
+     * My profile (current user).
      *
-     * Retourne les informations de l'utilisateur authentifié associé au token Bearer.
+     * Returns the authenticated user's information associated with the Bearer token.
      *
      * @authenticated
      *

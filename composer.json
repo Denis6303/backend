@@ -12,6 +12,7 @@
         "laravel/passport": "12.*",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
+        "marcin-orlowski/laravel-api-response-builder": "^10.0",
         "spatie/laravel-medialibrary": "11.*"
     },
     "require-dev": {

@@ -9,22 +9,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     protected $fillable = [
-        'parent_id',
         'name',
-        'slug',
-        'level',
-        'order_priority',
+        'name_en',
+        'description',
     ];
-
-    public function parent(): BelongsTo
-    {
-        return $this->belongsTo(self::class, 'parent_id');
-    }
-
-    public function children(): HasMany
-    {
-        return $this->hasMany(self::class, 'parent_id');
-    }
 
     public function events(): HasMany
     {
