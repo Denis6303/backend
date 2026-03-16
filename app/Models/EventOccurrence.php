@@ -129,5 +129,33 @@ class EventOccurrence extends Model
             ->selectRaw('COALESCE(SUM(total_price), 0) as total')
             ->value('total');
     }
+
+    public function toArrayApi(): array
+    {
+        $this->loadMissing('ticketTypes');
+
+        return [
+            'id' => $this->id,
+            'start_date' => optional($this->start_date)?->toIso8601String(),
+            'end_date' => optional($this->end_date)?->toIso8601String(),
+            'status' => $this->status,
+            'free_event' => (bool) $this->free_event,
+            'ticket_types' => $this->ticketTypes->map(function (TicketType $t) {
+                return [
+                    'id' => $t->id,
+                    'name' => $t->name,
+                    'description' => $t->description,
+                    'general_conditions' => $t->general_conditions,
+                    'price' => $t->price,
+                    'last_price' => $t->last_price,
+                    'total_quantity' => $t->total_quantity,
+                    'remaining_quantity' => $t->remaining_quantity,
+                    'real_remaining_quantity' => $t->real_remaining_quantity,
+                    'printed_quantity' => $t->printed_quantity,
+                    'status' => $t->status,
+                ];
+            })->values()->all(),
+        ];
+    }
 }
 

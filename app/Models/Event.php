@@ -83,8 +83,9 @@ class Event extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('cover')->singleFile();
-        $this->addMediaCollection('gallery');
+        // Use the public disk so URLs are always available via /storage/...
+        $this->addMediaCollection('cover')->useDisk('public')->singleFile();
+        $this->addMediaCollection('gallery')->useDisk('public');
     }
 
     public function registerMediaConversions(?Media $media = null): void
@@ -198,6 +199,8 @@ class Event extends Model implements HasMedia
 
             $event->save();
 
+            $allTicketPrices = [];
+
             foreach ($occurrencesData as $occData) {
                 $occ = $event->occurrences()->updateOrCreate(
                     ['id' => $occData['id'] ?? null],
@@ -227,6 +230,24 @@ class Event extends Model implements HasMedia
                             'status' => $ttData['status'] ?? 'active',
                         ]
                     );
+
+                    if (isset($ttData['price'])) {
+                        $allTicketPrices[] = (float) $ttData['price'];
+                    }
+                }
+            }
+
+            if (! empty($allTicketPrices)) {
+                $event->price_min = min($allTicketPrices);
+                $event->save();
+            }
+
+            // Transfer cover image from draft to event (if any)
+            if ($draft->hasMedia('cover')) {
+                $media = $draft->getFirstMedia('cover');
+                if ($media) {
+                    $media->copy($event, 'cover');
+                    $draft->clearMediaCollection('cover');
                 }
             }
 
@@ -242,6 +263,15 @@ class Event extends Model implements HasMedia
     {
         $this->loadMissing(['category', 'occurrences.ticketTypes']);
 
+        $priceMin = $this->price_min;
+        if ($priceMin === null) {
+            $priceMin = $this->occurrences
+                ->flatMap(fn (EventOccurrence $o) => $o->ticketTypes)
+                ->min('price');
+        }
+
+        $coverUrl = $this->getFirstMediaUrl('cover') ?: null;
+
         return [
             'id' => $this->id,
             'slug' => $this->slug,
@@ -255,11 +285,11 @@ class Event extends Model implements HasMedia
             'address' => $this->address,
             'online_link' => $this->online_link,
             'currency' => $this->currency,
-            'price_min' => $this->price_min,
+            'price_min' => $priceMin !== null ? (float) $priceMin : null,
             'likes_count' => $this->likes_count,
             'nb_visites' => $this->nb_visites,
             'category' => $this->category?->only(['id', 'name', 'name_en', 'description']),
-            'cover_url' => $this->getFirstMediaUrl('cover') ?: null,
+            'cover_url' => $coverUrl,
             'occurrences' => $this->occurrences->map(fn (EventOccurrence $o) => $o->toArrayApi())->values()->all(),
         ];
     }

@@ -81,8 +81,9 @@ class EventDraft extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('cover')->singleFile();
-        $this->addMediaCollection('gallery');
+        // Use the public disk so URLs are always available via /storage/...
+        $this->addMediaCollection('cover')->useDisk('public')->singleFile();
+        $this->addMediaCollection('gallery')->useDisk('public');
     }
 
     public function event(): BelongsTo

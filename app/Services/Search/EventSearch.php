@@ -18,7 +18,9 @@ class EventSearch
     {
         $q = Event::query()->with(['occurrences.ticketTypes', 'category']);
 
-        if (! empty($filters['status'])) {
+        if (! empty($filters['statuses']) && is_array($filters['statuses'])) {
+            $q->whereIn('status', $filters['statuses']);
+        } elseif (! empty($filters['status'])) {
             $q->where('status', $filters['status']);
         }
 
