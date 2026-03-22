@@ -94,9 +94,13 @@ class EventDraftController extends Controller
             ->unpublished()
             ->findOrFail((int) $id);
 
+        $draft = $draft->fresh()->makeHidden(['media']);
+        $payload = $draft->toArray();
+        $payload['cover_url'] = $draft->getFirstMediaUrl('cover') ?: null;
+
         return ResponseBuilder::asSuccess()
             ->withMessage(__('messages.event.draft_retrieved'))
-            ->withData($draft->fresh()->makeHidden(['media'])->toArray())
+            ->withData($payload)
             ->build();
     }
 
