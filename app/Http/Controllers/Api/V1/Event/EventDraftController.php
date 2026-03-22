@@ -63,7 +63,7 @@ class EventDraftController extends Controller
      *
      * @authenticated
      */
-    public function myEventDrafts(Request $request): JsonResponse
+    public function myEventDrafts(Request $request, string $version): JsonResponse
     {
         $validated = $this->validateWithPagination($request->all());
 
@@ -88,7 +88,7 @@ class EventDraftController extends Controller
      *
      * @authenticated
      */
-    public function myEventDraft($id): JsonResponse
+    public function myEventDraft(string $version, $id): JsonResponse
     {
         $draft = EventDraft::query()
             ->unpublished()
@@ -109,7 +109,7 @@ class EventDraftController extends Controller
      *
      * @authenticated
      */
-    public function myDestroy($id): JsonResponse
+    public function myDestroy(string $version, $id): JsonResponse
     {
         $draft = EventDraft::where('user_id', auth()->id())
             ->event()
@@ -156,7 +156,7 @@ class EventDraftController extends Controller
      *
      * @authenticated
      */
-    public function storeStep1(Request $request): JsonResponse
+    public function storeStep1(Request $request, string $version): JsonResponse
     {
         $validated = $this->validateOrFail($request->all(), [
             'draft_id' => 'nullable|exists:event_drafts,id',

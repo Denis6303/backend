@@ -204,14 +204,14 @@ when creating or filtering events.</a>
                                                     <li class="tocify-item level-2" data-unique="event-draft-GETapi--version--event-drafts">
                                 <a href="#event-draft-GETapi--version--event-drafts">List current user's event drafts.</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="event-draft-POSTapi--version--event-drafts-step1">
+                                <a href="#event-draft-POSTapi--version--event-drafts-step1">Create event - step 1 (basic info + image).</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="event-draft-GETapi--version--event-drafts--id-">
                                 <a href="#event-draft-GETapi--version--event-drafts--id-">Get a single event draft.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="event-draft-DELETEapi--version--event-drafts--id-">
                                 <a href="#event-draft-DELETEapi--version--event-drafts--id-">Delete an event draft.</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="event-draft-POSTapi--version--event-drafts-step1">
-                                <a href="#event-draft-POSTapi--version--event-drafts-step1">Create event - step 1 (basic info + image).</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="event-draft-POSTapi--version--event-drafts--id--step2">
                                 <a href="#event-draft-POSTapi--version--event-drafts--id--step2">Create event - step 2 (location, country, currency and dates).</a>
@@ -292,7 +292,7 @@ when creating or filtering events.</a>
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: March 16, 2026</li>
+        <li>Last updated: March 22, 2026</li>
     </ul>
 </div>
 
@@ -2290,14 +2290,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/events/architecto/verify" \
+    "http://localhost:8000/api/admin/events/1/verify" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/events/architecto/verify"
+    "http://localhost:8000/api/admin/events/1/verify"
 );
 
 const headers = {
@@ -2393,15 +2393,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="POSTapi-admin-events--id--verify"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="POSTapi-admin-events--id--verify"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the event. Example: <code>architecto</code></p>
+<p>The ID of the event. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -2418,14 +2418,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/events/architecto/publish" \
+    "http://localhost:8000/api/admin/events/1/publish" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/events/architecto/publish"
+    "http://localhost:8000/api/admin/events/1/publish"
 );
 
 const headers = {
@@ -2521,15 +2521,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="POSTapi-admin-events--id--publish"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="POSTapi-admin-events--id--publish"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the event. Example: <code>architecto</code></p>
+<p>The ID of the event. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -2546,14 +2546,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/events/architecto/unpublish" \
+    "http://localhost:8000/api/admin/events/1/unpublish" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/events/architecto/unpublish"
+    "http://localhost:8000/api/admin/events/1/unpublish"
 );
 
 const headers = {
@@ -2649,15 +2649,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="POSTapi-admin-events--id--unpublish"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="POSTapi-admin-events--id--unpublish"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the event. Example: <code>architecto</code></p>
+<p>The ID of the event. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -2674,7 +2674,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/events/architecto/commission" \
+    "http://localhost:8000/api/admin/events/1/commission" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -2687,7 +2687,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/events/architecto/commission"
+    "http://localhost:8000/api/admin/events/1/commission"
 );
 
 const headers = {
@@ -2793,15 +2793,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="POSTapi-admin-events--id--commission"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="POSTapi-admin-events--id--commission"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the event. Example: <code>architecto</code></p>
+<p>The ID of the event. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -2855,7 +2855,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/events/architecto/service-costs" \
+    "http://localhost:8000/api/admin/events/1/service-costs" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -2872,7 +2872,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/events/architecto/service-costs"
+    "http://localhost:8000/api/admin/events/1/service-costs"
 );
 
 const headers = {
@@ -2986,15 +2986,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="POSTapi-admin-events--id--service-costs"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="POSTapi-admin-events--id--service-costs"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the event. Example: <code>architecto</code></p>
+<p>The ID of the event. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -3060,7 +3060,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/events/architecto/assign-admin-owner" \
+    "http://localhost:8000/api/admin/events/1/assign-admin-owner" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -3071,7 +3071,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/events/architecto/assign-admin-owner"
+    "http://localhost:8000/api/admin/events/1/assign-admin-owner"
 );
 
 const headers = {
@@ -3173,15 +3173,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="POSTapi-admin-events--id--assign-admin-owner"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="POSTapi-admin-events--id--assign-admin-owner"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the event. Example: <code>architecto</code></p>
+<p>The ID of the event. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -3211,14 +3211,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/admin/events/architecto/restore-owner" \
+    "http://localhost:8000/api/admin/events/1/restore-owner" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/events/architecto/restore-owner"
+    "http://localhost:8000/api/admin/events/1/restore-owner"
 );
 
 const headers = {
@@ -3314,15 +3314,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="POSTapi-admin-events--id--restore-owner"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="POSTapi-admin-events--id--restore-owner"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the event. Example: <code>architecto</code></p>
+<p>The ID of the event. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -3339,14 +3339,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/admin/events/architecto/owner-history" \
+    --get "http://localhost:8000/api/admin/events/1/owner-history" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/admin/events/architecto/owner-history"
+    "http://localhost:8000/api/admin/events/1/owner-history"
 );
 
 const headers = {
@@ -3458,15 +3458,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="GETapi-admin-events--id--owner-history"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-admin-events--id--owner-history"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the event. Example: <code>architecto</code></p>
+<p>The ID of the event. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -5646,6 +5646,267 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                 </form>
 
+                    <h2 id="event-draft-POSTapi--version--event-drafts-step1">Create event - step 1 (basic info + image).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Entry point for creating or updating an event draft. Saves
+the basic event information and optional cover image.</p>
+
+<span id="example-requests-POSTapi--version--event-drafts-step1">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/event-drafts/step1" \
+    --header "Authorization: Bearer 6g43cv8PD1aE5beadkZfhV6" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "draft_id=1"\
+    --form "title=My first event"\
+    --form "category_id=1"\
+    --form "description=This is a great event."\
+    --form "attendance_type=in_person"\
+    --form "image=@C:\Users\NUC - PC\AppData\Local\Temp\phpC351.tmp" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/event-drafts/step1"
+);
+
+const headers = {
+    "Authorization": "Bearer 6g43cv8PD1aE5beadkZfhV6",
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('draft_id', '1');
+body.append('title', 'My first event');
+body.append('category_id', '1');
+body.append('description', 'This is a great event.');
+body.append('attendance_type', 'in_person');
+body.append('image', document.querySelector('input[name="image"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{
+    "draft_id": 1,
+    "title": "My first event",
+    "category_id": 1,
+    "description": "This is a great event.",
+    "attendance_type": "in_person"
+}</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi--version--event-drafts-step1">
+            <blockquote>
+            <p>Example response (200, Updated draft):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;code&quot;: 0,
+    &quot;locale&quot;: &quot;en&quot;,
+    &quot;message&quot;: &quot;Step 1 saved successfully&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;user_id&quot;: 1,
+        &quot;type&quot;: &quot;event&quot;,
+        &quot;current_step&quot;: 2,
+        &quot;data&quot;: {
+            &quot;title&quot;: &quot;My first event&quot;,
+            &quot;description&quot;: &quot;This is a great event.&quot;,
+            &quot;attendance_type&quot;: &quot;in_person&quot;,
+            &quot;group&quot;: &quot;event&quot;
+        }
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi--version--event-drafts-step1" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi--version--event-drafts-step1"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi--version--event-drafts-step1"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi--version--event-drafts-step1" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi--version--event-drafts-step1">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi--version--event-drafts-step1" data-method="POST"
+      data-path="api/{version}/event-drafts/step1"
+      data-authed="1"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi--version--event-drafts-step1', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi--version--event-drafts-step1"
+                    onclick="tryItOut('POSTapi--version--event-drafts-step1');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi--version--event-drafts-step1"
+                    onclick="cancelTryOut('POSTapi--version--event-drafts-step1');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi--version--event-drafts-step1"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/{version}/event-drafts/step1</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi--version--event-drafts-step1"
+               value="Bearer 6g43cv8PD1aE5beadkZfhV6"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 6g43cv8PD1aE5beadkZfhV6</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi--version--event-drafts-step1"
+               value="multipart/form-data"
+               data-component="header">
+    <br>
+<p>Example: <code>multipart/form-data</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi--version--event-drafts-step1"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>version</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="version"                data-endpoint="POSTapi--version--event-drafts-step1"
+               value="v1"
+               data-component="url">
+    <br>
+<p>Example: <code>v1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>draft_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="draft_id"                data-endpoint="POSTapi--version--event-drafts-step1"
+               value="1"
+               data-component="body">
+    <br>
+<p>optional Existing draft ID to update. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
+<small>file</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="file" style="display: none"
+                              name="image"                data-endpoint="POSTapi--version--event-drafts-step1"
+               value=""
+               data-component="body">
+    <br>
+<p>optional Event cover image (required when creating a new draft). Example: <code>C:\Users\NUC - PC\AppData\Local\Temp\phpC351.tmp</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="title"                data-endpoint="POSTapi--version--event-drafts-step1"
+               value="My first event"
+               data-component="body">
+    <br>
+<p>Event title (max 50 chars). Example: <code>My first event</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="category_id"                data-endpoint="POSTapi--version--event-drafts-step1"
+               value="1"
+               data-component="body">
+    <br>
+<p>Category ID. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="POSTapi--version--event-drafts-step1"
+               value="This is a great event."
+               data-component="body">
+    <br>
+<p>optional Detailed description (max 5000 chars). Example: <code>This is a great event.</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>attendance_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="attendance_type"                data-endpoint="POSTapi--version--event-drafts-step1"
+               value="in_person"
+               data-component="body">
+    <br>
+<p>Event attendance type (in_person or online). Example: <code>in_person</code></p>
+        </div>
+        </form>
+
                     <h2 id="event-draft-GETapi--version--event-drafts--id-">Get a single event draft.</h2>
 
 <p>
@@ -5971,267 +6232,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Draft ID. Example: <code>1</code></p>
             </div>
                     </form>
-
-                    <h2 id="event-draft-POSTapi--version--event-drafts-step1">Create event - step 1 (basic info + image).</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-<p>Entry point for creating or updating an event draft. Saves
-the basic event information and optional cover image.</p>
-
-<span id="example-requests-POSTapi--version--event-drafts-step1">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/event-drafts/step1" \
-    --header "Authorization: Bearer 6g43cv8PD1aE5beadkZfhV6" \
-    --header "Content-Type: multipart/form-data" \
-    --header "Accept: application/json" \
-    --form "draft_id=1"\
-    --form "title=My first event"\
-    --form "category_id=1"\
-    --form "description=This is a great event."\
-    --form "attendance_type=in_person"\
-    --form "image=@C:\Users\NUC - PC\AppData\Local\Temp\php4FEC.tmp" </code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/event-drafts/step1"
-);
-
-const headers = {
-    "Authorization": "Bearer 6g43cv8PD1aE5beadkZfhV6",
-    "Content-Type": "multipart/form-data",
-    "Accept": "application/json",
-};
-
-const body = new FormData();
-body.append('draft_id', '1');
-body.append('title', 'My first event');
-body.append('category_id', '1');
-body.append('description', 'This is a great event.');
-body.append('attendance_type', 'in_person');
-body.append('image', document.querySelector('input[name="image"]').files[0]);
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body,
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="json-example">
-    <pre><code class="language-json">{
-    "draft_id": 1,
-    "title": "My first event",
-    "category_id": 1,
-    "description": "This is a great event.",
-    "attendance_type": "in_person"
-}</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi--version--event-drafts-step1">
-            <blockquote>
-            <p>Example response (200, Updated draft):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;success&quot;: true,
-    &quot;code&quot;: 0,
-    &quot;locale&quot;: &quot;en&quot;,
-    &quot;message&quot;: &quot;Step 1 saved successfully&quot;,
-    &quot;data&quot;: {
-        &quot;id&quot;: 1,
-        &quot;user_id&quot;: 1,
-        &quot;type&quot;: &quot;event&quot;,
-        &quot;current_step&quot;: 2,
-        &quot;data&quot;: {
-            &quot;title&quot;: &quot;My first event&quot;,
-            &quot;description&quot;: &quot;This is a great event.&quot;,
-            &quot;attendance_type&quot;: &quot;in_person&quot;,
-            &quot;group&quot;: &quot;event&quot;
-        }
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi--version--event-drafts-step1" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi--version--event-drafts-step1"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi--version--event-drafts-step1"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi--version--event-drafts-step1" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi--version--event-drafts-step1">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi--version--event-drafts-step1" data-method="POST"
-      data-path="api/{version}/event-drafts/step1"
-      data-authed="1"
-      data-hasfiles="1"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi--version--event-drafts-step1', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi--version--event-drafts-step1"
-                    onclick="tryItOut('POSTapi--version--event-drafts-step1');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi--version--event-drafts-step1"
-                    onclick="cancelTryOut('POSTapi--version--event-drafts-step1');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi--version--event-drafts-step1"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/{version}/event-drafts/step1</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi--version--event-drafts-step1"
-               value="Bearer 6g43cv8PD1aE5beadkZfhV6"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer 6g43cv8PD1aE5beadkZfhV6</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi--version--event-drafts-step1"
-               value="multipart/form-data"
-               data-component="header">
-    <br>
-<p>Example: <code>multipart/form-data</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi--version--event-drafts-step1"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>version</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="version"                data-endpoint="POSTapi--version--event-drafts-step1"
-               value="v1"
-               data-component="url">
-    <br>
-<p>Example: <code>v1</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>draft_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="draft_id"                data-endpoint="POSTapi--version--event-drafts-step1"
-               value="1"
-               data-component="body">
-    <br>
-<p>optional Existing draft ID to update. Example: <code>1</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
-<small>file</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="file" style="display: none"
-                              name="image"                data-endpoint="POSTapi--version--event-drafts-step1"
-               value=""
-               data-component="body">
-    <br>
-<p>optional Event cover image (required when creating a new draft). Example: <code>C:\Users\NUC - PC\AppData\Local\Temp\php4FEC.tmp</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="title"                data-endpoint="POSTapi--version--event-drafts-step1"
-               value="My first event"
-               data-component="body">
-    <br>
-<p>Event title (max 50 chars). Example: <code>My first event</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="category_id"                data-endpoint="POSTapi--version--event-drafts-step1"
-               value="1"
-               data-component="body">
-    <br>
-<p>Category ID. Example: <code>1</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="description"                data-endpoint="POSTapi--version--event-drafts-step1"
-               value="This is a great event."
-               data-component="body">
-    <br>
-<p>optional Detailed description (max 5000 chars). Example: <code>This is a great event.</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>attendance_type</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="attendance_type"                data-endpoint="POSTapi--version--event-drafts-step1"
-               value="in_person"
-               data-component="body">
-    <br>
-<p>Event attendance type (in_person or online). Example: <code>in_person</code></p>
-        </div>
-        </form>
 
                     <h2 id="event-draft-POSTapi--version--event-drafts--id--step2">Create event - step 2 (location, country, currency and dates).</h2>
 
@@ -7308,7 +7308,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi--version--events--id-">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -7322,7 +7322,111 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Server Error&quot;
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;slug&quot;: &quot;afrobeat-night-in-lome-1&quot;,
+        &quot;title&quot;: &quot;Afrobeat Night in Lom&eacute; #1&quot;,
+        &quot;description&quot;: &quot;Demo event seeded for homepage and listings (upcoming).&quot;,
+        &quot;status&quot;: &quot;upcoming&quot;,
+        &quot;is_private&quot;: false,
+        &quot;is_verified&quot;: true,
+        &quot;country_code&quot;: &quot;tg&quot;,
+        &quot;city&quot;: &quot;Lom&eacute;&quot;,
+        &quot;address&quot;: &quot;10 Avenue de la Paix&quot;,
+        &quot;online_link&quot;: null,
+        &quot;currency&quot;: &quot;XOF&quot;,
+        &quot;price_min&quot;: 12000,
+        &quot;likes_count&quot;: 0,
+        &quot;nb_visites&quot;: 1,
+        &quot;category&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Concert&quot;,
+            &quot;name_en&quot;: &quot;Concert&quot;,
+            &quot;description&quot;: &quot;Music concerts and live shows.&quot;
+        },
+        &quot;cover_url&quot;: &quot;http://localhost:8000/storage/1/600.jpeg&quot;,
+        &quot;occurrences&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;start_date&quot;: &quot;2026-03-20T20:00:00+00:00&quot;,
+                &quot;end_date&quot;: &quot;2026-03-21T00:00:00+00:00&quot;,
+                &quot;status&quot;: &quot;upcoming&quot;,
+                &quot;free_event&quot;: false,
+                &quot;ticket_types&quot;: [
+                    {
+                        &quot;id&quot;: 1,
+                        &quot;name&quot;: &quot;Category 1&quot;,
+                        &quot;description&quot;: &quot;Access for category 1&quot;,
+                        &quot;general_conditions&quot;: null,
+                        &quot;price&quot;: &quot;12000.00&quot;,
+                        &quot;last_price&quot;: null,
+                        &quot;total_quantity&quot;: 100,
+                        &quot;remaining_quantity&quot;: 100,
+                        &quot;real_remaining_quantity&quot;: 100,
+                        &quot;printed_quantity&quot;: 0,
+                        &quot;status&quot;: &quot;active&quot;
+                    },
+                    {
+                        &quot;id&quot;: 2,
+                        &quot;name&quot;: &quot;Category 2&quot;,
+                        &quot;description&quot;: &quot;Access for category 2&quot;,
+                        &quot;general_conditions&quot;: null,
+                        &quot;price&quot;: &quot;37000.00&quot;,
+                        &quot;last_price&quot;: null,
+                        &quot;total_quantity&quot;: 100,
+                        &quot;remaining_quantity&quot;: 100,
+                        &quot;real_remaining_quantity&quot;: 100,
+                        &quot;printed_quantity&quot;: 0,
+                        &quot;status&quot;: &quot;active&quot;
+                    }
+                ]
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;start_date&quot;: &quot;2026-03-31T20:00:00+00:00&quot;,
+                &quot;end_date&quot;: &quot;2026-04-01T00:00:00+00:00&quot;,
+                &quot;status&quot;: &quot;upcoming&quot;,
+                &quot;free_event&quot;: false,
+                &quot;ticket_types&quot;: [
+                    {
+                        &quot;id&quot;: 3,
+                        &quot;name&quot;: &quot;Category 1&quot;,
+                        &quot;description&quot;: &quot;Access for category 1&quot;,
+                        &quot;general_conditions&quot;: null,
+                        &quot;price&quot;: &quot;32000.00&quot;,
+                        &quot;last_price&quot;: null,
+                        &quot;total_quantity&quot;: 100,
+                        &quot;remaining_quantity&quot;: 100,
+                        &quot;real_remaining_quantity&quot;: 100,
+                        &quot;printed_quantity&quot;: 0,
+                        &quot;status&quot;: &quot;active&quot;
+                    }
+                ]
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;start_date&quot;: &quot;2026-03-23T20:00:00+00:00&quot;,
+                &quot;end_date&quot;: &quot;2026-03-24T00:00:00+00:00&quot;,
+                &quot;status&quot;: &quot;upcoming&quot;,
+                &quot;free_event&quot;: false,
+                &quot;ticket_types&quot;: [
+                    {
+                        &quot;id&quot;: 4,
+                        &quot;name&quot;: &quot;Category 1&quot;,
+                        &quot;description&quot;: &quot;Access for category 1&quot;,
+                        &quot;general_conditions&quot;: null,
+                        &quot;price&quot;: &quot;35000.00&quot;,
+                        &quot;last_price&quot;: null,
+                        &quot;total_quantity&quot;: 100,
+                        &quot;remaining_quantity&quot;: 100,
+                        &quot;real_remaining_quantity&quot;: 100,
+                        &quot;printed_quantity&quot;: 0,
+                        &quot;status&quot;: &quot;active&quot;
+                    }
+                ]
+            }
+        ]
+    }
 }</code>
  </pre>
     </span>

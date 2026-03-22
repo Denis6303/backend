@@ -10,12 +10,15 @@ use Illuminate\Support\Facades\Route;
  */
 Route::middleware('auth:api')->prefix('event-drafts')->group(function () {
     Route::get('/', [EventDraftController::class, 'myEventDrafts']);
-    Route::get('{id}', [EventDraftController::class, 'myEventDraft']);
-    Route::delete('{id}', [EventDraftController::class, 'myDestroy']);
-
     Route::post('step1', [EventDraftController::class, 'storeStep1']);
-    Route::post('{id}/step2', [EventDraftController::class, 'storeStep2']);
-    Route::post('{id}/step3', [EventDraftController::class, 'storeStep3']);
-    Route::post('{id}/finalize', [EventDraftController::class, 'finalizeEventDraft']);
+
+    // {id} must be numeric so "v1" (API version) is never captured as a draft id.
+    Route::whereNumber('id')->group(function () {
+        Route::get('{id}', [EventDraftController::class, 'myEventDraft']);
+        Route::delete('{id}', [EventDraftController::class, 'myDestroy']);
+        Route::post('{id}/step2', [EventDraftController::class, 'storeStep2']);
+        Route::post('{id}/step3', [EventDraftController::class, 'storeStep3']);
+        Route::post('{id}/finalize', [EventDraftController::class, 'finalizeEventDraft']);
+    });
 });
 
