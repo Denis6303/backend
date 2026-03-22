@@ -75,7 +75,7 @@ class EventDraftController extends Controller
             $query,
             $validated,
             'messages.event.drafts_retrieved',
-            fn (EventDraft $draft) => $this->toDraftArray($draft)
+            fn (EventDraft $draft) => $this->toDraftListArray($draft)
         );
     }
 
@@ -575,6 +575,50 @@ class EventDraftController extends Controller
         }
 
         return $result;
+    }
+
+    /**
+     * Same as {@see toDraftArray} but strips fields duplicated for list responses
+     * (event summary vs data payload, dates vs occurrences, tickets vs occurrence ticket_types).
+     *
+     * @return array<string,mixed>
+     */
+    private function toDraftListArray(EventDraft $draft): array
+    {
+        $base = $this->toDraftArray($draft);
+        /** @var array<string,mixed> $event */
+        $event = (array) ($base['event'] ?? []);
+        /** @var array<string,mixed> $data */
+        $data = (array) ($base['data'] ?? []);
+
+        foreach (['city', 'address', 'currency', 'country_code', 'timezone_name', 'category_id'] as $key) {
+            if (array_key_exists($key, $event) && array_key_exists($key, $data)) {
+                unset($data[$key]);
+            }
+        }
+
+        $occurrences = $data['occurrences'] ?? null;
+        if (is_array($occurrences) && $occurrences !== []) {
+            unset($data['start_dates'], $data['end_dates']);
+
+            if (! empty($data['tickets'])) {
+                $data['occurrences'] = array_values(array_map(
+                    static function (mixed $occ): mixed {
+                        if (! is_array($occ)) {
+                            return $occ;
+                        }
+                        unset($occ['ticket_types']);
+
+                        return $occ;
+                    },
+                    $occurrences
+                ));
+            }
+        }
+
+        $base['data'] = $data;
+
+        return $base;
     }
 
     /**
