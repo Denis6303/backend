@@ -174,14 +174,6 @@ class OrderIntentController extends Controller
             }
         }
 
-        if (in_array($paymentMethod, ['yass', 'flooz'], true)) {
-            $this->validateOrFail($request->all(), [
-                'country' => 'required|string|size:2',
-                'operator' => 'required|string|max:32',
-                'phone_number' => 'required|string|max:32',
-            ]);
-        }
-
         $payable = $this->calculatePayableAmount($intent);
         if ($paymentMethod === 'free' && $payable > 0.00001) {
             throw new HttpResponseException(
