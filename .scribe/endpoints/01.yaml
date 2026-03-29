@@ -1,58 +1,106 @@
-name: 'User authentication'
+name: Events
 description: |-
 
-  Vérification de l'email (liens signés) et renvoi de lien.
+  Public and organizer endpoints for listing and viewing events.
 endpoints:
   -
     custom: []
     httpMethods:
       - GET
-    uri: 'api/auth/email/verify/{id}/{hash}'
+    uri: 'api/{version}/events'
     metadata:
       custom: []
-      groupName: 'User authentication'
+      groupName: Events
       groupDescription: |-
 
-        Vérification de l'email (liens signés) et renvoi de lien.
+        Public and organizer endpoints for listing and viewing events.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Verify email.'
+      title: 'List public events.'
       description: |-
-        Marque l'email comme vérifié à partir d'un lien signé (middleware `signed` sur la route).
-        Optionnel: redirige vers le frontend si `FRONTEND_URL` est défini.
+        Returns a paginated list of public events with filters for search,
+        categories, country, status and sorting.
       authenticated: false
       deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
+      version:
         custom: []
-        name: id
-        description: 'ID user.'
+        name: version
+        description: ''
         required: true
-        example: 1
-        type: integer
+        example: v1
+        type: string
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
         deprecated: false
-      hash:
+    cleanUrlParameters:
+      version: v1
+    queryParameters:
+      query:
         custom: []
-        name: hash
-        description: SHA1(email).
-        required: true
-        example: 6b1b36cbb04b41490bfc0ab2bfa26f86a4f37e58
+        name: query
+        description: 'Search term applied to title, description, city and address.'
+        required: false
+        example: concert
         type: string
         enumValues: []
         exampleWasSpecified: true
         nullable: false
         deprecated: false
-    cleanUrlParameters:
-      id: 1
-      hash: 6b1b36cbb04b41490bfc0ab2bfa26f86a4f37e58
-    queryParameters: []
-    cleanQueryParameters: []
+      location:
+        custom: []
+        name: location
+        description: 'Filter by city or address.'
+        required: false
+        example: Lomé
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      country_code:
+        custom: []
+        name: country_code
+        description: 'Optional country code (tg or other).'
+        required: false
+        example: tg
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'statuses[]':
+        custom: []
+        name: 'statuses[]'
+        description: 'Optional list of statuses to filter events (saved, upcoming, completed, cancelled).'
+        required: false
+        example: null
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Items per page (1-100).'
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      query: concert
+      location: Lomé
+      country_code: tg
+      'statuses[]': null
+      per_page: 15
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -60,9 +108,27 @@ endpoints:
       -
         custom: []
         status: 200
-        content: '{ "message": "Email verified", "user": { "id": 1, "email": "user@example.com" } }'
+        content: |-
+          {
+            "data": [
+              {
+                "id": 1,
+                "slug": "my-first-event",
+                "title": "My first event",
+                "status": "upcoming",
+                "country_code": "tg",
+                "city": "Lomé"
+              }
+            ],
+            "meta": {
+              "current_page": 1,
+              "last_page": 1,
+              "per_page": 15,
+              "total": 1
+            }
+          }
         headers: []
-        description: ''
+        description: Success
     responseFields: []
     auth: []
     controller: null
@@ -72,78 +138,65 @@ endpoints:
     custom: []
     httpMethods:
       - GET
-    uri: 'api/reset-password/{token}'
+    uri: 'api/{version}/events/{id}'
     metadata:
       custom: []
-      groupName: 'User authentication'
+      groupName: Events
       groupDescription: |-
 
-        Réinitialisation du mot de passe.
+        Public and organizer endpoints for listing and viewing events.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Redirect reset link.'
+      title: 'Get public event details.'
       description: |-
-        Endpoint backend appelé depuis l'email; redirige vers le frontend si `FRONTEND_URL` est défini.
-        Sinon retourne JSON `{ token, email }`.
+        Returns the public details of an event identified by its numeric ID,
+        including its occurrences and ticket types.
       authenticated: false
       deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      token:
+      version:
         custom: []
-        name: token
-        description: 'Reset token.'
+        name: version
+        description: ''
         required: true
-        example: abc123
+        example: v1
         type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'Event ID.'
+        required: true
+        example: 1
+        type: integer
         enumValues: []
         exampleWasSpecified: true
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      token: abc123
-    queryParameters:
-      email:
-        custom: []
-        name: email
-        description: Email.
-        required: true
-        example: user@example.com
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanQueryParameters:
-      email: user@example.com
+      version: v1
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses:
       -
         custom: []
-        status: 302
-        content: |-
-          <!DOCTYPE html>
-          <html>
-              <head>
-                  <meta charset="UTF-8" />
-                  <meta http-equiv="refresh" content="0;url='http://localhost:3000/reset-password?token=abc123&amp;email=user%40example.com'" />
-
-                  <title>Redirecting to http://localhost:3000/reset-password?token=abc123&amp;email=user%40example.com</title>
-              </head>
-              <body>
-                  Redirecting to <a href="http://localhost:3000/reset-password?token=abc123&amp;email=user%40example.com">http://localhost:3000/reset-password?token=abc123&amp;email=user%40example.com</a>.
-              </body>
-          </html>
+        status: 200
+        content: '{"data":{"id":1,"slug":"afrobeat-night-in-lome-1","title":"Afrobeat Night in Lom\u00e9 #1","description":"Demo event seeded for homepage and listings (upcoming).","status":"upcoming","is_private":false,"is_verified":true,"country_code":"tg","city":"Lom\u00e9","address":"10 Avenue de la Paix","online_link":null,"currency":"XOF","price_min":12000,"likes_count":0,"nb_visites":5,"category":{"id":1,"name":"Concert","name_en":"Concert","description":"Music concerts and live shows."},"cover_url":"http:\/\/localhost:8000\/storage\/1\/600.jpeg","occurrences":[{"id":1,"start_date":"2026-03-20T20:00:00+00:00","end_date":"2026-03-21T00:00:00+00:00","status":"upcoming","free_event":false,"ticket_types":[{"id":1,"name":"Category 1","description":"Access for category 1","general_conditions":null,"price":"12000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"},{"id":2,"name":"Category 2","description":"Access for category 2","general_conditions":null,"price":"37000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"}]},{"id":2,"start_date":"2026-03-31T20:00:00+00:00","end_date":"2026-04-01T00:00:00+00:00","status":"upcoming","free_event":false,"ticket_types":[{"id":3,"name":"Category 1","description":"Access for category 1","general_conditions":null,"price":"32000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"}]},{"id":3,"start_date":"2026-03-23T20:00:00+00:00","end_date":"2026-03-24T00:00:00+00:00","status":"upcoming","free_event":false,"ticket_types":[{"id":4,"name":"Category 1","description":"Access for category 1","general_conditions":null,"price":"35000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"}]}]}}'
         headers:
           cache-control: 'no-cache, private'
-          location: 'http://localhost:3000/reset-password?token=abc123&email=user%40example.com'
-          content-type: 'text/html; charset=utf-8'
+          content-type: application/json
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '59'
+          x-ratelimit-remaining: '58'
           access-control-allow-origin: '*'
         description: null
     responseFields: []
@@ -154,197 +207,20 @@ endpoints:
   -
     custom: []
     httpMethods:
-      - POST
-    uri: 'api/{version}/auth/register'
+      - GET
+    uri: 'api/{version}/user/events'
     metadata:
       custom: []
-      groupName: 'User authentication'
+      groupName: Events
       groupDescription: |-
 
-        Authentification utilisateur (Passport Bearer token).
-
-        Ce groupe couvre:
-        - Inscription (création de compte)
-        - Connexion (retourne un Bearer token)
-        - Déconnexion (révoque le token courant)
+        Public and organizer endpoints for listing and viewing events.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Register a new user.'
+      title: "List current user's events."
       description: |-
-        Body minimal : email + password. Champs optionnels : first_name, last_name, etc.
-        Après inscription, un email de vérification est envoyé.
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      version:
-        custom: []
-        name: version
-        description: ''
-        required: true
-        example: v1
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      version: v1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      email:
-        custom: []
-        name: email
-        description: Email.
-        required: true
-        example: user@example.com
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      password:
-        custom: []
-        name: password
-        description: 'Mot de passe (min 8).'
-        required: true
-        example: SecretPass123
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      first_name:
-        custom: []
-        name: first_name
-        description: 'optional Prénom.'
-        required: false
-        example: architecto
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-      last_name:
-        custom: []
-        name: last_name
-        description: 'optional Nom.'
-        required: false
-        example: architecto
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-    cleanBodyParameters:
-      email: user@example.com
-      password: SecretPass123
-      first_name: architecto
-      last_name: architecto
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - POST
-    uri: 'api/{version}/auth/login'
-    metadata:
-      custom: []
-      groupName: 'User authentication'
-      groupDescription: |-
-
-        Authentification utilisateur (Passport Bearer token).
-
-        Ce groupe couvre:
-        - Inscription (création de compte)
-        - Connexion (retourne un Bearer token)
-        - Déconnexion (révoque le token courant)
-      subgroup: ''
-      subgroupDescription: ''
-      title: Login.
-      description: 'Body : email + password uniquement.'
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      version:
-        custom: []
-        name: version
-        description: ''
-        required: true
-        example: v1
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      version: v1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      email:
-        custom: []
-        name: email
-        description: Email.
-        required: true
-        example: user@example.com
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      password:
-        custom: []
-        name: password
-        description: 'Mot de passe.'
-        required: true
-        example: SecretPass123
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanBodyParameters:
-      email: user@example.com
-      password: SecretPass123
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - POST
-    uri: 'api/{version}/auth/logout'
-    metadata:
-      custom: []
-      groupName: 'User authentication'
-      groupDescription: |-
-
-        Authentification utilisateur (Passport Bearer token).
-
-        Ce groupe couvre:
-        - Inscription (création de compte)
-        - Connexion (retourne un Bearer token)
-        - Déconnexion (révoque le token courant)
-      subgroup: ''
-      subgroupDescription: ''
-      title: Logout.
-      description: ''
+        Returns a paginated list of events belonging to the authenticated
+        organizer, with optional filters on status and search term.
       authenticated: true
       deprecated: false
     headers:
@@ -365,296 +241,62 @@ endpoints:
         deprecated: false
     cleanUrlParameters:
       version: v1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - POST
-    uri: 'api/{version}/auth/exchange-ticket'
-    metadata:
-      custom: []
-      groupName: 'User authentication'
-      groupDescription: |-
-
-        Authentification utilisateur (Passport Bearer token).
-
-        Ce groupe couvre:
-        - Inscription (création de compte)
-        - Connexion (retourne un Bearer token)
-        - Déconnexion (révoque le token courant)
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Exchange a login_ticket (one-time) for an access token.'
-      description: "Utilisé après clic sur le lien de vérification d'email depuis le frontend."
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      version:
+    queryParameters:
+      query:
         custom: []
-        name: version
-        description: ''
-        required: true
-        example: v1
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      version: v1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      login_ticket:
-        custom: []
-        name: login_ticket
-        description: 'Ticket unique reçu en query string.'
-        required: true
-        example: 8d9e0a1b-2f6b-4b9b-8f4b-2c9c1f6a1b2c
+        name: query
+        description: 'Search term applied to title, description, city and address.'
+        required: false
+        example: concert
         type: string
         enumValues: []
         exampleWasSpecified: true
         nullable: false
         deprecated: false
-    cleanBodyParameters:
-      login_ticket: 8d9e0a1b-2f6b-4b9b-8f4b-2c9c1f6a1b2c
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - POST
-    uri: 'api/{version}/auth/email/resend'
-    metadata:
-      custom: []
-      groupName: 'User authentication'
-      groupDescription: |-
-
-        Vérification de l'email (liens signés) et renvoi de lien.
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Resend verification email.'
-      description: "Renvoie un email de vérification si l'utilisateur est authentifié et non vérifié."
-      authenticated: true
-      deprecated: false
-    headers:
-      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      version:
+      'statuses[]':
         custom: []
-        name: version
-        description: ''
-        required: true
-        example: v1
-        type: string
+        name: 'statuses[]'
+        description: 'Optional list of statuses (saved, upcoming, completed, cancelled).'
+        required: false
+        example: null
+        type: 'string[]'
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         deprecated: false
-    cleanUrlParameters:
-      version: v1
-    queryParameters: []
-    cleanQueryParameters: []
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Items per page (1-100).'
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      query: concert
+      'statuses[]': null
+      per_page: 15
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses:
       -
         custom: []
-        status: 200
-        content: '{ "message": "Verification link sent" }'
-        headers: []
-        description: ''
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
     responseFields: []
     auth:
       - headers
       - Authorization
       - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - POST
-    uri: 'api/{version}/auth/forgot-password'
-    metadata:
-      custom: []
-      groupName: 'User authentication'
-      groupDescription: |-
-
-        Réinitialisation du mot de passe.
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Request password reset.'
-      description: 'Envoie un email avec un lien de réinitialisation.'
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      version:
-        custom: []
-        name: version
-        description: ''
-        required: true
-        example: v1
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      version: v1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      email:
-        custom: []
-        name: email
-        description: Email.
-        required: true
-        example: user@example.com
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanBodyParameters:
-      email: user@example.com
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: '{ "message": "We have emailed your password reset link." }'
-        headers: []
-        description: ''
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - POST
-    uri: 'api/{version}/auth/reset-password'
-    metadata:
-      custom: []
-      groupName: 'User authentication'
-      groupDescription: |-
-
-        Réinitialisation du mot de passe.
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Reset password.'
-      description: 'Applique le nouveau mot de passe à partir du token.'
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      version:
-        custom: []
-        name: version
-        description: ''
-        required: true
-        example: v1
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      version: v1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      token:
-        custom: []
-        name: token
-        description: 'Reset token.'
-        required: true
-        example: abc123
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      email:
-        custom: []
-        name: email
-        description: Email.
-        required: true
-        example: user@example.com
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      password:
-        custom: []
-        name: password
-        description: 'Nouveau mot de passe.'
-        required: true
-        example: NewPass123
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      password_confirmation:
-        custom: []
-        name: password_confirmation
-        description: Confirmation.
-        required: true
-        example: NewPass123
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanBodyParameters:
-      token: abc123
-      email: user@example.com
-      password: NewPass123
-      password_confirmation: NewPass123
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: '{ "message": "Your password has been reset." }'
-        headers: []
-        description: ''
-    responseFields: []
-    auth: []
     controller: null
     method: null
     route: null
@@ -662,17 +304,19 @@ endpoints:
     custom: []
     httpMethods:
       - GET
-    uri: 'api/{version}/me'
+    uri: 'api/{version}/users/me/events'
     metadata:
       custom: []
-      groupName: 'User authentication'
+      groupName: Events
       groupDescription: |-
 
-        Endpoints related to the authenticated user.
+        Public and organizer endpoints for listing and viewing events.
       subgroup: ''
       subgroupDescription: ''
-      title: 'My profile (current user).'
-      description: "Returns the authenticated user's information associated with the Bearer token."
+      title: "List current user's events."
+      description: |-
+        Returns a paginated list of events belonging to the authenticated
+        organizer, with optional filters on status and search term.
       authenticated: true
       deprecated: false
     headers:
@@ -693,6 +337,112 @@ endpoints:
         deprecated: false
     cleanUrlParameters:
       version: v1
+    queryParameters:
+      query:
+        custom: []
+        name: query
+        description: 'Search term applied to title, description, city and address.'
+        required: false
+        example: concert
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      'statuses[]':
+        custom: []
+        name: 'statuses[]'
+        description: 'Optional list of statuses (saved, upcoming, completed, cancelled).'
+        required: false
+        example: null
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Items per page (1-100).'
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      query: concert
+      'statuses[]': null
+      per_page: 15
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/{version}/users/me/events/{id}'
+    metadata:
+      custom: []
+      groupName: Events
+      groupDescription: |-
+
+        Public and organizer endpoints for listing and viewing events.
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Get details of one of the current user's events."
+      description: 'Returns full details of an event owned by the authenticated organizer.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      version:
+        custom: []
+        name: version
+        description: ''
+        required: true
+        example: v1
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'Event ID.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      version: v1
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -701,16 +451,13 @@ endpoints:
     responses:
       -
         custom: []
-        status: 200
-        content: |-
-          {
-            "data": {
-              "id": 1,
-              "email": "user@example.com"
-            }
-          }
-        headers: []
-        description: ''
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
     responseFields: []
     auth:
       - headers

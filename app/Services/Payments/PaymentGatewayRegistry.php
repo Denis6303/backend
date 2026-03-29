@@ -2,16 +2,15 @@
 
 namespace App\Services\Payments;
 
-use App\Services\Payments\Gateways\CardGateway;
-use App\Services\Payments\Gateways\DjamoGateway;
 use App\Services\Payments\Gateways\FakeGateway;
-use App\Services\Payments\Gateways\Hub2Gateway;
-use App\Services\Payments\Gateways\InTouchGateway;
-use App\Services\Payments\Gateways\MobileMoneyGateway;
-use App\Services\Payments\Gateways\PaystackGateway;
-use App\Services\Payments\Gateways\WaveGateway;
+use App\Services\Payments\Gateways\FloozGateway;
+use App\Services\Payments\Gateways\YassGateway;
 use InvalidArgumentException;
 
+/**
+ * Registre des prestataires de paiement (checkout + verify sur OrderIntent).
+ * Moyens supportés : Yass (Mixx by Yass) et Flooz (Moov). Code `fake` réservé au fallback interne.
+ */
 class PaymentGatewayRegistry
 {
     /**
@@ -19,13 +18,8 @@ class PaymentGatewayRegistry
      */
     private array $map = [
         'fake' => FakeGateway::class,
-        'wave' => WaveGateway::class,
-        'djamo' => DjamoGateway::class,
-        'paystack' => PaystackGateway::class,
-        'hub2' => Hub2Gateway::class,
-        'intouch' => InTouchGateway::class,
-        'mobile_money' => MobileMoneyGateway::class,
-        'card' => CardGateway::class,
+        'yass' => YassGateway::class,
+        'flooz' => FloozGateway::class,
     ];
 
     public function for(string $providerCode): PaymentGateway
@@ -45,4 +39,3 @@ class PaymentGatewayRegistry
         return $gateway;
     }
 }
-

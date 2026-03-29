@@ -11,7 +11,7 @@ class FakeGateway implements PaymentGateway
     public function createCheckoutForOrderIntent(OrderIntent $intent, array $payload = []): array
     {
         return [
-            'paystack_reference' => 'fake_' . Str::random(16),
+            'external_reference' => 'fake_' . Str::random(16),
             'meta' => [
                 'provider' => 'fake',
                 'order_intent_key' => $intent->key,

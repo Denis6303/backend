@@ -11,6 +11,7 @@ class Order extends Model
     protected $fillable = [
         'number',
         'claim_code',
+        'order_intent_id',
         'event_occurrence_id',
         'user_id',
         'distributor_user_id',

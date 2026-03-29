@@ -18,7 +18,7 @@ return new class extends Migration
 
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique(); // wave, card, mobile_money, djamo, api, ...
+            $table->string('code')->unique(); // yass, flooz, free, api, ...
             $table->string('label_fr');
             $table->string('label_en')->nullable();
             $table->boolean('is_active')->default(true);
@@ -27,13 +27,9 @@ return new class extends Migration
 
         Schema::create('payment_providers', function (Blueprint $table) {
             $table->id();
-            $table->string('provider_code'); // wave, djamo, paystack, hub2, intouch, ...
+            $table->string('provider_code'); // yass, flooz, fake (fallback)
 
-            $table->string('wave_checkout_id')->nullable();
-            $table->string('djamo_charge_id')->nullable();
-            $table->string('paystack_reference')->nullable();
-            $table->string('hub2_reference')->nullable();
-            $table->string('intouch_reference')->nullable();
+            $table->string('external_reference')->nullable();
 
             $table->json('meta')->nullable();
             $table->timestamps();

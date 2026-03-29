@@ -1,28 +1,31 @@
-name: Events
+name: 'Order Intent'
 description: |-
 
-  Public and organizer endpoints for listing and viewing events.
+  Parcours d’achat public : réservation temporaire des billets puis paiement (Yass / Flooz) ou gratuit.
+  Authentification : en-tête `Authorization: Bearer <token>` (utilisateur Passport ou client OAuth, middleware `user_or_client`).
+  Les appels PSP réels passent par `App\Services\Payments\PaymentGatewayRegistry` (codes `yass`, `flooz`).
 endpoints:
   -
     custom: []
     httpMethods:
-      - GET
-    uri: 'api/{version}/events'
+      - POST
+    uri: 'api/{version}/order-intents/create'
     metadata:
       custom: []
-      groupName: Events
+      groupName: 'Order Intent'
       groupDescription: |-
 
-        Public and organizer endpoints for listing and viewing events.
+        Parcours d’achat public : réservation temporaire des billets puis paiement (Yass / Flooz) ou gratuit.
+        Authentification : en-tête `Authorization: Bearer <token>` (utilisateur Passport ou client OAuth, middleware `user_or_client`).
+        Les appels PSP réels passent par `App\Services\Payments\PaymentGatewayRegistry` (codes `yass`, `flooz`).
       subgroup: ''
       subgroupDescription: ''
-      title: 'List public events.'
-      description: |-
-        Returns a paginated list of public events with filters for search,
-        categories, country, status and sorting.
-      authenticated: false
+      title: 'Créer une intention de commande (réservation temporaire du stock).'
+      description: ''
+      authenticated: true
       deprecated: false
     headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -39,139 +42,24 @@ endpoints:
         deprecated: false
     cleanUrlParameters:
       version: v1
-    queryParameters:
-      query:
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      type:
         custom: []
-        name: query
-        description: 'Search term applied to title, description, city and address.'
-        required: false
-        example: concert
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      location:
-        custom: []
-        name: location
-        description: 'Filter by city or address.'
-        required: false
-        example: Lomé
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      country_code:
-        custom: []
-        name: country_code
-        description: 'Optional country code (tg or other).'
-        required: false
-        example: tg
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      'statuses[]':
-        custom: []
-        name: 'statuses[]'
-        description: 'Optional list of statuses to filter events (saved, upcoming, completed, cancelled).'
-        required: false
-        example: null
-        type: 'string[]'
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      per_page:
-        custom: []
-        name: per_page
-        description: 'Items per page (1-100).'
-        required: false
-        example: 15
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanQueryParameters:
-      query: concert
-      location: Lomé
-      country_code: tg
-      'statuses[]': null
-      per_page: 15
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: |-
-          {
-            "data": [
-              {
-                "id": 1,
-                "slug": "my-first-event",
-                "title": "My first event",
-                "status": "upcoming",
-                "country_code": "tg",
-                "city": "Lomé"
-              }
-            ],
-            "meta": {
-              "current_page": 1,
-              "last_page": 1,
-              "per_page": 15,
-              "total": 1
-            }
-          }
-        headers: []
-        description: Success
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - GET
-    uri: 'api/{version}/events/{id}'
-    metadata:
-      custom: []
-      groupName: Events
-      groupDescription: |-
-
-        Public and organizer endpoints for listing and viewing events.
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Get public event details.'
-      description: |-
-        Returns the public details of an event identified by its numeric ID,
-        including its occurrences and ticket types.
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      version:
-        custom: []
-        name: version
-        description: ''
+        name: type
+        description: "Type d'achat. Seul `online` est pris en charge pour l'instant."
         required: true
-        example: v1
+        example: online
         type: string
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         deprecated: false
-      id:
+      event_occurrence_id:
         custom: []
-        name: id
-        description: 'Event ID.'
+        name: event_occurrence_id
+        description: 'ID de la séance (occurrence).'
         required: true
         example: 1
         type: integer
@@ -179,117 +67,183 @@ endpoints:
         exampleWasSpecified: true
         nullable: false
         deprecated: false
+      tickets:
+        custom: []
+        name: tickets
+        description: 'Quantités par type de billet : clés = ID du type, valeurs = quantités (> 0).'
+        required: true
+        example:
+          12: 1
+          15: 2
+        type: object
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      delivery_method:
+        custom: []
+        name: delivery_method
+        description: "Canal d'envoi de la confirmation : `email` ou `sms`."
+        required: true
+        example: email
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      customer_id:
+        custom: []
+        name: customer_id
+        description: 'ID utilisateur acheteur (doit correspondre au compte authentifié).'
+        required: true
+        example: 42
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      email:
+        custom: []
+        name: email
+        description: 'Email du client (requis si `delivery_method` = email).'
+        required: false
+        example: acheteur@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      phone:
+        custom: []
+        name: phone
+        description: 'Téléphone (requis si `delivery_method` = sms).'
+        required: false
+        example: '+22890123456'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      coupon_code:
+        custom: []
+        name: coupon_code
+        description: 'optional Code promo.'
+        required: false
+        example: SUMMER2026
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      customer_full_name:
+        custom: []
+        name: customer_full_name
+        description: 'optional Nom affiché sur la commande.'
+        required: false
+        example: 'Jean Dupont'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      type: online
+      event_occurrence_id: 1
+      tickets:
+        12: 1
+        15: 2
+      delivery_method: email
+      customer_id: 42
+      email: acheteur@example.com
+      phone: '+22890123456'
+      coupon_code: SUMMER2026
+      customer_full_name: 'Jean Dupont'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/{version}/order-intents/{key}'
+    metadata:
+      custom: []
+      groupName: 'Order Intent'
+      groupDescription: |-
+
+        Parcours d’achat public : réservation temporaire des billets puis paiement (Yass / Flooz) ou gratuit.
+        Authentification : en-tête `Authorization: Bearer <token>` (utilisateur Passport ou client OAuth, middleware `user_or_client`).
+        Les appels PSP réels passent par `App\Services\Payments\PaymentGatewayRegistry` (codes `yass`, `flooz`).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Afficher une intention de commande (détail, réservations, montant).'
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      version:
+        custom: []
+        name: version
+        description: ''
+        required: true
+        example: v1
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      key:
+        custom: []
+        name: key
+        description: "UUID de l'intention."
+        required: true
+        example: 550e8400-e29b-41d4-a716-446655440000
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
     cleanUrlParameters:
       version: v1
-      id: 1
-    queryParameters: []
-    cleanQueryParameters: []
+      key: 550e8400-e29b-41d4-a716-446655440000
+    queryParameters:
+      customer_id:
+        custom: []
+        name: customer_id
+        description: "optional Si renseigné, doit correspondre au client de l'intention."
+        required: false
+        example: 42
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      customer_id: 42
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses:
       -
         custom: []
-        status: 200
-        content: '{"data":{"id":1,"slug":"afrobeat-night-in-lome-1","title":"Afrobeat Night in Lom\u00e9 #1","description":"Demo event seeded for homepage and listings (upcoming).","status":"upcoming","is_private":false,"is_verified":true,"country_code":"tg","city":"Lom\u00e9","address":"10 Avenue de la Paix","online_link":null,"currency":"XOF","price_min":12000,"likes_count":0,"nb_visites":1,"category":{"id":1,"name":"Concert","name_en":"Concert","description":"Music concerts and live shows."},"cover_url":"http:\/\/localhost:8000\/storage\/1\/600.jpeg","occurrences":[{"id":1,"start_date":"2026-03-20T20:00:00+00:00","end_date":"2026-03-21T00:00:00+00:00","status":"upcoming","free_event":false,"ticket_types":[{"id":1,"name":"Category 1","description":"Access for category 1","general_conditions":null,"price":"12000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"},{"id":2,"name":"Category 2","description":"Access for category 2","general_conditions":null,"price":"37000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"}]},{"id":2,"start_date":"2026-03-31T20:00:00+00:00","end_date":"2026-04-01T00:00:00+00:00","status":"upcoming","free_event":false,"ticket_types":[{"id":3,"name":"Category 1","description":"Access for category 1","general_conditions":null,"price":"32000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"}]},{"id":3,"start_date":"2026-03-23T20:00:00+00:00","end_date":"2026-03-24T00:00:00+00:00","status":"upcoming","free_event":false,"ticket_types":[{"id":4,"name":"Category 1","description":"Access for category 1","general_conditions":null,"price":"35000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"}]}]}}'
+        status: 401
+        content: '{"message":"auth.unauthenticated"}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '58'
-          access-control-allow-origin: '*'
-        description: null
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - GET
-    uri: 'api/{version}/user/events'
-    metadata:
-      custom: []
-      groupName: Events
-      groupDescription: |-
-
-        Public and organizer endpoints for listing and viewing events.
-      subgroup: ''
-      subgroupDescription: ''
-      title: "List current user's events."
-      description: |-
-        Returns a paginated list of events belonging to the authenticated
-        organizer, with optional filters on status and search term.
-      authenticated: true
-      deprecated: false
-    headers:
-      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      version:
-        custom: []
-        name: version
-        description: ''
-        required: true
-        example: v1
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      version: v1
-    queryParameters:
-      query:
-        custom: []
-        name: query
-        description: 'Search term applied to title, description, city and address.'
-        required: false
-        example: concert
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      'statuses[]':
-        custom: []
-        name: 'statuses[]'
-        description: 'Optional list of statuses (saved, upcoming, completed, cancelled).'
-        required: false
-        example: null
-        type: 'string[]'
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      per_page:
-        custom: []
-        name: per_page
-        description: 'Items per page (1-100).'
-        required: false
-        example: 15
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanQueryParameters:
-      query: concert
-      'statuses[]': null
-      per_page: 15
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
+          x-ratelimit-remaining: '57'
           access-control-allow-origin: '*'
         description: null
     responseFields: []
@@ -303,20 +257,22 @@ endpoints:
   -
     custom: []
     httpMethods:
-      - GET
-    uri: 'api/{version}/users/me/events'
+      - POST
+    uri: 'api/{version}/order-intents/{key}/checkout'
     metadata:
       custom: []
-      groupName: Events
+      groupName: 'Order Intent'
       groupDescription: |-
 
-        Public and organizer endpoints for listing and viewing events.
+        Parcours d’achat public : réservation temporaire des billets puis paiement (Yass / Flooz) ou gratuit.
+        Authentification : en-tête `Authorization: Bearer <token>` (utilisateur Passport ou client OAuth, middleware `user_or_client`).
+        Les appels PSP réels passent par `App\Services\Payments\PaymentGatewayRegistry` (codes `yass`, `flooz`).
       subgroup: ''
       subgroupDescription: ''
-      title: "List current user's events."
+      title: 'Démarrer le paiement (checkout PSP) ou confirmer un achat gratuit.'
       description: |-
-        Returns a paginated list of events belonging to the authenticated
-        organizer, with optional filters on status and search term.
+        Pour `yass` ou `flooz`, `country`, `operator` et `phone_number` sont requis. Pour un paiement payant, `success_url` et `failure_url` sont requis.
+        Les modes `*-deposit` réservés aux administrateurs authentifiés.
       authenticated: true
       deprecated: false
     headers:
@@ -335,129 +291,272 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         deprecated: false
-    cleanUrlParameters:
-      version: v1
-    queryParameters:
-      query:
+      key:
         custom: []
-        name: query
-        description: 'Search term applied to title, description, city and address.'
-        required: false
-        example: concert
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      'statuses[]':
-        custom: []
-        name: 'statuses[]'
-        description: 'Optional list of statuses (saved, upcoming, completed, cancelled).'
-        required: false
-        example: null
-        type: 'string[]'
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      per_page:
-        custom: []
-        name: per_page
-        description: 'Items per page (1-100).'
-        required: false
-        example: 15
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanQueryParameters:
-      query: concert
-      'statuses[]': null
-      per_page: 15
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - GET
-    uri: 'api/{version}/users/me/events/{id}'
-    metadata:
-      custom: []
-      groupName: Events
-      groupDescription: |-
-
-        Public and organizer endpoints for listing and viewing events.
-      subgroup: ''
-      subgroupDescription: ''
-      title: "Get details of one of the current user's events."
-      description: 'Returns full details of an event owned by the authenticated organizer.'
-      authenticated: true
-      deprecated: false
-    headers:
-      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      version:
-        custom: []
-        name: version
-        description: ''
+        name: key
+        description: "UUID de l'intention."
         required: true
-        example: v1
+        example: 550e8400-e29b-41d4-a716-446655440000
         type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      id:
-        custom: []
-        name: id
-        description: 'Event ID.'
-        required: true
-        example: 1
-        type: integer
         enumValues: []
         exampleWasSpecified: true
         nullable: false
         deprecated: false
     cleanUrlParameters:
       version: v1
-      id: 1
+      key: 550e8400-e29b-41d4-a716-446655440000
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
+    bodyParameters:
+      payment_method:
         custom: []
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        name: payment_method
+        description: '`yass`, `flooz`, `free`, `yass-deposit`, `flooz-deposit`.'
+        required: true
+        example: yass
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      accept_terms:
+        custom: []
+        name: accept_terms
+        description: 'Acceptation des conditions (valeur acceptée par Laravel `accepted`).'
+        required: true
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      success_url:
+        custom: []
+        name: success_url
+        description: 'URL de retour succès (obligatoire si le montant est dû).'
+        required: false
+        example: 'https://app.example.com/order/success'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      failure_url:
+        custom: []
+        name: failure_url
+        description: 'URL de retour échec (obligatoire si le montant est dû).'
+        required: false
+        example: 'https://app.example.com/order/failed'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      country:
+        custom: []
+        name: country
+        description: 'Code pays ISO 3166-1 alpha-2 (requis pour yass/flooz).'
+        required: false
+        example: TG
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      operator:
+        custom: []
+        name: operator
+        description: 'Identifiant opérateur (requis pour yass/flooz).'
+        required: false
+        example: YASS
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      phone_number:
+        custom: []
+        name: phone_number
+        description: 'Numéro à débiter (requis pour yass/flooz).'
+        required: false
+        example: '90123456'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      customer_id:
+        custom: []
+        name: customer_id
+        description: "optional Si renseigné, doit correspondre au client de l'intention."
+        required: false
+        example: 42
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      payment_method: yass
+      accept_terms: true
+      success_url: 'https://app.example.com/order/success'
+      failure_url: 'https://app.example.com/order/failed'
+      country: TG
+      operator: YASS
+      phone_number: '90123456'
+      customer_id: 42
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/{version}/order-intents/{key}/verify'
+    metadata:
+      custom: []
+      groupName: 'Order Intent'
+      groupDescription: |-
+
+        Parcours d’achat public : réservation temporaire des billets puis paiement (Yass / Flooz) ou gratuit.
+        Authentification : en-tête `Authorization: Bearer <token>` (utilisateur Passport ou client OAuth, middleware `user_or_client`).
+        Les appels PSP réels passent par `App\Services\Payments\PaymentGatewayRegistry` (codes `yass`, `flooz`).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Vérifier le statut du paiement (après redirection PSP ou en polling).'
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      version:
+        custom: []
+        name: version
+        description: ''
+        required: true
+        example: v1
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      key:
+        custom: []
+        name: key
+        description: "UUID de l'intention."
+        required: true
+        example: 550e8400-e29b-41d4-a716-446655440000
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      version: v1
+      key: 550e8400-e29b-41d4-a716-446655440000
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      customer_id:
+        custom: []
+        name: customer_id
+        description: "optional Si renseigné, doit correspondre au client de l'intention."
+        required: false
+        example: 42
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      customer_id: 42
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/{version}/order-intents/{key}/cancel'
+    metadata:
+      custom: []
+      groupName: 'Order Intent'
+      groupDescription: |-
+
+        Parcours d’achat public : réservation temporaire des billets puis paiement (Yass / Flooz) ou gratuit.
+        Authentification : en-tête `Authorization: Bearer <token>` (utilisateur Passport ou client OAuth, middleware `user_or_client`).
+        Les appels PSP réels passent par `App\Services\Payments\PaymentGatewayRegistry` (codes `yass`, `flooz`).
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Annuler une intention encore en attente (libère le stock réservé).'
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      version:
+        custom: []
+        name: version
+        description: ''
+        required: true
+        example: v1
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      key:
+        custom: []
+        name: key
+        description: "UUID de l'intention."
+        required: true
+        example: 550e8400-e29b-41d4-a716-446655440000
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      version: v1
+      key: 550e8400-e29b-41d4-a716-446655440000
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      customer_id:
+        custom: []
+        name: customer_id
+        description: "optional Si renseigné, doit correspondre au client de l'intention."
+        required: false
+        example: 42
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      customer_id: 42
+    fileParameters: []
+    responses: []
     responseFields: []
     auth:
       - headers

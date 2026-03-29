@@ -38,6 +38,10 @@ class HandleConfirmedOrder implements ShouldQueue
                 throw new RuntimeException('Order intent is not confirmed.');
             }
 
+            if (Order::query()->where('order_intent_id', $intent->id)->exists()) {
+                return;
+            }
+
             $meta = (array) ($intent->meta ?? []);
             $lines = (array) ($meta['lines'] ?? []);
 
@@ -52,6 +56,7 @@ class HandleConfirmedOrder implements ShouldQueue
             $order = Order::create([
                 'number' => $this->newOrderNumber(),
                 'claim_code' => $intent->claim_code,
+                'order_intent_id' => $intent->id,
                 'event_occurrence_id' => $intent->event_occurrence_id,
                 'user_id' => $intent->customer_user_id,
                 'amount' => max(0.0, (float) $intent->price - $discountAmount + $fees),

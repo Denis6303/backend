@@ -68,6 +68,118 @@
                     <a href="#authenticating-requests">Authenticating requests</a>
                 </li>
                             </ul>
+                    <ul id="tocify-header-api" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="api">
+                    <a href="#api">API</a>
+                </li>
+                                    <ul id="tocify-subheader-api" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="api-GETapi--version--payment-methods">
+                                <a href="#api-GETapi--version--payment-methods">GET api/{version}/payment-methods</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi--version--open-ping">
+                                <a href="#api-GETapi--version--open-ping">GET api/{version}/open/ping</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-POSTapi--version--discount-codes-validate">
+                                <a href="#api-POSTapi--version--discount-codes-validate">POST api/{version}/discount-codes/validate</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi--version--distributor-profile">
+                                <a href="#api-GETapi--version--distributor-profile">GET api/{version}/distributor/profile</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi--version--partners-events">
+                                <a href="#api-GETapi--version--partners-events">GET api/{version}/partners/events</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-POSTapi--version--partners-orders">
+                                <a href="#api-POSTapi--version--partners-orders">POST api/{version}/partners/orders</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-POSTapi--version--partners-order-intents">
+                                <a href="#api-POSTapi--version--partners-order-intents">POST api/{version}/partners/order-intents</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi--version--partners-finance-summary">
+                                <a href="#api-GETapi--version--partners-finance-summary">GET api/{version}/partners/finance/summary</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-POSTapi--version--partners-webhooks--provider-">
+                                <a href="#api-POSTapi--version--partners-webhooks--provider-">POST api/{version}/partners/webhooks/{provider}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-POSTapi--version--webhooks--provider-">
+                                <a href="#api-POSTapi--version--webhooks--provider-">POST api/{version}/webhooks/{provider}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-POSTapi--version--validator-scan">
+                                <a href="#api-POSTapi--version--validator-scan">POST api/{version}/validator/scan</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-events">
+                                <a href="#api-GETapi-admin-events">GET api/admin/events</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-POSTapi-admin-events--id--verify">
+                                <a href="#api-POSTapi-admin-events--id--verify">POST api/admin/events/{id}/verify</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-POSTapi-admin-events--id--publish">
+                                <a href="#api-POSTapi-admin-events--id--publish">POST api/admin/events/{id}/publish</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-POSTapi-admin-events--id--unpublish">
+                                <a href="#api-POSTapi-admin-events--id--unpublish">POST api/admin/events/{id}/unpublish</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-POSTapi-admin-events--id--commission">
+                                <a href="#api-POSTapi-admin-events--id--commission">POST api/admin/events/{id}/commission</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-POSTapi-admin-events--id--service-costs">
+                                <a href="#api-POSTapi-admin-events--id--service-costs">POST api/admin/events/{id}/service-costs</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-POSTapi-admin-events--id--assign-admin-owner">
+                                <a href="#api-POSTapi-admin-events--id--assign-admin-owner">POST api/admin/events/{id}/assign-admin-owner</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-POSTapi-admin-events--id--restore-owner">
+                                <a href="#api-POSTapi-admin-events--id--restore-owner">POST api/admin/events/{id}/restore-owner</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-events--id--owner-history">
+                                <a href="#api-GETapi-admin-events--id--owner-history">GET api/admin/events/{id}/owner-history</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-ticket-tags">
+                                <a href="#api-GETapi-admin-ticket-tags">GET api/admin/ticket-tags</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-transferred-tickets">
+                                <a href="#api-GETapi-admin-transferred-tickets">GET api/admin/transferred-tickets</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-tickets">
+                                <a href="#api-GETapi-admin-tickets">GET api/admin/tickets</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-finance">
+                                <a href="#api-GETapi-admin-finance">GET api/admin/finance</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-reconciliation">
+                                <a href="#api-GETapi-admin-reconciliation">GET api/admin/reconciliation</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-payment-report">
+                                <a href="#api-GETapi-admin-payment-report">GET api/admin/payment-report</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-users">
+                                <a href="#api-GETapi-admin-users">GET api/admin/users</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-customers">
+                                <a href="#api-GETapi-admin-customers">GET api/admin/customers</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-customer-lookup">
+                                <a href="#api-GETapi-admin-customer-lookup">GET api/admin/customer-lookup</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-distributors">
+                                <a href="#api-GETapi-admin-distributors">GET api/admin/distributors</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-services">
+                                <a href="#api-GETapi-admin-services">GET api/admin/services</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-oauth-clients">
+                                <a href="#api-GETapi-admin-oauth-clients">GET api/admin/oauth-clients</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-invitations">
+                                <a href="#api-GETapi-admin-invitations">GET api/admin/invitations</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-communications">
+                                <a href="#api-GETapi-admin-communications">GET api/admin/communications</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="api-GETapi-admin-orders">
+                                <a href="#api-GETapi-admin-orders">GET api/admin/orders</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
                     <ul id="tocify-header-category" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="category">
                     <a href="#category">Category</a>
@@ -78,121 +190,6 @@
 
 This endpoint returns the full list of categories that can be used
 when creating or filtering events.</a>
-                            </li>
-                                                                        </ul>
-                            </ul>
-                    <ul id="tocify-header-endpoints" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="endpoints">
-                    <a href="#endpoints">Endpoints</a>
-                </li>
-                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-user">
-                                <a href="#endpoints-GETapi-user">GET api/user</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi--version--payment-methods">
-                                <a href="#endpoints-GETapi--version--payment-methods">GET api/{version}/payment-methods</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi--version--open-ping">
-                                <a href="#endpoints-GETapi--version--open-ping">GET api/{version}/open/ping</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi--version--discount-codes-validate">
-                                <a href="#endpoints-POSTapi--version--discount-codes-validate">POST api/{version}/discount-codes/validate</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi--version--distributor-profile">
-                                <a href="#endpoints-GETapi--version--distributor-profile">GET api/{version}/distributor/profile</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi--version--partners-events">
-                                <a href="#endpoints-GETapi--version--partners-events">GET api/{version}/partners/events</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi--version--partners-orders">
-                                <a href="#endpoints-POSTapi--version--partners-orders">POST api/{version}/partners/orders</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi--version--partners-order-intents">
-                                <a href="#endpoints-POSTapi--version--partners-order-intents">POST api/{version}/partners/order-intents</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi--version--partners-finance-summary">
-                                <a href="#endpoints-GETapi--version--partners-finance-summary">GET api/{version}/partners/finance/summary</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi--version--partners-webhooks--provider-">
-                                <a href="#endpoints-POSTapi--version--partners-webhooks--provider-">POST api/{version}/partners/webhooks/{provider}</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi--version--webhooks--provider-">
-                                <a href="#endpoints-POSTapi--version--webhooks--provider-">POST api/{version}/webhooks/{provider}</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi--version--validator-scan">
-                                <a href="#endpoints-POSTapi--version--validator-scan">POST api/{version}/validator/scan</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-events">
-                                <a href="#endpoints-GETapi-admin-events">GET api/admin/events</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-admin-events--id--verify">
-                                <a href="#endpoints-POSTapi-admin-events--id--verify">POST api/admin/events/{id}/verify</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-admin-events--id--publish">
-                                <a href="#endpoints-POSTapi-admin-events--id--publish">POST api/admin/events/{id}/publish</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-admin-events--id--unpublish">
-                                <a href="#endpoints-POSTapi-admin-events--id--unpublish">POST api/admin/events/{id}/unpublish</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-admin-events--id--commission">
-                                <a href="#endpoints-POSTapi-admin-events--id--commission">POST api/admin/events/{id}/commission</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-admin-events--id--service-costs">
-                                <a href="#endpoints-POSTapi-admin-events--id--service-costs">POST api/admin/events/{id}/service-costs</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-admin-events--id--assign-admin-owner">
-                                <a href="#endpoints-POSTapi-admin-events--id--assign-admin-owner">POST api/admin/events/{id}/assign-admin-owner</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-admin-events--id--restore-owner">
-                                <a href="#endpoints-POSTapi-admin-events--id--restore-owner">POST api/admin/events/{id}/restore-owner</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-events--id--owner-history">
-                                <a href="#endpoints-GETapi-admin-events--id--owner-history">GET api/admin/events/{id}/owner-history</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-ticket-tags">
-                                <a href="#endpoints-GETapi-admin-ticket-tags">GET api/admin/ticket-tags</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-transferred-tickets">
-                                <a href="#endpoints-GETapi-admin-transferred-tickets">GET api/admin/transferred-tickets</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-tickets">
-                                <a href="#endpoints-GETapi-admin-tickets">GET api/admin/tickets</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-finance">
-                                <a href="#endpoints-GETapi-admin-finance">GET api/admin/finance</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-reconciliation">
-                                <a href="#endpoints-GETapi-admin-reconciliation">GET api/admin/reconciliation</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-payment-report">
-                                <a href="#endpoints-GETapi-admin-payment-report">GET api/admin/payment-report</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-users">
-                                <a href="#endpoints-GETapi-admin-users">GET api/admin/users</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-customers">
-                                <a href="#endpoints-GETapi-admin-customers">GET api/admin/customers</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-customer-lookup">
-                                <a href="#endpoints-GETapi-admin-customer-lookup">GET api/admin/customer-lookup</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-distributors">
-                                <a href="#endpoints-GETapi-admin-distributors">GET api/admin/distributors</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-services">
-                                <a href="#endpoints-GETapi-admin-services">GET api/admin/services</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-oauth-clients">
-                                <a href="#endpoints-GETapi-admin-oauth-clients">GET api/admin/oauth-clients</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-invitations">
-                                <a href="#endpoints-GETapi-admin-invitations">GET api/admin/invitations</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-communications">
-                                <a href="#endpoints-GETapi-admin-communications">GET api/admin/communications</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-orders">
-                                <a href="#endpoints-GETapi-admin-orders">GET api/admin/orders</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -246,6 +243,28 @@ when creating or filtering events.</a>
                             </li>
                                                                         </ul>
                             </ul>
+                    <ul id="tocify-header-order-intent" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="order-intent">
+                    <a href="#order-intent">Order Intent</a>
+                </li>
+                                    <ul id="tocify-subheader-order-intent" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="order-intent-POSTapi--version--order-intents-create">
+                                <a href="#order-intent-POSTapi--version--order-intents-create">Créer une intention de commande (réservation temporaire du stock).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="order-intent-GETapi--version--order-intents--key-">
+                                <a href="#order-intent-GETapi--version--order-intents--key-">Afficher une intention de commande (détail, réservations, montant).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="order-intent-POSTapi--version--order-intents--key--checkout">
+                                <a href="#order-intent-POSTapi--version--order-intents--key--checkout">Démarrer le paiement (checkout PSP) ou confirmer un achat gratuit.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="order-intent-POSTapi--version--order-intents--key--verify">
+                                <a href="#order-intent-POSTapi--version--order-intents--key--verify">Vérifier le statut du paiement (après redirection PSP ou en polling).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="order-intent-POSTapi--version--order-intents--key--cancel">
+                                <a href="#order-intent-POSTapi--version--order-intents--key--cancel">Annuler une intention encore en attente (libère le stock réservé).</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
                     <ul id="tocify-header-user-authentication" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="user-authentication">
                     <a href="#user-authentication">User authentication</a>
@@ -292,7 +311,7 @@ when creating or filtering events.</a>
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: March 22, 2026</li>
+        <li>Last updated: March 29, 2026</li>
     </ul>
 </div>
 
@@ -313,297 +332,11 @@ You can switch the language used with the tabs at the top right (or from the nav
 <p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer your-token"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 
-        <h1 id="category">Category</h1>
+        <h1 id="api">API</h1>
 
     
 
-                                <h2 id="category-GETapi--version--categories">List all available event categories.
-
-This endpoint returns the full list of categories that can be used
-when creating or filtering events.</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi--version--categories">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/categories" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/categories"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="json-example">
-    <pre><code class="language-json">{}</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi--version--categories">
-            <blockquote>
-            <p>Example response (200, Success):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;success&quot;: true,
-    &quot;code&quot;: 0,
-    &quot;locale&quot;: &quot;en&quot;,
-    &quot;message&quot;: &quot;Category list retrieved successfully&quot;,
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;Concert&quot;,
-            &quot;name_en&quot;: &quot;Concert&quot;,
-            &quot;description&quot;: &quot;Music concerts and live shows.&quot;
-        }
-    ]
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi--version--categories" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi--version--categories"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi--version--categories"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi--version--categories" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi--version--categories">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi--version--categories" data-method="GET"
-      data-path="api/{version}/categories"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi--version--categories', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi--version--categories"
-                    onclick="tryItOut('GETapi--version--categories');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi--version--categories"
-                    onclick="cancelTryOut('GETapi--version--categories');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi--version--categories"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/{version}/categories</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi--version--categories"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi--version--categories"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>version</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="version"                data-endpoint="GETapi--version--categories"
-               value="v1"
-               data-component="url">
-    <br>
-<p>Example: <code>v1</code></p>
-            </div>
-                    </form>
-
-                <h1 id="endpoints">Endpoints</h1>
-
-    
-
-                                <h2 id="endpoints-GETapi-user">GET api/user</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-user">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/user" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/user"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="json-example">
-    <pre><code class="language-json">{}</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-user">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-user" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-user"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-user"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-user" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-user">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-user" data-method="GET"
-      data-path="api/user"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-user', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-user"
-                    onclick="tryItOut('GETapi-user');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-user"
-                    onclick="cancelTryOut('GETapi-user');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-user"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/user</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-user"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-user"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        </form>
-
-                    <h2 id="endpoints-GETapi--version--payment-methods">GET api/{version}/payment-methods</h2>
+                                <h2 id="api-GETapi--version--payment-methods">GET api/{version}/payment-methods</h2>
 
 <p>
 </p>
@@ -654,7 +387,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 57
+x-ratelimit-remaining: 56
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -749,7 +482,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi--version--open-ping">GET api/{version}/open/ping</h2>
+                    <h2 id="api-GETapi--version--open-ping">GET api/{version}/open/ping</h2>
 
 <p>
 </p>
@@ -800,7 +533,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 56
+x-ratelimit-remaining: 55
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -895,7 +628,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-POSTapi--version--discount-codes-validate">POST api/{version}/discount-codes/validate</h2>
+                    <h2 id="api-POSTapi--version--discount-codes-validate">POST api/{version}/discount-codes/validate</h2>
 
 <p>
 </p>
@@ -1046,7 +779,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="endpoints-GETapi--version--distributor-profile">GET api/{version}/distributor/profile</h2>
+                    <h2 id="api-GETapi--version--distributor-profile">GET api/{version}/distributor/profile</h2>
 
 <p>
 </p>
@@ -1190,7 +923,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi--version--partners-events">GET api/{version}/partners/events</h2>
+                    <h2 id="api-GETapi--version--partners-events">GET api/{version}/partners/events</h2>
 
 <p>
 </p>
@@ -1241,7 +974,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 55
+x-ratelimit-remaining: 54
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -1336,7 +1069,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-POSTapi--version--partners-orders">POST api/{version}/partners/orders</h2>
+                    <h2 id="api-POSTapi--version--partners-orders">POST api/{version}/partners/orders</h2>
 
 <p>
 </p>
@@ -1464,7 +1197,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-POSTapi--version--partners-order-intents">POST api/{version}/partners/order-intents</h2>
+                    <h2 id="api-POSTapi--version--partners-order-intents">POST api/{version}/partners/order-intents</h2>
 
 <p>
 </p>
@@ -1592,7 +1325,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi--version--partners-finance-summary">GET api/{version}/partners/finance/summary</h2>
+                    <h2 id="api-GETapi--version--partners-finance-summary">GET api/{version}/partners/finance/summary</h2>
 
 <p>
 </p>
@@ -1643,7 +1376,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 54
+x-ratelimit-remaining: 53
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -1738,7 +1471,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-POSTapi--version--partners-webhooks--provider-">POST api/{version}/partners/webhooks/{provider}</h2>
+                    <h2 id="api-POSTapi--version--partners-webhooks--provider-">POST api/{version}/partners/webhooks/{provider}</h2>
 
 <p>
 </p>
@@ -1878,7 +1611,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-POSTapi--version--webhooks--provider-">POST api/{version}/webhooks/{provider}</h2>
+                    <h2 id="api-POSTapi--version--webhooks--provider-">POST api/{version}/webhooks/{provider}</h2>
 
 <p>
 </p>
@@ -2018,7 +1751,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-POSTapi--version--validator-scan">POST api/{version}/validator/scan</h2>
+                    <h2 id="api-POSTapi--version--validator-scan">POST api/{version}/validator/scan</h2>
 
 <p>
 </p>
@@ -2146,7 +1879,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi-admin-events">GET api/admin/events</h2>
+                    <h2 id="api-GETapi-admin-events">GET api/admin/events</h2>
 
 <p>
 </p>
@@ -2277,7 +2010,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-POSTapi-admin-events--id--verify">POST api/admin/events/{id}/verify</h2>
+                    <h2 id="api-POSTapi-admin-events--id--verify">POST api/admin/events/{id}/verify</h2>
 
 <p>
 </p>
@@ -2405,7 +2138,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-POSTapi-admin-events--id--publish">POST api/admin/events/{id}/publish</h2>
+                    <h2 id="api-POSTapi-admin-events--id--publish">POST api/admin/events/{id}/publish</h2>
 
 <p>
 </p>
@@ -2533,7 +2266,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-POSTapi-admin-events--id--unpublish">POST api/admin/events/{id}/unpublish</h2>
+                    <h2 id="api-POSTapi-admin-events--id--unpublish">POST api/admin/events/{id}/unpublish</h2>
 
 <p>
 </p>
@@ -2661,7 +2394,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-POSTapi-admin-events--id--commission">POST api/admin/events/{id}/commission</h2>
+                    <h2 id="api-POSTapi-admin-events--id--commission">POST api/admin/events/{id}/commission</h2>
 
 <p>
 </p>
@@ -2842,7 +2575,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="endpoints-POSTapi-admin-events--id--service-costs">POST api/admin/events/{id}/service-costs</h2>
+                    <h2 id="api-POSTapi-admin-events--id--service-costs">POST api/admin/events/{id}/service-costs</h2>
 
 <p>
 </p>
@@ -3047,7 +2780,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="endpoints-POSTapi-admin-events--id--assign-admin-owner">POST api/admin/events/{id}/assign-admin-owner</h2>
+                    <h2 id="api-POSTapi-admin-events--id--assign-admin-owner">POST api/admin/events/{id}/assign-admin-owner</h2>
 
 <p>
 </p>
@@ -3198,7 +2931,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="endpoints-POSTapi-admin-events--id--restore-owner">POST api/admin/events/{id}/restore-owner</h2>
+                    <h2 id="api-POSTapi-admin-events--id--restore-owner">POST api/admin/events/{id}/restore-owner</h2>
 
 <p>
 </p>
@@ -3326,7 +3059,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi-admin-events--id--owner-history">GET api/admin/events/{id}/owner-history</h2>
+                    <h2 id="api-GETapi-admin-events--id--owner-history">GET api/admin/events/{id}/owner-history</h2>
 
 <p>
 </p>
@@ -3470,7 +3203,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi-admin-ticket-tags">GET api/admin/ticket-tags</h2>
+                    <h2 id="api-GETapi-admin-ticket-tags">GET api/admin/ticket-tags</h2>
 
 <p>
 </p>
@@ -3601,7 +3334,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-transferred-tickets">GET api/admin/transferred-tickets</h2>
+                    <h2 id="api-GETapi-admin-transferred-tickets">GET api/admin/transferred-tickets</h2>
 
 <p>
 </p>
@@ -3732,7 +3465,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-tickets">GET api/admin/tickets</h2>
+                    <h2 id="api-GETapi-admin-tickets">GET api/admin/tickets</h2>
 
 <p>
 </p>
@@ -3863,7 +3596,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-finance">GET api/admin/finance</h2>
+                    <h2 id="api-GETapi-admin-finance">GET api/admin/finance</h2>
 
 <p>
 </p>
@@ -3994,7 +3727,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-reconciliation">GET api/admin/reconciliation</h2>
+                    <h2 id="api-GETapi-admin-reconciliation">GET api/admin/reconciliation</h2>
 
 <p>
 </p>
@@ -4125,7 +3858,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-payment-report">GET api/admin/payment-report</h2>
+                    <h2 id="api-GETapi-admin-payment-report">GET api/admin/payment-report</h2>
 
 <p>
 </p>
@@ -4256,7 +3989,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-users">GET api/admin/users</h2>
+                    <h2 id="api-GETapi-admin-users">GET api/admin/users</h2>
 
 <p>
 </p>
@@ -4387,7 +4120,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-customers">GET api/admin/customers</h2>
+                    <h2 id="api-GETapi-admin-customers">GET api/admin/customers</h2>
 
 <p>
 </p>
@@ -4518,7 +4251,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-customer-lookup">GET api/admin/customer-lookup</h2>
+                    <h2 id="api-GETapi-admin-customer-lookup">GET api/admin/customer-lookup</h2>
 
 <p>
 </p>
@@ -4649,7 +4382,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-distributors">GET api/admin/distributors</h2>
+                    <h2 id="api-GETapi-admin-distributors">GET api/admin/distributors</h2>
 
 <p>
 </p>
@@ -4780,7 +4513,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-services">GET api/admin/services</h2>
+                    <h2 id="api-GETapi-admin-services">GET api/admin/services</h2>
 
 <p>
 </p>
@@ -4911,7 +4644,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-oauth-clients">GET api/admin/oauth-clients</h2>
+                    <h2 id="api-GETapi-admin-oauth-clients">GET api/admin/oauth-clients</h2>
 
 <p>
 </p>
@@ -5042,7 +4775,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-invitations">GET api/admin/invitations</h2>
+                    <h2 id="api-GETapi-admin-invitations">GET api/admin/invitations</h2>
 
 <p>
 </p>
@@ -5173,7 +4906,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-communications">GET api/admin/communications</h2>
+                    <h2 id="api-GETapi-admin-communications">GET api/admin/communications</h2>
 
 <p>
 </p>
@@ -5304,7 +5037,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-orders">GET api/admin/orders</h2>
+                    <h2 id="api-GETapi-admin-orders">GET api/admin/orders</h2>
 
 <p>
 </p>
@@ -5434,6 +5167,161 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Example: <code>application/json</code></p>
             </div>
                         </form>
+
+                <h1 id="category">Category</h1>
+
+    
+
+                                <h2 id="category-GETapi--version--categories">List all available event categories.
+
+This endpoint returns the full list of categories that can be used
+when creating or filtering events.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi--version--categories">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/categories" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/categories"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi--version--categories">
+            <blockquote>
+            <p>Example response (200, Success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;code&quot;: 0,
+    &quot;locale&quot;: &quot;en&quot;,
+    &quot;message&quot;: &quot;Category list retrieved successfully&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Concert&quot;,
+            &quot;name_en&quot;: &quot;Concert&quot;,
+            &quot;description&quot;: &quot;Music concerts and live shows.&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi--version--categories" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi--version--categories"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi--version--categories"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi--version--categories" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi--version--categories">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi--version--categories" data-method="GET"
+      data-path="api/{version}/categories"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi--version--categories', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi--version--categories"
+                    onclick="tryItOut('GETapi--version--categories');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi--version--categories"
+                    onclick="cancelTryOut('GETapi--version--categories');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi--version--categories"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/{version}/categories</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi--version--categories"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi--version--categories"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>version</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="version"                data-endpoint="GETapi--version--categories"
+               value="v1"
+               data-component="url">
+    <br>
+<p>Example: <code>v1</code></p>
+            </div>
+                    </form>
 
                 <h1 id="event-draft">Event Draft</h1>
 
@@ -5670,7 +5558,7 @@ the basic event information and optional cover image.</p>
     --form "category_id=1"\
     --form "description=This is a great event."\
     --form "attendance_type=in_person"\
-    --form "image=@C:\Users\NUC - PC\AppData\Local\Temp\phpC351.tmp" </code></pre></div>
+    --form "image=@C:\Users\NUC - PC\AppData\Local\Temp\php2A36.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -5855,7 +5743,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>optional Event cover image (required when creating a new draft). Example: <code>C:\Users\NUC - PC\AppData\Local\Temp\phpC351.tmp</code></p>
+<p>optional Event cover image (required when creating a new draft). Example: <code>C:\Users\NUC - PC\AppData\Local\Temp\php2A36.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
@@ -7337,7 +7225,7 @@ access-control-allow-origin: *
         &quot;currency&quot;: &quot;XOF&quot;,
         &quot;price_min&quot;: 12000,
         &quot;likes_count&quot;: 0,
-        &quot;nb_visites&quot;: 1,
+        &quot;nb_visites&quot;: 5,
         &quot;category&quot;: {
             &quot;id&quot;: 1,
             &quot;name&quot;: &quot;Concert&quot;,
@@ -8112,6 +8000,1149 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Event ID. Example: <code>1</code></p>
             </div>
                     </form>
+
+                <h1 id="order-intent">Order Intent</h1>
+
+    <p>Parcours d’achat public : réservation temporaire des billets puis paiement (Yass / Flooz) ou gratuit.
+Authentification : en-tête <code>Authorization: Bearer &lt;token&gt;</code> (utilisateur Passport ou client OAuth, middleware <code>user_or_client</code>).
+Les appels PSP réels passent par <code>App\Services\Payments\PaymentGatewayRegistry</code> (codes <code>yass</code>, <code>flooz</code>).</p>
+
+                                <h2 id="order-intent-POSTapi--version--order-intents-create">Créer une intention de commande (réservation temporaire du stock).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi--version--order-intents-create">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/order-intents/create" \
+    --header "Authorization: Bearer 6g43cv8PD1aE5beadkZfhV6" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"type\": \"online\",
+    \"event_occurrence_id\": 1,
+    \"tickets\": {
+        \"12\": 1,
+        \"15\": 2
+    },
+    \"delivery_method\": \"email\",
+    \"customer_id\": 42,
+    \"email\": \"acheteur@example.com\",
+    \"phone\": \"+22890123456\",
+    \"coupon_code\": \"SUMMER2026\",
+    \"customer_full_name\": \"Jean Dupont\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/order-intents/create"
+);
+
+const headers = {
+    "Authorization": "Bearer 6g43cv8PD1aE5beadkZfhV6",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "type": "online",
+    "event_occurrence_id": 1,
+    "tickets": {
+        "12": 1,
+        "15": 2
+    },
+    "delivery_method": "email",
+    "customer_id": 42,
+    "email": "acheteur@example.com",
+    "phone": "+22890123456",
+    "coupon_code": "SUMMER2026",
+    "customer_full_name": "Jean Dupont"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{
+    "type": "online",
+    "event_occurrence_id": 1,
+    "tickets": {
+        "12": 1,
+        "15": 2
+    },
+    "delivery_method": "email",
+    "customer_id": 42,
+    "email": "acheteur@example.com",
+    "phone": "+22890123456",
+    "coupon_code": "SUMMER2026",
+    "customer_full_name": "Jean Dupont"
+}</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi--version--order-intents-create">
+</span>
+<span id="execution-results-POSTapi--version--order-intents-create" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi--version--order-intents-create"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi--version--order-intents-create"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi--version--order-intents-create" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi--version--order-intents-create">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi--version--order-intents-create" data-method="POST"
+      data-path="api/{version}/order-intents/create"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi--version--order-intents-create', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi--version--order-intents-create"
+                    onclick="tryItOut('POSTapi--version--order-intents-create');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi--version--order-intents-create"
+                    onclick="cancelTryOut('POSTapi--version--order-intents-create');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi--version--order-intents-create"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/{version}/order-intents/create</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi--version--order-intents-create"
+               value="Bearer 6g43cv8PD1aE5beadkZfhV6"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 6g43cv8PD1aE5beadkZfhV6</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi--version--order-intents-create"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi--version--order-intents-create"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>version</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="version"                data-endpoint="POSTapi--version--order-intents-create"
+               value="v1"
+               data-component="url">
+    <br>
+<p>Example: <code>v1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="type"                data-endpoint="POSTapi--version--order-intents-create"
+               value="online"
+               data-component="body">
+    <br>
+<p>Type d'achat. Seul <code>online</code> est pris en charge pour l'instant. Example: <code>online</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>event_occurrence_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="event_occurrence_id"                data-endpoint="POSTapi--version--order-intents-create"
+               value="1"
+               data-component="body">
+    <br>
+<p>ID de la séance (occurrence). Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>tickets</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="tickets"                data-endpoint="POSTapi--version--order-intents-create"
+               value=""
+               data-component="body">
+    <br>
+<p>Quantités par type de billet : clés = ID du type, valeurs = quantités (&gt; 0).</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>delivery_method</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="delivery_method"                data-endpoint="POSTapi--version--order-intents-create"
+               value="email"
+               data-component="body">
+    <br>
+<p>Canal d'envoi de la confirmation : <code>email</code> ou <code>sms</code>. Example: <code>email</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>customer_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="customer_id"                data-endpoint="POSTapi--version--order-intents-create"
+               value="42"
+               data-component="body">
+    <br>
+<p>ID utilisateur acheteur (doit correspondre au compte authentifié). Example: <code>42</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi--version--order-intents-create"
+               value="acheteur@example.com"
+               data-component="body">
+    <br>
+<p>Email du client (requis si <code>delivery_method</code> = email). Example: <code>acheteur@example.com</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="phone"                data-endpoint="POSTapi--version--order-intents-create"
+               value="+22890123456"
+               data-component="body">
+    <br>
+<p>Téléphone (requis si <code>delivery_method</code> = sms). Example: <code>+22890123456</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>coupon_code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="coupon_code"                data-endpoint="POSTapi--version--order-intents-create"
+               value="SUMMER2026"
+               data-component="body">
+    <br>
+<p>optional Code promo. Example: <code>SUMMER2026</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>customer_full_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="customer_full_name"                data-endpoint="POSTapi--version--order-intents-create"
+               value="Jean Dupont"
+               data-component="body">
+    <br>
+<p>optional Nom affiché sur la commande. Example: <code>Jean Dupont</code></p>
+        </div>
+        </form>
+
+                    <h2 id="order-intent-GETapi--version--order-intents--key-">Afficher une intention de commande (détail, réservations, montant).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi--version--order-intents--key-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/order-intents/550e8400-e29b-41d4-a716-446655440000?customer_id=42" \
+    --header "Authorization: Bearer 6g43cv8PD1aE5beadkZfhV6" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/order-intents/550e8400-e29b-41d4-a716-446655440000"
+);
+
+const params = {
+    "customer_id": "42",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Authorization": "Bearer 6g43cv8PD1aE5beadkZfhV6",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi--version--order-intents--key-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 57
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;auth.unauthenticated&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi--version--order-intents--key-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi--version--order-intents--key-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi--version--order-intents--key-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi--version--order-intents--key-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi--version--order-intents--key-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi--version--order-intents--key-" data-method="GET"
+      data-path="api/{version}/order-intents/{key}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi--version--order-intents--key-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi--version--order-intents--key-"
+                    onclick="tryItOut('GETapi--version--order-intents--key-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi--version--order-intents--key-"
+                    onclick="cancelTryOut('GETapi--version--order-intents--key-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi--version--order-intents--key-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/{version}/order-intents/{key}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi--version--order-intents--key-"
+               value="Bearer 6g43cv8PD1aE5beadkZfhV6"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 6g43cv8PD1aE5beadkZfhV6</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi--version--order-intents--key-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi--version--order-intents--key-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>version</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="version"                data-endpoint="GETapi--version--order-intents--key-"
+               value="v1"
+               data-component="url">
+    <br>
+<p>Example: <code>v1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>key</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="key"                data-endpoint="GETapi--version--order-intents--key-"
+               value="550e8400-e29b-41d4-a716-446655440000"
+               data-component="url">
+    <br>
+<p>UUID de l'intention. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>customer_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="customer_id"                data-endpoint="GETapi--version--order-intents--key-"
+               value="42"
+               data-component="query">
+    <br>
+<p>optional Si renseigné, doit correspondre au client de l'intention. Example: <code>42</code></p>
+            </div>
+                </form>
+
+                    <h2 id="order-intent-POSTapi--version--order-intents--key--checkout">Démarrer le paiement (checkout PSP) ou confirmer un achat gratuit.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Pour <code>yass</code> ou <code>flooz</code>, <code>country</code>, <code>operator</code> et <code>phone_number</code> sont requis. Pour un paiement payant, <code>success_url</code> et <code>failure_url</code> sont requis.
+Les modes <code>*-deposit</code> réservés aux administrateurs authentifiés.</p>
+
+<span id="example-requests-POSTapi--version--order-intents--key--checkout">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/order-intents/550e8400-e29b-41d4-a716-446655440000/checkout" \
+    --header "Authorization: Bearer 6g43cv8PD1aE5beadkZfhV6" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"payment_method\": \"yass\",
+    \"accept_terms\": true,
+    \"success_url\": \"https:\\/\\/app.example.com\\/order\\/success\",
+    \"failure_url\": \"https:\\/\\/app.example.com\\/order\\/failed\",
+    \"country\": \"TG\",
+    \"operator\": \"YASS\",
+    \"phone_number\": \"90123456\",
+    \"customer_id\": 42
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/order-intents/550e8400-e29b-41d4-a716-446655440000/checkout"
+);
+
+const headers = {
+    "Authorization": "Bearer 6g43cv8PD1aE5beadkZfhV6",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "payment_method": "yass",
+    "accept_terms": true,
+    "success_url": "https:\/\/app.example.com\/order\/success",
+    "failure_url": "https:\/\/app.example.com\/order\/failed",
+    "country": "TG",
+    "operator": "YASS",
+    "phone_number": "90123456",
+    "customer_id": 42
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{
+    "payment_method": "yass",
+    "accept_terms": true,
+    "success_url": "https://app.example.com/order/success",
+    "failure_url": "https://app.example.com/order/failed",
+    "country": "TG",
+    "operator": "YASS",
+    "phone_number": "90123456",
+    "customer_id": 42
+}</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi--version--order-intents--key--checkout">
+</span>
+<span id="execution-results-POSTapi--version--order-intents--key--checkout" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi--version--order-intents--key--checkout"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi--version--order-intents--key--checkout"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi--version--order-intents--key--checkout" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi--version--order-intents--key--checkout">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi--version--order-intents--key--checkout" data-method="POST"
+      data-path="api/{version}/order-intents/{key}/checkout"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi--version--order-intents--key--checkout', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi--version--order-intents--key--checkout"
+                    onclick="tryItOut('POSTapi--version--order-intents--key--checkout');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi--version--order-intents--key--checkout"
+                    onclick="cancelTryOut('POSTapi--version--order-intents--key--checkout');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi--version--order-intents--key--checkout"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/{version}/order-intents/{key}/checkout</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi--version--order-intents--key--checkout"
+               value="Bearer 6g43cv8PD1aE5beadkZfhV6"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 6g43cv8PD1aE5beadkZfhV6</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi--version--order-intents--key--checkout"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi--version--order-intents--key--checkout"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>version</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="version"                data-endpoint="POSTapi--version--order-intents--key--checkout"
+               value="v1"
+               data-component="url">
+    <br>
+<p>Example: <code>v1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>key</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="key"                data-endpoint="POSTapi--version--order-intents--key--checkout"
+               value="550e8400-e29b-41d4-a716-446655440000"
+               data-component="url">
+    <br>
+<p>UUID de l'intention. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>payment_method</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="payment_method"                data-endpoint="POSTapi--version--order-intents--key--checkout"
+               value="yass"
+               data-component="body">
+    <br>
+<p><code>yass</code>, <code>flooz</code>, <code>free</code>, <code>yass-deposit</code>, <code>flooz-deposit</code>. Example: <code>yass</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>accept_terms</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi--version--order-intents--key--checkout" style="display: none">
+            <input type="radio" name="accept_terms"
+                   value="true"
+                   data-endpoint="POSTapi--version--order-intents--key--checkout"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi--version--order-intents--key--checkout" style="display: none">
+            <input type="radio" name="accept_terms"
+                   value="false"
+                   data-endpoint="POSTapi--version--order-intents--key--checkout"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Acceptation des conditions (valeur acceptée par Laravel <code>accepted</code>). Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>success_url</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="success_url"                data-endpoint="POSTapi--version--order-intents--key--checkout"
+               value="https://app.example.com/order/success"
+               data-component="body">
+    <br>
+<p>URL de retour succès (obligatoire si le montant est dû). Example: <code>https://app.example.com/order/success</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>failure_url</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="failure_url"                data-endpoint="POSTapi--version--order-intents--key--checkout"
+               value="https://app.example.com/order/failed"
+               data-component="body">
+    <br>
+<p>URL de retour échec (obligatoire si le montant est dû). Example: <code>https://app.example.com/order/failed</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>country</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="country"                data-endpoint="POSTapi--version--order-intents--key--checkout"
+               value="TG"
+               data-component="body">
+    <br>
+<p>Code pays ISO 3166-1 alpha-2 (requis pour yass/flooz). Example: <code>TG</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>operator</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="operator"                data-endpoint="POSTapi--version--order-intents--key--checkout"
+               value="YASS"
+               data-component="body">
+    <br>
+<p>Identifiant opérateur (requis pour yass/flooz). Example: <code>YASS</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="phone_number"                data-endpoint="POSTapi--version--order-intents--key--checkout"
+               value="90123456"
+               data-component="body">
+    <br>
+<p>Numéro à débiter (requis pour yass/flooz). Example: <code>90123456</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>customer_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="customer_id"                data-endpoint="POSTapi--version--order-intents--key--checkout"
+               value="42"
+               data-component="body">
+    <br>
+<p>optional Si renseigné, doit correspondre au client de l'intention. Example: <code>42</code></p>
+        </div>
+        </form>
+
+                    <h2 id="order-intent-POSTapi--version--order-intents--key--verify">Vérifier le statut du paiement (après redirection PSP ou en polling).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi--version--order-intents--key--verify">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/order-intents/550e8400-e29b-41d4-a716-446655440000/verify" \
+    --header "Authorization: Bearer 6g43cv8PD1aE5beadkZfhV6" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"customer_id\": 42
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/order-intents/550e8400-e29b-41d4-a716-446655440000/verify"
+);
+
+const headers = {
+    "Authorization": "Bearer 6g43cv8PD1aE5beadkZfhV6",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "customer_id": 42
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{
+    "customer_id": 42
+}</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi--version--order-intents--key--verify">
+</span>
+<span id="execution-results-POSTapi--version--order-intents--key--verify" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi--version--order-intents--key--verify"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi--version--order-intents--key--verify"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi--version--order-intents--key--verify" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi--version--order-intents--key--verify">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi--version--order-intents--key--verify" data-method="POST"
+      data-path="api/{version}/order-intents/{key}/verify"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi--version--order-intents--key--verify', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi--version--order-intents--key--verify"
+                    onclick="tryItOut('POSTapi--version--order-intents--key--verify');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi--version--order-intents--key--verify"
+                    onclick="cancelTryOut('POSTapi--version--order-intents--key--verify');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi--version--order-intents--key--verify"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/{version}/order-intents/{key}/verify</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi--version--order-intents--key--verify"
+               value="Bearer 6g43cv8PD1aE5beadkZfhV6"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 6g43cv8PD1aE5beadkZfhV6</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi--version--order-intents--key--verify"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi--version--order-intents--key--verify"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>version</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="version"                data-endpoint="POSTapi--version--order-intents--key--verify"
+               value="v1"
+               data-component="url">
+    <br>
+<p>Example: <code>v1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>key</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="key"                data-endpoint="POSTapi--version--order-intents--key--verify"
+               value="550e8400-e29b-41d4-a716-446655440000"
+               data-component="url">
+    <br>
+<p>UUID de l'intention. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>customer_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="customer_id"                data-endpoint="POSTapi--version--order-intents--key--verify"
+               value="42"
+               data-component="body">
+    <br>
+<p>optional Si renseigné, doit correspondre au client de l'intention. Example: <code>42</code></p>
+        </div>
+        </form>
+
+                    <h2 id="order-intent-POSTapi--version--order-intents--key--cancel">Annuler une intention encore en attente (libère le stock réservé).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi--version--order-intents--key--cancel">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/v1/order-intents/550e8400-e29b-41d4-a716-446655440000/cancel" \
+    --header "Authorization: Bearer 6g43cv8PD1aE5beadkZfhV6" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"customer_id\": 42
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/order-intents/550e8400-e29b-41d4-a716-446655440000/cancel"
+);
+
+const headers = {
+    "Authorization": "Bearer 6g43cv8PD1aE5beadkZfhV6",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "customer_id": 42
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{
+    "customer_id": 42
+}</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi--version--order-intents--key--cancel">
+</span>
+<span id="execution-results-POSTapi--version--order-intents--key--cancel" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi--version--order-intents--key--cancel"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi--version--order-intents--key--cancel"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi--version--order-intents--key--cancel" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi--version--order-intents--key--cancel">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi--version--order-intents--key--cancel" data-method="POST"
+      data-path="api/{version}/order-intents/{key}/cancel"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi--version--order-intents--key--cancel', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi--version--order-intents--key--cancel"
+                    onclick="tryItOut('POSTapi--version--order-intents--key--cancel');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi--version--order-intents--key--cancel"
+                    onclick="cancelTryOut('POSTapi--version--order-intents--key--cancel');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi--version--order-intents--key--cancel"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/{version}/order-intents/{key}/cancel</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi--version--order-intents--key--cancel"
+               value="Bearer 6g43cv8PD1aE5beadkZfhV6"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 6g43cv8PD1aE5beadkZfhV6</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi--version--order-intents--key--cancel"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi--version--order-intents--key--cancel"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>version</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="version"                data-endpoint="POSTapi--version--order-intents--key--cancel"
+               value="v1"
+               data-component="url">
+    <br>
+<p>Example: <code>v1</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>key</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="key"                data-endpoint="POSTapi--version--order-intents--key--cancel"
+               value="550e8400-e29b-41d4-a716-446655440000"
+               data-component="url">
+    <br>
+<p>UUID de l'intention. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>customer_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="customer_id"                data-endpoint="POSTapi--version--order-intents--key--cancel"
+               value="42"
+               data-component="body">
+    <br>
+<p>optional Si renseigné, doit correspondre au client de l'intention. Example: <code>42</code></p>
+        </div>
+        </form>
 
                 <h1 id="user-authentication">User authentication</h1>
 

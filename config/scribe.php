@@ -17,8 +17,18 @@ return [
                 'prefixes' => ['api/*'],
             ],
             'include' => [],
-            'exclude' => [],
+            'exclude' => [
+                'GET api/user',
+            ],
         ],
+    ],
+
+    /*
+    | Routes sans @group ne sont plus placées dans le dossier Postman « Endpoints » (nom par défaut Scribe).
+    */
+    'groups' => [
+        'default' => 'API',
+        'order' => [],
     ],
     'type' => 'laravel',
     'theme' => 'default',

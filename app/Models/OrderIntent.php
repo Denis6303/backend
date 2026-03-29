@@ -6,6 +6,7 @@ use App\Jobs\HandleConfirmedOrder;
 use App\Services\Payments\PaymentGatewayRegistry;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use RuntimeException;
@@ -55,6 +56,11 @@ class OrderIntent extends Model
     public function paymentProvider(): BelongsTo
     {
         return $this->belongsTo(PaymentProvider::class);
+    }
+
+    public function temporaryReservations(): HasMany
+    {
+        return $this->hasMany(TemporaryTicketReservation::class, 'order_intent_id');
     }
 
     public static function newKey(): string
@@ -139,6 +145,10 @@ class OrderIntent extends Model
 
     public function verify(): bool
     {
+        if ($this->status === 'confirmed') {
+            return true;
+        }
+
         if (! $this->paymentProvider) {
             return false;
         }
@@ -151,6 +161,7 @@ class OrderIntent extends Model
 
         if ($paid) {
             $this->confirm();
+
             return true;
         }
 
