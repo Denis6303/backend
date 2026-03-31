@@ -11,6 +11,12 @@ use Illuminate\Support\Str;
 
 class Ticket extends Model
 {
+    public const STATUSES = [
+        'active' => 'Active',
+        'validated' => 'Validated',
+        'expired' => 'Expired',
+        'cancelled' => 'Cancelled',
+    ];
     protected $fillable = [
         'ticket_key',
         'ticket_number',

@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Order intents (ticket purchase: reserve → checkout → verify → order)
 |--------------------------------------------------------------------------
-| Middleware user_or_client: Bearer utilisateur Passport ou jeton client OAuth.
+| Middleware user_or_client: `Authorization: Bearer <token>` with either
+| a Passport user token or an OAuth client token.
 */
 Route::middleware('user_or_client')->prefix('order-intents')->group(function () {
     Route::post('create', [OrderIntentController::class, 'store']);

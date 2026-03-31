@@ -18,9 +18,9 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * @group Order Intent
  *
- * Parcours d’achat public : réservation temporaire des billets puis paiement (Yass / Flooz) ou gratuit.
- * Authentification : en-tête `Authorization: Bearer <token>` (utilisateur Passport ou client OAuth, middleware `user_or_client`).
- * Les appels PSP réels passent par `App\Services\Payments\PaymentGatewayRegistry` (codes `yass`, `flooz`).
+ * Public purchase flow: temporary ticket reservation, then payment (Yass / Flooz) or free checkout.
+ * Authentication: `Authorization: Bearer <token>` header (Passport user token or OAuth client token, `user_or_client` middleware).
+ * Real PSP calls go through `App\Services\Payments\PaymentGatewayRegistry` (provider codes `yass`, `flooz`).
  */
 class OrderIntentController extends Controller
 {
@@ -30,17 +30,17 @@ class OrderIntentController extends Controller
     }
 
     /**
-     * Créer une intention de commande (réservation temporaire du stock).
+     * Create an order intent (temporary stock reservation).
      *
-     * @bodyParam type string required Type d'achat. Seul `online` est pris en charge pour l'instant. Example: online
-     * @bodyParam event_occurrence_id integer required ID de la séance (occurrence). Example: 1
-     * @bodyParam tickets object required Quantités par type de billet : clés = ID du type, valeurs = quantités (> 0). Example: {"12":1,"15":2}
-     * @bodyParam delivery_method string required Canal d'envoi de la confirmation : `email` ou `sms`. Example: email
-     * @bodyParam customer_id integer required ID utilisateur acheteur (doit correspondre au compte authentifié). Example: 42
-     * @bodyParam email string Email du client (requis si `delivery_method` = email). Example: acheteur@example.com
-     * @bodyParam phone string Téléphone (requis si `delivery_method` = sms). Example: +22890123456
-     * @bodyParam coupon_code string optional Code promo. Example: SUMMER2026
-     * @bodyParam customer_full_name string optional Nom affiché sur la commande. Example: Jean Dupont
+     * @bodyParam type string required Purchase type. Only `online` is currently supported. Example: online
+     * @bodyParam event_occurrence_id integer required ID of the event occurrence (session). Example: 1
+     * @bodyParam tickets object required Quantities per ticket type: keys = ticket type IDs, values = quantities (> 0). Example: {"12":1,"15":2}
+     * @bodyParam delivery_method string required How to send the confirmation: `email` or `sms`. Example: email
+     * @bodyParam customer_id integer required Buyer user ID (must match the authenticated account). Example: 42
+     * @bodyParam email string Customer email (required if `delivery_method` = email). Example: buyer@example.com
+     * @bodyParam phone string Customer phone (required if `delivery_method` = sms). Example: +22890123456
+     * @bodyParam coupon_code string optional Discount coupon code. Example: SUMMER2026
+     * @bodyParam customer_full_name string optional Name to display on the order. Example: John Doe
      *
      * @authenticated
      */
@@ -67,10 +67,10 @@ class OrderIntentController extends Controller
     }
 
     /**
-     * Afficher une intention de commande (détail, réservations, montant).
+     * Get an order intent details (reservations, amounts).
      *
-     * @urlParam key string required UUID de l'intention. Example: 550e8400-e29b-41d4-a716-446655440000
-     * @queryParam customer_id integer optional Si renseigné, doit correspondre au client de l'intention. Example: 42
+     * @urlParam key string required UUID of the intent. Example: 550e8400-e29b-41d4-a716-446655440000
+     * @queryParam customer_id integer optional If provided, must match the customer of the intent. Example: 42
      *
      * @authenticated
      */
@@ -87,20 +87,20 @@ class OrderIntentController extends Controller
     }
 
     /**
-     * Démarrer le paiement (checkout PSP) ou confirmer un achat gratuit.
+     * Start the payment (PSP checkout) or confirm a free purchase.
      *
-     * Pour `yass` ou `flooz`, `country`, `operator` et `phone_number` sont requis. Pour un paiement payant, `success_url` et `failure_url` sont requis.
-     * Les modes `*-deposit` réservés aux administrateurs authentifiés.
+     * For `yass` or `flooz`, `country`, `operator` and `phone_number` are required. For a paid purchase, `success_url` and `failure_url` are required.
+     * `*-deposit` modes are reserved for authenticated administrators.
      *
-     * @urlParam key string required UUID de l'intention. Example: 550e8400-e29b-41d4-a716-446655440000
+     * @urlParam key string required UUID of the intent. Example: 550e8400-e29b-41d4-a716-446655440000
      * @bodyParam payment_method string required `yass`, `flooz`, `free`, `yass-deposit`, `flooz-deposit`. Example: yass
-     * @bodyParam accept_terms boolean required Acceptation des conditions (valeur acceptée par Laravel `accepted`). Example: true
-     * @bodyParam success_url string URL de retour succès (obligatoire si le montant est dû). Example: https://app.example.com/order/success
-     * @bodyParam failure_url string URL de retour échec (obligatoire si le montant est dû). Example: https://app.example.com/order/failed
-     * @bodyParam country string Code pays ISO 3166-1 alpha-2 (requis pour yass/flooz). Example: TG
-     * @bodyParam operator string Identifiant opérateur (requis pour yass/flooz). Example: YASS
-     * @bodyParam phone_number string Numéro à débiter (requis pour yass/flooz). Example: 90123456
-     * @bodyParam customer_id integer optional Si renseigné, doit correspondre au client de l'intention. Example: 42
+     * @bodyParam accept_terms boolean required Acceptance of terms (Laravel `accepted` rule). Example: true
+     * @bodyParam success_url string Success return URL (required if an amount is due). Example: https://app.example.com/order/success
+     * @bodyParam failure_url string Failure return URL (required if an amount is due). Example: https://app.example.com/order/failed
+     * @bodyParam country string ISO 3166-1 alpha-2 country code (required for yass/flooz). Example: TG
+     * @bodyParam operator string Operator identifier (required for yass/flooz). Example: YASS
+     * @bodyParam phone_number string Phone number to be charged (required for yass/flooz). Example: 90123456
+     * @bodyParam customer_id integer optional If provided, must match the customer of the intent. Example: 42
      *
      * @authenticated
      */
@@ -242,10 +242,10 @@ class OrderIntentController extends Controller
     }
 
     /**
-     * Vérifier le statut du paiement (après redirection PSP ou en polling).
+     * Verify the payment status (after PSP redirect or via polling).
      *
-     * @urlParam key string required UUID de l'intention. Example: 550e8400-e29b-41d4-a716-446655440000
-     * @bodyParam customer_id integer optional Si renseigné, doit correspondre au client de l'intention. Example: 42
+     * @urlParam key string required UUID of the intent. Example: 550e8400-e29b-41d4-a716-446655440000
+     * @bodyParam customer_id integer optional If provided, must match the customer of the intent. Example: 42
      *
      * @authenticated
      */
@@ -273,7 +273,7 @@ class OrderIntentController extends Controller
             );
         }
 
-        if ($intent->status !== 'processing' && $intent->status !== 'confirming') {
+        if (! in_array($intent->status, ['processing', 'confirming'], true)) {
             throw new HttpResponseException(
                 ResponseBuilder::asError(ApiCodes::VALIDATION_EXCEPTION)
                     ->withHttpCode(Response::HTTP_UNPROCESSABLE_ENTITY)
@@ -298,10 +298,10 @@ class OrderIntentController extends Controller
     }
 
     /**
-     * Annuler une intention encore en attente (libère le stock réservé).
+     * Cancel a pending order intent (release reserved stock).
      *
-     * @urlParam key string required UUID de l'intention. Example: 550e8400-e29b-41d4-a716-446655440000
-     * @bodyParam customer_id integer optional Si renseigné, doit correspondre au client de l'intention. Example: 42
+     * @urlParam key string required UUID of the intent. Example: 550e8400-e29b-41d4-a716-446655440000
+     * @bodyParam customer_id integer optional If provided, must match the customer of the intent. Example: 42
      *
      * @authenticated
      */

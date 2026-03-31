@@ -13,6 +13,15 @@ use RuntimeException;
 
 class OrderIntent extends Model
 {
+    public const STATUSES = [
+        'pending' => 'Pending',
+        'processing' => 'Processing',
+        'confirming' => 'Confirming',
+        'confirmed' => 'Confirmed',
+        'failed' => 'Failed',
+        'expired' => 'Expired',
+        'pending_approval' => 'Pending approval',
+    ];
     protected $fillable = [
         'key',
         'claim_code',

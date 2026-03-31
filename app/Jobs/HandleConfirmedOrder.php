@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Jobs;
-
 use App\Models\Discount;
 use App\Models\Order;
 use App\Models\OrderIntent;
@@ -68,7 +67,7 @@ class HandleConfirmedOrder implements ShouldQueue
                 'email' => $intent->customer_email,
                 'phone' => $intent->customer_phone,
                 'full_name' => $meta['customer_full_name'] ?? null,
-                'status' => 'confirmed',
+                'status' => 'active',
             ]);
 
             foreach ($lines as $line) {

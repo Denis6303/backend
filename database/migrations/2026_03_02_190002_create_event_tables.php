@@ -166,7 +166,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('full_name')->nullable();
 
-            $table->string('status')->default('confirmed'); // confirmed/cancelled/failed
+            $table->enum('status', ['active', 'cancelled'])->default('active');
             $table->timestamp('cancelled_at')->nullable();
             $table->timestamps();
         });
@@ -180,7 +180,7 @@ return new class extends Migration
             $table->decimal('fees', 14, 2)->default(0);
             $table->char('currency', 3);
 
-            $table->string('status')->default('pending'); // pending/processing/confirming/confirmed/failed/expired/pending_approval
+            $table->enum('status', ['pending', 'processing', 'confirming', 'confirmed', 'failed', 'expired', 'pending_approval'])->default('pending');
             $table->foreignId('discount_id')->nullable()->constrained('discounts')->nullOnDelete();
             $table->foreignId('payment_provider_id')->nullable()->constrained('payment_providers')->nullOnDelete();
 
@@ -207,7 +207,7 @@ return new class extends Migration
             $table->foreignId('event_occurrence_id')->constrained('event_occurrences')->cascadeOnDelete();
 
             $table->decimal('price', 14, 2)->default(0);
-            $table->string('status')->default('active'); // active/validated/cancelled/expired/transferred
+            $table->enum('status', ['active', 'validated', 'expired', 'cancelled'])->default('active');
             $table->boolean('is_cancellable')->default(true);
 
             $table->timestamp('validated_at')->nullable();

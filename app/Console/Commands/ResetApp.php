@@ -66,6 +66,30 @@ class ResetApp extends Command
         Artisan::call('migrate:fresh', ['--seed' => true]);
         $this->line(Artisan::output());
 
+        // Ensure storage symlink exists so seeded images are publicly accessible.
+        $this->info('Vérification du lien de stockage public (storage:link)...');
+        Artisan::call('storage:link');
+        $this->line(Artisan::output());
+
+        // On some local environments (especially on Windows), the storage:link
+        // command may fail silently or a normal "storage" directory may exist.
+        // In that case, try to recreate the link so that /storage URLs work.
+        $publicStorage = public_path('storage');
+        $target = storage_path('app/public');
+        try {
+            if (is_dir($publicStorage) && ! is_link($publicStorage)) {
+                // Replace an existing plain directory by a proper symlink.
+                File::deleteDirectory($publicStorage);
+            }
+
+            if (! file_exists($publicStorage)) {
+                File::link($target, $publicStorage);
+                $this->info('Lien symbolique public/storage recréé manuellement.');
+            }
+        } catch (\Throwable $e) {
+            $this->warn('Impossible de créer le lien public/storage: '.$e->getMessage());
+        }
+
         $this->info('(Re)création du client Passport personal access...');
         Artisan::call('passport:client', [
             '--personal' => true,
