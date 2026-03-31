@@ -3,9 +3,9 @@
 name: 'Order Intent'
 description: |-
 
-  Parcours d’achat public : réservation temporaire des billets puis paiement (Yass / Flooz) ou gratuit.
-  Authentification : en-tête `Authorization: Bearer <token>` (utilisateur Passport ou client OAuth, middleware `user_or_client`).
-  Les appels PSP réels passent par `App\Services\Payments\PaymentGatewayRegistry` (codes `yass`, `flooz`).
+  Public purchase flow: temporary ticket reservation, then payment (Yass / Flooz) or free checkout.
+  Authentication: `Authorization: Bearer <token>` header (Passport user token or OAuth client token, `user_or_client` middleware).
+  Real PSP calls go through `App\Services\Payments\PaymentGatewayRegistry` (provider codes `yass`, `flooz`).
 endpoints:
   -
     custom: []
@@ -17,12 +17,12 @@ endpoints:
       groupName: 'Order Intent'
       groupDescription: |-
 
-        Parcours d’achat public : réservation temporaire des billets puis paiement (Yass / Flooz) ou gratuit.
-        Authentification : en-tête `Authorization: Bearer <token>` (utilisateur Passport ou client OAuth, middleware `user_or_client`).
-        Les appels PSP réels passent par `App\Services\Payments\PaymentGatewayRegistry` (codes `yass`, `flooz`).
+        Public purchase flow: temporary ticket reservation, then payment (Yass / Flooz) or free checkout.
+        Authentication: `Authorization: Bearer <token>` header (Passport user token or OAuth client token, `user_or_client` middleware).
+        Real PSP calls go through `App\Services\Payments\PaymentGatewayRegistry` (provider codes `yass`, `flooz`).
       subgroup: ''
       subgroupDescription: ''
-      title: 'Créer une intention de commande (réservation temporaire du stock).'
+      title: 'Create an order intent (temporary stock reservation).'
       description: ''
       authenticated: true
       deprecated: false
@@ -50,7 +50,7 @@ endpoints:
       type:
         custom: []
         name: type
-        description: "Type d'achat. Seul `online` est pris en charge pour l'instant."
+        description: 'Purchase type. Only `online` is currently supported.'
         required: true
         example: online
         type: string
@@ -61,7 +61,7 @@ endpoints:
       event_occurrence_id:
         custom: []
         name: event_occurrence_id
-        description: 'ID de la séance (occurrence).'
+        description: 'ID of the event occurrence (session).'
         required: true
         example: 1
         type: integer
@@ -72,7 +72,7 @@ endpoints:
       tickets:
         custom: []
         name: tickets
-        description: 'Quantités par type de billet : clés = ID du type, valeurs = quantités (> 0).'
+        description: 'Quantities per ticket type: keys = ticket type IDs, values = quantities (> 0).'
         required: true
         example:
           12: 1
@@ -85,7 +85,7 @@ endpoints:
       delivery_method:
         custom: []
         name: delivery_method
-        description: "Canal d'envoi de la confirmation : `email` ou `sms`."
+        description: 'How to send the confirmation: `email` or `sms`.'
         required: true
         example: email
         type: string
@@ -96,7 +96,7 @@ endpoints:
       customer_id:
         custom: []
         name: customer_id
-        description: 'ID utilisateur acheteur (doit correspondre au compte authentifié).'
+        description: 'Buyer user ID (must match the authenticated account).'
         required: true
         example: 42
         type: integer
@@ -107,9 +107,9 @@ endpoints:
       email:
         custom: []
         name: email
-        description: 'Email du client (requis si `delivery_method` = email).'
+        description: 'Customer email (required if `delivery_method` = email).'
         required: false
-        example: acheteur@example.com
+        example: buyer@example.com
         type: string
         enumValues: []
         exampleWasSpecified: true
@@ -118,7 +118,7 @@ endpoints:
       phone:
         custom: []
         name: phone
-        description: 'Téléphone (requis si `delivery_method` = sms).'
+        description: 'Customer phone (required if `delivery_method` = sms).'
         required: false
         example: '+22890123456'
         type: string
@@ -129,7 +129,7 @@ endpoints:
       coupon_code:
         custom: []
         name: coupon_code
-        description: 'optional Code promo.'
+        description: 'optional Discount coupon code.'
         required: false
         example: SUMMER2026
         type: string
@@ -140,9 +140,9 @@ endpoints:
       customer_full_name:
         custom: []
         name: customer_full_name
-        description: 'optional Nom affiché sur la commande.'
+        description: 'optional Name to display on the order.'
         required: false
-        example: 'Jean Dupont'
+        example: 'John Doe'
         type: string
         enumValues: []
         exampleWasSpecified: true
@@ -156,10 +156,10 @@ endpoints:
         15: 2
       delivery_method: email
       customer_id: 42
-      email: acheteur@example.com
+      email: buyer@example.com
       phone: '+22890123456'
       coupon_code: SUMMER2026
-      customer_full_name: 'Jean Dupont'
+      customer_full_name: 'John Doe'
     fileParameters: []
     responses: []
     responseFields: []
@@ -180,12 +180,12 @@ endpoints:
       groupName: 'Order Intent'
       groupDescription: |-
 
-        Parcours d’achat public : réservation temporaire des billets puis paiement (Yass / Flooz) ou gratuit.
-        Authentification : en-tête `Authorization: Bearer <token>` (utilisateur Passport ou client OAuth, middleware `user_or_client`).
-        Les appels PSP réels passent par `App\Services\Payments\PaymentGatewayRegistry` (codes `yass`, `flooz`).
+        Public purchase flow: temporary ticket reservation, then payment (Yass / Flooz) or free checkout.
+        Authentication: `Authorization: Bearer <token>` header (Passport user token or OAuth client token, `user_or_client` middleware).
+        Real PSP calls go through `App\Services\Payments\PaymentGatewayRegistry` (provider codes `yass`, `flooz`).
       subgroup: ''
       subgroupDescription: ''
-      title: 'Afficher une intention de commande (détail, réservations, montant).'
+      title: 'Get an order intent details (reservations, amounts).'
       description: ''
       authenticated: true
       deprecated: false
@@ -208,7 +208,7 @@ endpoints:
       key:
         custom: []
         name: key
-        description: "UUID de l'intention."
+        description: 'UUID of the intent.'
         required: true
         example: 550e8400-e29b-41d4-a716-446655440000
         type: string
@@ -223,7 +223,7 @@ endpoints:
       customer_id:
         custom: []
         name: customer_id
-        description: "optional Si renseigné, doit correspondre au client de l'intention."
+        description: 'optional If provided, must match the customer of the intent.'
         required: false
         example: 42
         type: integer
@@ -266,15 +266,15 @@ endpoints:
       groupName: 'Order Intent'
       groupDescription: |-
 
-        Parcours d’achat public : réservation temporaire des billets puis paiement (Yass / Flooz) ou gratuit.
-        Authentification : en-tête `Authorization: Bearer <token>` (utilisateur Passport ou client OAuth, middleware `user_or_client`).
-        Les appels PSP réels passent par `App\Services\Payments\PaymentGatewayRegistry` (codes `yass`, `flooz`).
+        Public purchase flow: temporary ticket reservation, then payment (Yass / Flooz) or free checkout.
+        Authentication: `Authorization: Bearer <token>` header (Passport user token or OAuth client token, `user_or_client` middleware).
+        Real PSP calls go through `App\Services\Payments\PaymentGatewayRegistry` (provider codes `yass`, `flooz`).
       subgroup: ''
       subgroupDescription: ''
-      title: 'Démarrer le paiement (checkout PSP) ou confirmer un achat gratuit.'
+      title: 'Start the payment (PSP checkout) or confirm a free purchase.'
       description: |-
-        Pour `yass` ou `flooz`, `country`, `operator` et `phone_number` sont requis. Pour un paiement payant, `success_url` et `failure_url` sont requis.
-        Les modes `*-deposit` réservés aux administrateurs authentifiés.
+        For `yass` or `flooz`, `country`, `operator` and `phone_number` are required. For a paid purchase, `success_url` and `failure_url` are required.
+        `*-deposit` modes are reserved for authenticated administrators.
       authenticated: true
       deprecated: false
     headers:
@@ -296,7 +296,7 @@ endpoints:
       key:
         custom: []
         name: key
-        description: "UUID de l'intention."
+        description: 'UUID of the intent.'
         required: true
         example: 550e8400-e29b-41d4-a716-446655440000
         type: string
@@ -324,7 +324,7 @@ endpoints:
       accept_terms:
         custom: []
         name: accept_terms
-        description: 'Acceptation des conditions (valeur acceptée par Laravel `accepted`).'
+        description: 'Acceptance of terms (Laravel `accepted` rule).'
         required: true
         example: true
         type: boolean
@@ -335,7 +335,7 @@ endpoints:
       success_url:
         custom: []
         name: success_url
-        description: 'URL de retour succès (obligatoire si le montant est dû).'
+        description: 'Success return URL (required if an amount is due).'
         required: false
         example: 'https://app.example.com/order/success'
         type: string
@@ -346,7 +346,7 @@ endpoints:
       failure_url:
         custom: []
         name: failure_url
-        description: 'URL de retour échec (obligatoire si le montant est dû).'
+        description: 'Failure return URL (required if an amount is due).'
         required: false
         example: 'https://app.example.com/order/failed'
         type: string
@@ -357,7 +357,7 @@ endpoints:
       country:
         custom: []
         name: country
-        description: 'Code pays ISO 3166-1 alpha-2 (requis pour yass/flooz).'
+        description: 'ISO 3166-1 alpha-2 country code (required for yass/flooz).'
         required: false
         example: TG
         type: string
@@ -368,7 +368,7 @@ endpoints:
       operator:
         custom: []
         name: operator
-        description: 'Identifiant opérateur (requis pour yass/flooz).'
+        description: 'Operator identifier (required for yass/flooz).'
         required: false
         example: YASS
         type: string
@@ -379,7 +379,7 @@ endpoints:
       phone_number:
         custom: []
         name: phone_number
-        description: 'Numéro à débiter (requis pour yass/flooz).'
+        description: 'Phone number to be charged (required for yass/flooz).'
         required: false
         example: '90123456'
         type: string
@@ -390,7 +390,7 @@ endpoints:
       customer_id:
         custom: []
         name: customer_id
-        description: "optional Si renseigné, doit correspondre au client de l'intention."
+        description: 'optional If provided, must match the customer of the intent.'
         required: false
         example: 42
         type: integer
@@ -427,12 +427,12 @@ endpoints:
       groupName: 'Order Intent'
       groupDescription: |-
 
-        Parcours d’achat public : réservation temporaire des billets puis paiement (Yass / Flooz) ou gratuit.
-        Authentification : en-tête `Authorization: Bearer <token>` (utilisateur Passport ou client OAuth, middleware `user_or_client`).
-        Les appels PSP réels passent par `App\Services\Payments\PaymentGatewayRegistry` (codes `yass`, `flooz`).
+        Public purchase flow: temporary ticket reservation, then payment (Yass / Flooz) or free checkout.
+        Authentication: `Authorization: Bearer <token>` header (Passport user token or OAuth client token, `user_or_client` middleware).
+        Real PSP calls go through `App\Services\Payments\PaymentGatewayRegistry` (provider codes `yass`, `flooz`).
       subgroup: ''
       subgroupDescription: ''
-      title: 'Vérifier le statut du paiement (après redirection PSP ou en polling).'
+      title: 'Verify the payment status (after PSP redirect or via polling).'
       description: ''
       authenticated: true
       deprecated: false
@@ -455,7 +455,7 @@ endpoints:
       key:
         custom: []
         name: key
-        description: "UUID de l'intention."
+        description: 'UUID of the intent.'
         required: true
         example: 550e8400-e29b-41d4-a716-446655440000
         type: string
@@ -472,7 +472,7 @@ endpoints:
       customer_id:
         custom: []
         name: customer_id
-        description: "optional Si renseigné, doit correspondre au client de l'intention."
+        description: 'optional If provided, must match the customer of the intent.'
         required: false
         example: 42
         type: integer
@@ -502,12 +502,12 @@ endpoints:
       groupName: 'Order Intent'
       groupDescription: |-
 
-        Parcours d’achat public : réservation temporaire des billets puis paiement (Yass / Flooz) ou gratuit.
-        Authentification : en-tête `Authorization: Bearer <token>` (utilisateur Passport ou client OAuth, middleware `user_or_client`).
-        Les appels PSP réels passent par `App\Services\Payments\PaymentGatewayRegistry` (codes `yass`, `flooz`).
+        Public purchase flow: temporary ticket reservation, then payment (Yass / Flooz) or free checkout.
+        Authentication: `Authorization: Bearer <token>` header (Passport user token or OAuth client token, `user_or_client` middleware).
+        Real PSP calls go through `App\Services\Payments\PaymentGatewayRegistry` (provider codes `yass`, `flooz`).
       subgroup: ''
       subgroupDescription: ''
-      title: 'Annuler une intention encore en attente (libère le stock réservé).'
+      title: 'Cancel a pending order intent (release reserved stock).'
       description: ''
       authenticated: true
       deprecated: false
@@ -530,7 +530,7 @@ endpoints:
       key:
         custom: []
         name: key
-        description: "UUID de l'intention."
+        description: 'UUID of the intent.'
         required: true
         example: 550e8400-e29b-41d4-a716-446655440000
         type: string
@@ -547,7 +547,7 @@ endpoints:
       customer_id:
         custom: []
         name: customer_id
-        description: "optional Si renseigné, doit correspondre au client de l'intention."
+        description: 'optional If provided, must match the customer of the intent.'
         required: false
         example: 42
         type: integer

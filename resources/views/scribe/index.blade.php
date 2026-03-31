@@ -249,19 +249,19 @@ when creating or filtering events.</a>
                 </li>
                                     <ul id="tocify-subheader-order-intent" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="order-intent-POSTapi--version--order-intents-create">
-                                <a href="#order-intent-POSTapi--version--order-intents-create">Créer une intention de commande (réservation temporaire du stock).</a>
+                                <a href="#order-intent-POSTapi--version--order-intents-create">Create an order intent (temporary stock reservation).</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="order-intent-GETapi--version--order-intents--key-">
-                                <a href="#order-intent-GETapi--version--order-intents--key-">Afficher une intention de commande (détail, réservations, montant).</a>
+                                <a href="#order-intent-GETapi--version--order-intents--key-">Get an order intent details (reservations, amounts).</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="order-intent-POSTapi--version--order-intents--key--checkout">
-                                <a href="#order-intent-POSTapi--version--order-intents--key--checkout">Démarrer le paiement (checkout PSP) ou confirmer un achat gratuit.</a>
+                                <a href="#order-intent-POSTapi--version--order-intents--key--checkout">Start the payment (PSP checkout) or confirm a free purchase.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="order-intent-POSTapi--version--order-intents--key--verify">
-                                <a href="#order-intent-POSTapi--version--order-intents--key--verify">Vérifier le statut du paiement (après redirection PSP ou en polling).</a>
+                                <a href="#order-intent-POSTapi--version--order-intents--key--verify">Verify the payment status (after PSP redirect or via polling).</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="order-intent-POSTapi--version--order-intents--key--cancel">
-                                <a href="#order-intent-POSTapi--version--order-intents--key--cancel">Annuler une intention encore en attente (libère le stock réservé).</a>
+                                <a href="#order-intent-POSTapi--version--order-intents--key--cancel">Cancel a pending order intent (release reserved stock).</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -311,7 +311,7 @@ when creating or filtering events.</a>
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: March 29, 2026</li>
+        <li>Last updated: March 31, 2026</li>
     </ul>
 </div>
 
@@ -5558,7 +5558,7 @@ the basic event information and optional cover image.</p>
     --form "category_id=1"\
     --form "description=This is a great event."\
     --form "attendance_type=in_person"\
-    --form "image=@C:\Users\NUC - PC\AppData\Local\Temp\php2A36.tmp" </code></pre></div>
+    --form "image=@C:\Users\NUC - PC\AppData\Local\Temp\php795A.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -5743,7 +5743,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>optional Event cover image (required when creating a new draft). Example: <code>C:\Users\NUC - PC\AppData\Local\Temp\php2A36.tmp</code></p>
+<p>optional Event cover image (required when creating a new draft). Example: <code>C:\Users\NUC - PC\AppData\Local\Temp\php795A.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
@@ -7223,21 +7223,21 @@ access-control-allow-origin: *
         &quot;address&quot;: &quot;10 Avenue de la Paix&quot;,
         &quot;online_link&quot;: null,
         &quot;currency&quot;: &quot;XOF&quot;,
-        &quot;price_min&quot;: 12000,
+        &quot;price_min&quot;: 10000,
         &quot;likes_count&quot;: 0,
-        &quot;nb_visites&quot;: 5,
+        &quot;nb_visites&quot;: 1,
         &quot;category&quot;: {
-            &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;Concert&quot;,
-            &quot;name_en&quot;: &quot;Concert&quot;,
-            &quot;description&quot;: &quot;Music concerts and live shows.&quot;
+            &quot;id&quot;: 8,
+            &quot;name&quot;: &quot;Gastronomie&quot;,
+            &quot;name_en&quot;: &quot;Food&quot;,
+            &quot;description&quot;: &quot;Food, cooking and gastronomy events.&quot;
         },
         &quot;cover_url&quot;: &quot;http://localhost:8000/storage/1/600.jpeg&quot;,
         &quot;occurrences&quot;: [
             {
                 &quot;id&quot;: 1,
-                &quot;start_date&quot;: &quot;2026-03-20T20:00:00+00:00&quot;,
-                &quot;end_date&quot;: &quot;2026-03-21T00:00:00+00:00&quot;,
+                &quot;start_date&quot;: &quot;2026-04-08T20:00:00+00:00&quot;,
+                &quot;end_date&quot;: &quot;2026-04-09T00:00:00+00:00&quot;,
                 &quot;status&quot;: &quot;upcoming&quot;,
                 &quot;free_event&quot;: false,
                 &quot;ticket_types&quot;: [
@@ -7246,7 +7246,7 @@ access-control-allow-origin: *
                         &quot;name&quot;: &quot;Category 1&quot;,
                         &quot;description&quot;: &quot;Access for category 1&quot;,
                         &quot;general_conditions&quot;: null,
-                        &quot;price&quot;: &quot;12000.00&quot;,
+                        &quot;price&quot;: &quot;44000.00&quot;,
                         &quot;last_price&quot;: null,
                         &quot;total_quantity&quot;: 100,
                         &quot;remaining_quantity&quot;: 100,
@@ -7259,7 +7259,7 @@ access-control-allow-origin: *
                         &quot;name&quot;: &quot;Category 2&quot;,
                         &quot;description&quot;: &quot;Access for category 2&quot;,
                         &quot;general_conditions&quot;: null,
-                        &quot;price&quot;: &quot;37000.00&quot;,
+                        &quot;price&quot;: &quot;31000.00&quot;,
                         &quot;last_price&quot;: null,
                         &quot;total_quantity&quot;: 100,
                         &quot;remaining_quantity&quot;: 100,
@@ -7271,8 +7271,8 @@ access-control-allow-origin: *
             },
             {
                 &quot;id&quot;: 2,
-                &quot;start_date&quot;: &quot;2026-03-31T20:00:00+00:00&quot;,
-                &quot;end_date&quot;: &quot;2026-04-01T00:00:00+00:00&quot;,
+                &quot;start_date&quot;: &quot;2026-05-13T20:00:00+00:00&quot;,
+                &quot;end_date&quot;: &quot;2026-05-14T00:00:00+00:00&quot;,
                 &quot;status&quot;: &quot;upcoming&quot;,
                 &quot;free_event&quot;: false,
                 &quot;ticket_types&quot;: [
@@ -7281,7 +7281,33 @@ access-control-allow-origin: *
                         &quot;name&quot;: &quot;Category 1&quot;,
                         &quot;description&quot;: &quot;Access for category 1&quot;,
                         &quot;general_conditions&quot;: null,
-                        &quot;price&quot;: &quot;32000.00&quot;,
+                        &quot;price&quot;: &quot;29000.00&quot;,
+                        &quot;last_price&quot;: null,
+                        &quot;total_quantity&quot;: 100,
+                        &quot;remaining_quantity&quot;: 100,
+                        &quot;real_remaining_quantity&quot;: 100,
+                        &quot;printed_quantity&quot;: 0,
+                        &quot;status&quot;: &quot;active&quot;
+                    },
+                    {
+                        &quot;id&quot;: 4,
+                        &quot;name&quot;: &quot;Category 2&quot;,
+                        &quot;description&quot;: &quot;Access for category 2&quot;,
+                        &quot;general_conditions&quot;: null,
+                        &quot;price&quot;: &quot;37000.00&quot;,
+                        &quot;last_price&quot;: null,
+                        &quot;total_quantity&quot;: 100,
+                        &quot;remaining_quantity&quot;: 100,
+                        &quot;real_remaining_quantity&quot;: 100,
+                        &quot;printed_quantity&quot;: 0,
+                        &quot;status&quot;: &quot;active&quot;
+                    },
+                    {
+                        &quot;id&quot;: 5,
+                        &quot;name&quot;: &quot;Category 3&quot;,
+                        &quot;description&quot;: &quot;Access for category 3&quot;,
+                        &quot;general_conditions&quot;: null,
+                        &quot;price&quot;: &quot;30000.00&quot;,
                         &quot;last_price&quot;: null,
                         &quot;total_quantity&quot;: 100,
                         &quot;remaining_quantity&quot;: 100,
@@ -7293,17 +7319,17 @@ access-control-allow-origin: *
             },
             {
                 &quot;id&quot;: 3,
-                &quot;start_date&quot;: &quot;2026-03-23T20:00:00+00:00&quot;,
-                &quot;end_date&quot;: &quot;2026-03-24T00:00:00+00:00&quot;,
+                &quot;start_date&quot;: &quot;2026-05-30T20:00:00+00:00&quot;,
+                &quot;end_date&quot;: &quot;2026-05-31T00:00:00+00:00&quot;,
                 &quot;status&quot;: &quot;upcoming&quot;,
                 &quot;free_event&quot;: false,
                 &quot;ticket_types&quot;: [
                     {
-                        &quot;id&quot;: 4,
+                        &quot;id&quot;: 6,
                         &quot;name&quot;: &quot;Category 1&quot;,
                         &quot;description&quot;: &quot;Access for category 1&quot;,
                         &quot;general_conditions&quot;: null,
-                        &quot;price&quot;: &quot;35000.00&quot;,
+                        &quot;price&quot;: &quot;10000.00&quot;,
                         &quot;last_price&quot;: null,
                         &quot;total_quantity&quot;: 100,
                         &quot;remaining_quantity&quot;: 100,
@@ -8003,11 +8029,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
                 <h1 id="order-intent">Order Intent</h1>
 
-    <p>Parcours d’achat public : réservation temporaire des billets puis paiement (Yass / Flooz) ou gratuit.
-Authentification : en-tête <code>Authorization: Bearer &lt;token&gt;</code> (utilisateur Passport ou client OAuth, middleware <code>user_or_client</code>).
-Les appels PSP réels passent par <code>App\Services\Payments\PaymentGatewayRegistry</code> (codes <code>yass</code>, <code>flooz</code>).</p>
+    <p>Public purchase flow: temporary ticket reservation, then payment (Yass / Flooz) or free checkout.
+Authentication: <code>Authorization: Bearer &lt;token&gt;</code> header (Passport user token or OAuth client token, <code>user_or_client</code> middleware).
+Real PSP calls go through <code>App\Services\Payments\PaymentGatewayRegistry</code> (provider codes <code>yass</code>, <code>flooz</code>).</p>
 
-                                <h2 id="order-intent-POSTapi--version--order-intents-create">Créer une intention de commande (réservation temporaire du stock).</h2>
+                                <h2 id="order-intent-POSTapi--version--order-intents-create">Create an order intent (temporary stock reservation).</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -8034,10 +8060,10 @@ Les appels PSP réels passent par <code>App\Services\Payments\PaymentGatewayRegi
     },
     \"delivery_method\": \"email\",
     \"customer_id\": 42,
-    \"email\": \"acheteur@example.com\",
+    \"email\": \"buyer@example.com\",
     \"phone\": \"+22890123456\",
     \"coupon_code\": \"SUMMER2026\",
-    \"customer_full_name\": \"Jean Dupont\"
+    \"customer_full_name\": \"John Doe\"
 }"
 </code></pre></div>
 
@@ -8062,10 +8088,10 @@ let body = {
     },
     "delivery_method": "email",
     "customer_id": 42,
-    "email": "acheteur@example.com",
+    "email": "buyer@example.com",
     "phone": "+22890123456",
     "coupon_code": "SUMMER2026",
-    "customer_full_name": "Jean Dupont"
+    "customer_full_name": "John Doe"
 };
 
 fetch(url, {
@@ -8085,10 +8111,10 @@ fetch(url, {
     },
     "delivery_method": "email",
     "customer_id": 42,
-    "email": "acheteur@example.com",
+    "email": "buyer@example.com",
     "phone": "+22890123456",
     "coupon_code": "SUMMER2026",
-    "customer_full_name": "Jean Dupont"
+    "customer_full_name": "John Doe"
 }</code></pre></div>
 
 </span>
@@ -8202,7 +8228,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="online"
                data-component="body">
     <br>
-<p>Type d'achat. Seul <code>online</code> est pris en charge pour l'instant. Example: <code>online</code></p>
+<p>Purchase type. Only <code>online</code> is currently supported. Example: <code>online</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>event_occurrence_id</code></b>&nbsp;&nbsp;
@@ -8214,7 +8240,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="1"
                data-component="body">
     <br>
-<p>ID de la séance (occurrence). Example: <code>1</code></p>
+<p>ID of the event occurrence (session). Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>tickets</code></b>&nbsp;&nbsp;
@@ -8226,7 +8252,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Quantités par type de billet : clés = ID du type, valeurs = quantités (&gt; 0).</p>
+<p>Quantities per ticket type: keys = ticket type IDs, values = quantities (&gt; 0).</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>delivery_method</code></b>&nbsp;&nbsp;
@@ -8238,7 +8264,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="email"
                data-component="body">
     <br>
-<p>Canal d'envoi de la confirmation : <code>email</code> ou <code>sms</code>. Example: <code>email</code></p>
+<p>How to send the confirmation: <code>email</code> or <code>sms</code>. Example: <code>email</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>customer_id</code></b>&nbsp;&nbsp;
@@ -8250,7 +8276,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="42"
                data-component="body">
     <br>
-<p>ID utilisateur acheteur (doit correspondre au compte authentifié). Example: <code>42</code></p>
+<p>Buyer user ID (must match the authenticated account). Example: <code>42</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -8259,10 +8285,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi--version--order-intents-create"
-               value="acheteur@example.com"
+               value="buyer@example.com"
                data-component="body">
     <br>
-<p>Email du client (requis si <code>delivery_method</code> = email). Example: <code>acheteur@example.com</code></p>
+<p>Customer email (required if <code>delivery_method</code> = email). Example: <code>buyer@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
@@ -8274,7 +8300,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="+22890123456"
                data-component="body">
     <br>
-<p>Téléphone (requis si <code>delivery_method</code> = sms). Example: <code>+22890123456</code></p>
+<p>Customer phone (required if <code>delivery_method</code> = sms). Example: <code>+22890123456</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>coupon_code</code></b>&nbsp;&nbsp;
@@ -8286,7 +8312,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="SUMMER2026"
                data-component="body">
     <br>
-<p>optional Code promo. Example: <code>SUMMER2026</code></p>
+<p>optional Discount coupon code. Example: <code>SUMMER2026</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>customer_full_name</code></b>&nbsp;&nbsp;
@@ -8295,14 +8321,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="customer_full_name"                data-endpoint="POSTapi--version--order-intents-create"
-               value="Jean Dupont"
+               value="John Doe"
                data-component="body">
     <br>
-<p>optional Nom affiché sur la commande. Example: <code>Jean Dupont</code></p>
+<p>optional Name to display on the order. Example: <code>John Doe</code></p>
         </div>
         </form>
 
-                    <h2 id="order-intent-GETapi--version--order-intents--key-">Afficher une intention de commande (détail, réservations, montant).</h2>
+                    <h2 id="order-intent-GETapi--version--order-intents--key-">Get an order intent details (reservations, amounts).</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -8477,7 +8503,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="550e8400-e29b-41d4-a716-446655440000"
                data-component="url">
     <br>
-<p>UUID de l'intention. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
+<p>UUID of the intent. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
             </div>
                         <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
                                     <div style="padding-left: 28px; clear: unset;">
@@ -8490,18 +8516,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="42"
                data-component="query">
     <br>
-<p>optional Si renseigné, doit correspondre au client de l'intention. Example: <code>42</code></p>
+<p>optional If provided, must match the customer of the intent. Example: <code>42</code></p>
             </div>
                 </form>
 
-                    <h2 id="order-intent-POSTapi--version--order-intents--key--checkout">Démarrer le paiement (checkout PSP) ou confirmer un achat gratuit.</h2>
+                    <h2 id="order-intent-POSTapi--version--order-intents--key--checkout">Start the payment (PSP checkout) or confirm a free purchase.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Pour <code>yass</code> ou <code>flooz</code>, <code>country</code>, <code>operator</code> et <code>phone_number</code> sont requis. Pour un paiement payant, <code>success_url</code> et <code>failure_url</code> sont requis.
-Les modes <code>*-deposit</code> réservés aux administrateurs authentifiés.</p>
+<p>For <code>yass</code> or <code>flooz</code>, <code>country</code>, <code>operator</code> and <code>phone_number</code> are required. For a paid purchase, <code>success_url</code> and <code>failure_url</code> are required.
+<code>*-deposit</code> modes are reserved for authenticated administrators.</p>
 
 <span id="example-requests-POSTapi--version--order-intents--key--checkout">
 <blockquote>Example request:</blockquote>
@@ -8677,7 +8703,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="550e8400-e29b-41d4-a716-446655440000"
                data-component="url">
     <br>
-<p>UUID de l'intention. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
+<p>UUID of the intent. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -8712,7 +8738,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Acceptation des conditions (valeur acceptée par Laravel <code>accepted</code>). Example: <code>true</code></p>
+<p>Acceptance of terms (Laravel <code>accepted</code> rule). Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>success_url</code></b>&nbsp;&nbsp;
@@ -8724,7 +8750,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="https://app.example.com/order/success"
                data-component="body">
     <br>
-<p>URL de retour succès (obligatoire si le montant est dû). Example: <code>https://app.example.com/order/success</code></p>
+<p>Success return URL (required if an amount is due). Example: <code>https://app.example.com/order/success</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>failure_url</code></b>&nbsp;&nbsp;
@@ -8736,7 +8762,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="https://app.example.com/order/failed"
                data-component="body">
     <br>
-<p>URL de retour échec (obligatoire si le montant est dû). Example: <code>https://app.example.com/order/failed</code></p>
+<p>Failure return URL (required if an amount is due). Example: <code>https://app.example.com/order/failed</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>country</code></b>&nbsp;&nbsp;
@@ -8748,7 +8774,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="TG"
                data-component="body">
     <br>
-<p>Code pays ISO 3166-1 alpha-2 (requis pour yass/flooz). Example: <code>TG</code></p>
+<p>ISO 3166-1 alpha-2 country code (required for yass/flooz). Example: <code>TG</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>operator</code></b>&nbsp;&nbsp;
@@ -8760,7 +8786,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="YASS"
                data-component="body">
     <br>
-<p>Identifiant opérateur (requis pour yass/flooz). Example: <code>YASS</code></p>
+<p>Operator identifier (required for yass/flooz). Example: <code>YASS</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -8772,7 +8798,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="90123456"
                data-component="body">
     <br>
-<p>Numéro à débiter (requis pour yass/flooz). Example: <code>90123456</code></p>
+<p>Phone number to be charged (required for yass/flooz). Example: <code>90123456</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>customer_id</code></b>&nbsp;&nbsp;
@@ -8784,11 +8810,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="42"
                data-component="body">
     <br>
-<p>optional Si renseigné, doit correspondre au client de l'intention. Example: <code>42</code></p>
+<p>optional If provided, must match the customer of the intent. Example: <code>42</code></p>
         </div>
         </form>
 
-                    <h2 id="order-intent-POSTapi--version--order-intents--key--verify">Vérifier le statut du paiement (après redirection PSP ou en polling).</h2>
+                    <h2 id="order-intent-POSTapi--version--order-intents--key--verify">Verify the payment status (after PSP redirect or via polling).</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -8949,7 +8975,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="550e8400-e29b-41d4-a716-446655440000"
                data-component="url">
     <br>
-<p>UUID de l'intention. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
+<p>UUID of the intent. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -8962,11 +8988,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="42"
                data-component="body">
     <br>
-<p>optional Si renseigné, doit correspondre au client de l'intention. Example: <code>42</code></p>
+<p>optional If provided, must match the customer of the intent. Example: <code>42</code></p>
         </div>
         </form>
 
-                    <h2 id="order-intent-POSTapi--version--order-intents--key--cancel">Annuler une intention encore en attente (libère le stock réservé).</h2>
+                    <h2 id="order-intent-POSTapi--version--order-intents--key--cancel">Cancel a pending order intent (release reserved stock).</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -9127,7 +9153,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="550e8400-e29b-41d4-a716-446655440000"
                data-component="url">
     <br>
-<p>UUID de l'intention. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
+<p>UUID of the intent. Example: <code>550e8400-e29b-41d4-a716-446655440000</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -9140,7 +9166,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="42"
                data-component="body">
     <br>
-<p>optional Si renseigné, doit correspondre au client de l'intention. Example: <code>42</code></p>
+<p>optional If provided, must match the customer of the intent. Example: <code>42</code></p>
         </div>
         </form>
 
