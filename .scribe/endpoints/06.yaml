@@ -155,17 +155,17 @@ endpoints:
       id:
         custom: []
         name: id
-        description: 'The ID of the ticket.'
+        description: 'Ticket ID.'
         required: true
-        example: architecto
-        type: string
+        example: 1
+        type: integer
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         deprecated: false
     cleanUrlParameters:
       version: v1
-      id: architecto
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -225,21 +225,45 @@ endpoints:
       id:
         custom: []
         name: id
-        description: 'The ID of the ticket.'
+        description: 'Ticket ID.'
         required: true
-        example: architecto
-        type: string
+        example: 1
+        type: integer
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         deprecated: false
     cleanUrlParameters:
       version: v1
-      id: architecto
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      email:
+        custom: []
+        name: email
+        description: 'Recipient email.'
+        required: true
+        example: recipient@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      email_confirmation:
+        custom: []
+        name: email_confirmation
+        description: 'Email confirmation.'
+        required: true
+        example: recipient@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      email: recipient@example.com
+      email_confirmation: recipient@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -286,21 +310,45 @@ endpoints:
       id:
         custom: []
         name: id
-        description: 'The ID of the ticket.'
+        description: 'Ticket ID.'
         required: true
-        example: architecto
-        type: string
+        example: 1
+        type: integer
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         deprecated: false
     cleanUrlParameters:
       version: v1
-      id: architecto
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      email:
+        custom: []
+        name: email
+        description: 'New recipient email.'
+        required: true
+        example: newrecipient@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      email_confirmation:
+        custom: []
+        name: email_confirmation
+        description: 'Email confirmation.'
+        required: true
+        example: newrecipient@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      email: newrecipient@example.com
+      email_confirmation: newrecipient@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -347,21 +395,45 @@ endpoints:
       id:
         custom: []
         name: id
-        description: 'The ID of the ticket.'
+        description: 'Ticket ID.'
         required: true
-        example: architecto
-        type: string
+        example: 1
+        type: integer
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         deprecated: false
     cleanUrlParameters:
       version: v1
-      id: architecto
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      reason:
+        custom: []
+        name: reason
+        description: 'Cancellation reason.'
+        required: true
+        example: 'Change of plans'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      password:
+        custom: []
+        name: password
+        description: 'Current user password.'
+        required: true
+        example: mypassword123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      reason: 'Change of plans'
+      password: mypassword123
     fileParameters: []
     responses: []
     responseFields: []

@@ -89,11 +89,13 @@ class TicketController extends Controller
     /**
      * Get user's ticket.
      *
+     * @urlParam id integer required Ticket ID. Example: 1
+     *
      * @authenticated
      */
-    public function myTicket(Request $request, $id): JsonResponse
+    public function myTicket(Request $request, string $version, $id): JsonResponse
     {
-        $id = (int) $id;
+        $id = $this->normalizeTicketId($id);
         $ticket = Ticket::query()
             ->with(['ticketType', 'occurrence.event', 'order', 'transfers'])
             ->where('user_id', $request->user('api')->id)
@@ -108,12 +110,16 @@ class TicketController extends Controller
     /**
      * Transfer a ticket.
      *
+     * @urlParam id integer required Ticket ID. Example: 1
+     * @bodyParam email string required Recipient email. Example: recipient@example.com
+     * @bodyParam email_confirmation string required Email confirmation. Example: recipient@example.com
+     *
      * @authenticated
      */
-    public function transferTicket(Request $request, $id): JsonResponse
+    public function transferTicket(Request $request, string $version, $id): JsonResponse
     {
         $user = $request->user('api');
-        $id = (int) $id;
+        $id = $this->normalizeTicketId($id);
         $validated = $this->validateOrFail($request->all(), [
             'email' => ['required', 'string', 'email:rfc,dns', 'confirmed'],
             'email_confirmation' => ['required', 'string', 'email:rfc,dns'],
@@ -143,12 +149,16 @@ class TicketController extends Controller
     /**
      * Update transferred ticket email.
      *
+     * @urlParam id integer required Ticket ID. Example: 1
+     * @bodyParam email string required New recipient email. Example: newrecipient@example.com
+     * @bodyParam email_confirmation string required Email confirmation. Example: newrecipient@example.com
+     *
      * @authenticated
      */
-    public function updateTransferredTicketEmail(Request $request, $id): JsonResponse
+    public function updateTransferredTicketEmail(Request $request, string $version, $id): JsonResponse
     {
         $user = $request->user('api');
-        $id = (int) $id;
+        $id = $this->normalizeTicketId($id);
         $validated = $this->validateOrFail($request->all(), [
             'email' => ['required', 'string', 'email:rfc,dns', 'confirmed'],
             'email_confirmation' => ['required', 'string', 'email:rfc,dns'],
@@ -181,16 +191,20 @@ class TicketController extends Controller
     /**
      * Cancel a ticket.
      *
+     * @urlParam id integer required Ticket ID. Example: 1
+     * @bodyParam reason string required Cancellation reason. Example: Change of plans
+     * @bodyParam password string required Current user password. Example: mypassword123
+     *
      * @authenticated
      */
-    public function cancelTicket(Request $request, $id): JsonResponse
+    public function cancelTicket(Request $request, string $version, $id): JsonResponse
     {
         $validated = $this->validateOrFail($request->all(), [
             'reason' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'current_password:api'],
         ]);
 
-        $id = (int) $id;
+        $id = $this->normalizeTicketId($id);
         $ticket = Ticket::query()
             ->with('order')
             ->where('user_id', $request->user('api')->id)
@@ -245,6 +259,15 @@ class TicketController extends Controller
                 'name' => $ticket->ticketType->name,
             ] : null,
         ];
+    }
+
+    private function normalizeTicketId($id): int
+    {
+        if (!is_numeric($id) || (int) $id < 1) {
+            abort(422, 'Invalid ticket id. Replace :id with a numeric value.');
+        }
+
+        return (int) $id;
     }
 }
 

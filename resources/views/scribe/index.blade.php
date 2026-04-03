@@ -5583,7 +5583,7 @@ the basic event information and optional cover image.</p>
     --form "category_id=1"\
     --form "description=This is a great event."\
     --form "attendance_type=in_person"\
-    --form "image=@C:\Users\NUC - PC\AppData\Local\Temp\php7298.tmp" </code></pre></div>
+    --form "image=@C:\Users\NUC - PC\AppData\Local\Temp\phpBD6B.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -5768,7 +5768,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>optional Event cover image (required when creating a new draft). Example: <code>C:\Users\NUC - PC\AppData\Local\Temp\php7298.tmp</code></p>
+<p>optional Event cover image (required when creating a new draft). Example: <code>C:\Users\NUC - PC\AppData\Local\Temp\phpBD6B.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
@@ -7250,7 +7250,7 @@ access-control-allow-origin: *
         &quot;currency&quot;: &quot;XOF&quot;,
         &quot;price_min&quot;: 10000,
         &quot;likes_count&quot;: 0,
-        &quot;nb_visites&quot;: 6,
+        &quot;nb_visites&quot;: 7,
         &quot;category&quot;: {
             &quot;id&quot;: 8,
             &quot;name&quot;: &quot;Gastronomie&quot;,
@@ -11194,7 +11194,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/users/me/tickets/architecto" \
+    --get "http://localhost:8000/api/v1/users/me/tickets/1" \
     --header "Authorization: Bearer 6g43cv8PD1aE5beadkZfhV6" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -11202,7 +11202,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/users/me/tickets/architecto"
+    "http://localhost:8000/api/v1/users/me/tickets/1"
 );
 
 const headers = {
@@ -11339,15 +11339,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="GETapi--version--users-me-tickets--id-"
-               value="architecto"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi--version--users-me-tickets--id-"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the ticket. Example: <code>architecto</code></p>
+<p>Ticket ID. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -11365,15 +11365,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/users/me/tickets/architecto/transfer" \
+    "http://localhost:8000/api/v1/users/me/tickets/1/transfer" \
     --header "Authorization: Bearer 6g43cv8PD1aE5beadkZfhV6" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"recipient@example.com\",
+    \"email_confirmation\": \"recipient@example.com\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/users/me/tickets/architecto/transfer"
+    "http://localhost:8000/api/v1/users/me/tickets/1/transfer"
 );
 
 const headers = {
@@ -11382,15 +11387,23 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "email": "recipient@example.com",
+    "email_confirmation": "recipient@example.com"
+};
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 
 <div class="json-example">
-    <pre><code class="language-json">{}</code></pre></div>
+    <pre><code class="language-json">{
+    "email": "recipient@example.com",
+    "email_confirmation": "recipient@example.com"
+}</code></pre></div>
 
 </span>
 
@@ -11494,17 +11507,42 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="POSTapi--version--users-me-tickets--id--transfer"
+               value="1"
+               data-component="url">
+    <br>
+<p>Ticket ID. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="id"                data-endpoint="POSTapi--version--users-me-tickets--id--transfer"
-               value="architecto"
-               data-component="url">
+                              name="email"                data-endpoint="POSTapi--version--users-me-tickets--id--transfer"
+               value="recipient@example.com"
+               data-component="body">
     <br>
-<p>The ID of the ticket. Example: <code>architecto</code></p>
-            </div>
-                    </form>
+<p>Recipient email. Example: <code>recipient@example.com</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email_confirmation</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email_confirmation"                data-endpoint="POSTapi--version--users-me-tickets--id--transfer"
+               value="recipient@example.com"
+               data-component="body">
+    <br>
+<p>Email confirmation. Example: <code>recipient@example.com</code></p>
+        </div>
+        </form>
 
                     <h2 id="user-tickets-POSTapi--version--users-me-tickets--id--update-transferred-ticket">Update transferred ticket email.</h2>
 
@@ -11520,15 +11558,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/users/me/tickets/architecto/update-transferred-ticket" \
+    "http://localhost:8000/api/v1/users/me/tickets/1/update-transferred-ticket" \
     --header "Authorization: Bearer 6g43cv8PD1aE5beadkZfhV6" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"newrecipient@example.com\",
+    \"email_confirmation\": \"newrecipient@example.com\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/users/me/tickets/architecto/update-transferred-ticket"
+    "http://localhost:8000/api/v1/users/me/tickets/1/update-transferred-ticket"
 );
 
 const headers = {
@@ -11537,15 +11580,23 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "email": "newrecipient@example.com",
+    "email_confirmation": "newrecipient@example.com"
+};
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 
 <div class="json-example">
-    <pre><code class="language-json">{}</code></pre></div>
+    <pre><code class="language-json">{
+    "email": "newrecipient@example.com",
+    "email_confirmation": "newrecipient@example.com"
+}</code></pre></div>
 
 </span>
 
@@ -11649,17 +11700,42 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="POSTapi--version--users-me-tickets--id--update-transferred-ticket"
+               value="1"
+               data-component="url">
+    <br>
+<p>Ticket ID. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="id"                data-endpoint="POSTapi--version--users-me-tickets--id--update-transferred-ticket"
-               value="architecto"
-               data-component="url">
+                              name="email"                data-endpoint="POSTapi--version--users-me-tickets--id--update-transferred-ticket"
+               value="newrecipient@example.com"
+               data-component="body">
     <br>
-<p>The ID of the ticket. Example: <code>architecto</code></p>
-            </div>
-                    </form>
+<p>New recipient email. Example: <code>newrecipient@example.com</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email_confirmation</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email_confirmation"                data-endpoint="POSTapi--version--users-me-tickets--id--update-transferred-ticket"
+               value="newrecipient@example.com"
+               data-component="body">
+    <br>
+<p>Email confirmation. Example: <code>newrecipient@example.com</code></p>
+        </div>
+        </form>
 
                     <h2 id="user-tickets-POSTapi--version--users-me-tickets--id--cancel">Cancel a ticket.</h2>
 
@@ -11675,15 +11751,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/v1/users/me/tickets/architecto/cancel" \
+    "http://localhost:8000/api/v1/users/me/tickets/1/cancel" \
     --header "Authorization: Bearer 6g43cv8PD1aE5beadkZfhV6" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"reason\": \"Change of plans\",
+    \"password\": \"mypassword123\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/v1/users/me/tickets/architecto/cancel"
+    "http://localhost:8000/api/v1/users/me/tickets/1/cancel"
 );
 
 const headers = {
@@ -11692,15 +11773,23 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "reason": "Change of plans",
+    "password": "mypassword123"
+};
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 
 <div class="json-example">
-    <pre><code class="language-json">{}</code></pre></div>
+    <pre><code class="language-json">{
+    "reason": "Change of plans",
+    "password": "mypassword123"
+}</code></pre></div>
 
 </span>
 
@@ -11804,17 +11893,42 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="POSTapi--version--users-me-tickets--id--cancel"
+               value="1"
+               data-component="url">
+    <br>
+<p>Ticket ID. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="id"                data-endpoint="POSTapi--version--users-me-tickets--id--cancel"
-               value="architecto"
-               data-component="url">
+                              name="reason"                data-endpoint="POSTapi--version--users-me-tickets--id--cancel"
+               value="Change of plans"
+               data-component="body">
     <br>
-<p>The ID of the ticket. Example: <code>architecto</code></p>
-            </div>
-                    </form>
+<p>Cancellation reason. Example: <code>Change of plans</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="POSTapi--version--users-me-tickets--id--cancel"
+               value="mypassword123"
+               data-component="body">
+    <br>
+<p>Current user password. Example: <code>mypassword123</code></p>
+        </div>
+        </form>
 
             
 
