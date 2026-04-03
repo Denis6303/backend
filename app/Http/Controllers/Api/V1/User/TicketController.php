@@ -93,9 +93,9 @@ class TicketController extends Controller
      *
      * @authenticated
      */
-    public function myTicket(Request $request, string $version, $id): JsonResponse
+    public function myTicket(Request $request, $version, $id = null): JsonResponse
     {
-        $id = $this->normalizeTicketId($id);
+        $id = $this->resolveTicketId($version, $id);
         $ticket = Ticket::query()
             ->with(['ticketType', 'occurrence.event', 'order', 'transfers'])
             ->where('user_id', $request->user('api')->id)
@@ -116,10 +116,10 @@ class TicketController extends Controller
      *
      * @authenticated
      */
-    public function transferTicket(Request $request, string $version, $id): JsonResponse
+    public function transferTicket(Request $request, $version, $id = null): JsonResponse
     {
         $user = $request->user('api');
-        $id = $this->normalizeTicketId($id);
+        $id = $this->resolveTicketId($version, $id);
         $validated = $this->validateOrFail($request->all(), [
             'email' => ['required', 'string', 'email:rfc,dns', 'confirmed'],
             'email_confirmation' => ['required', 'string', 'email:rfc,dns'],
@@ -155,10 +155,10 @@ class TicketController extends Controller
      *
      * @authenticated
      */
-    public function updateTransferredTicketEmail(Request $request, string $version, $id): JsonResponse
+    public function updateTransferredTicketEmail(Request $request, $version, $id = null): JsonResponse
     {
         $user = $request->user('api');
-        $id = $this->normalizeTicketId($id);
+        $id = $this->resolveTicketId($version, $id);
         $validated = $this->validateOrFail($request->all(), [
             'email' => ['required', 'string', 'email:rfc,dns', 'confirmed'],
             'email_confirmation' => ['required', 'string', 'email:rfc,dns'],
@@ -197,14 +197,14 @@ class TicketController extends Controller
      *
      * @authenticated
      */
-    public function cancelTicket(Request $request, string $version, $id): JsonResponse
+    public function cancelTicket(Request $request, $version, $id = null): JsonResponse
     {
         $validated = $this->validateOrFail($request->all(), [
             'reason' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'current_password:api'],
         ]);
 
-        $id = $this->normalizeTicketId($id);
+        $id = $this->resolveTicketId($version, $id);
         $ticket = Ticket::query()
             ->with('order')
             ->where('user_id', $request->user('api')->id)
@@ -237,6 +237,7 @@ class TicketController extends Controller
             'full_name' => $ticket->full_name,
             'price' => (float) $ticket->price,
             'order_id' => $ticket->order_id,
+            'order_number' => $ticket->order?->number,
             'ticket_refund_id' => $ticket->refunds?->first()?->id,
             'status' => $ticket->status,
             'is_cancellable' => (bool) $ticket->is_cancellable,
@@ -268,6 +269,19 @@ class TicketController extends Controller
         }
 
         return (int) $id;
+    }
+
+    private function resolveTicketId($version, $id): int
+    {
+        if (is_numeric($id) && (int) $id > 0) {
+            return (int) $id;
+        }
+
+        if (is_numeric($version) && (int) $version > 0) {
+            return (int) $version;
+        }
+
+        abort(422, 'Invalid ticket id. Replace :id with a numeric value.');
     }
 }
 
