@@ -112,7 +112,7 @@ class TicketController extends Controller
      *
      * @urlParam id integer required Ticket ID. Example: 1
      * @bodyParam email string required Recipient email. Example: recipient@example.com
-     * @bodyParam email_confirmation string required Email confirmation. Example: recipient@example.com
+     * @bodyParam password string required Current user password. Example: mypassword123
      *
      * @authenticated
      */
@@ -121,8 +121,8 @@ class TicketController extends Controller
         $user = $request->user('api');
         $id = $this->resolveTicketId($version, $id);
         $validated = $this->validateOrFail($request->all(), [
-            'email' => ['required', 'string', 'email:rfc,dns', 'confirmed'],
-            'email_confirmation' => ['required', 'string', 'email:rfc,dns'],
+            'email' => ['required', 'string', 'email:rfc,dns'],
+            'password' => ['required', 'string', 'current_password:api'],
         ]);
 
         $ticket = Ticket::query()

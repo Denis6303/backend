@@ -159,7 +159,9 @@ class Ticket extends Model
             $this->email = $toEmail ?? $this->email;
             $this->phone = $toPhone ?? $this->phone;
             $this->full_name = $toFullName ?? $this->full_name;
-            $this->status = 'transferred';
+            // Le schéma DB n’inclut pas la valeur ENUM `transferred` ; le transfert est tracé via
+            // `transferred_at` + `ticket_transfers`. Le billet reste utilisable : `active` pour le destinataire.
+            $this->status = 'active';
             $this->transferred_at = now();
             $this->save();
 

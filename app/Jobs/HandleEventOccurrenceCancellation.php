@@ -28,7 +28,7 @@ class HandleEventOccurrenceCancellation implements ShouldQueue
             $occurrence = EventOccurrence::query()->lockForUpdate()->findOrFail($this->occurrenceId);
 
             $occurrence->tickets()
-                ->whereIn('status', ['active', 'validated', 'transferred'])
+                ->whereIn('status', ['active', 'validated'])
                 ->get()
                 ->each(fn ($t) => $t->cancelAndRefund($this->reason ?? 'event_cancelled'));
 
