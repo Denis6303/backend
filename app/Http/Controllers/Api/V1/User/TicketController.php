@@ -248,6 +248,7 @@ class TicketController extends Controller
                 'end_date' => optional($ticket->occurrence->end_date)?->toDateTimeString(),
                 'item' => $event ? [
                     'title' => $event->title,
+                    'cover_url' => $event->getFirstMediaUrl('cover') ?: null,
                     'city' => $event->city,
                     'address' => $event->address,
                     'online_link' => $event->online_link,
