@@ -42,6 +42,8 @@ return [
         'step4_saved' => 'Step 4 saved successfully',
         'incomplete_draft' => 'The draft is not complete.',
         'created' => 'Event created successfully',
+        'dashboard_stats_retrieved' => 'Statistiques du tableau de bord récupérées avec succès',
+        'dashboard_stats_period_too_long' => 'La période ne peut pas dépasser 366 jours.',
     ],
 ];
 

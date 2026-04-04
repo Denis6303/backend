@@ -42,6 +42,8 @@ return [
         'step4_saved' => 'Step 4 saved successfully',
         'incomplete_draft' => 'The draft is not complete.',
         'created' => 'Event created successfully',
+        'dashboard_stats_retrieved' => 'Dashboard statistics retrieved successfully',
+        'dashboard_stats_period_too_long' => 'The selected period cannot exceed 366 days.',
     ],
 ];
 

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Api\V1\Event;
 
+use App\Exceptions\ApiCodes;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Services\Events\OrganizerDashboardStatsService;
 use App\Services\Search\EventSearch;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use MarcinOrlowski\ResponseBuilder\ResponseBuilder;
 
 /**
  * @group Events
@@ -138,6 +142,65 @@ class EventController extends Controller
                 'total' => $events->total(),
             ],
         ]);
+    }
+
+    /**
+     * Organizer dashboard statistics (summary + chart series).
+     *
+     * Returns revenue, orders, page views (cumulative counter on events), and ticket sales for the
+     * selected period vs the immediately preceding period of the same length, plus time series for the chart.
+     * Page views in the chart are an even split of the cumulative total across buckets (no per-day history).
+     *
+     * @queryParam start_date string required Period start (Y-m-d). Example: 2022-04-01
+     * @queryParam end_date string required Period end (Y-m-d). Example: 2022-04-30
+     * @queryParam event_ids integer[] Optional restrict to these event IDs (must belong to the user). Example: 1
+     * @queryParam granularity string Chart buckets: daily, weekly, monthly. Example: weekly
+     * @queryParam chart_metric string Series metric: revenue, orders, page_views, ticket_sales. Example: revenue
+     * @queryParam locale string Optional locale for chart labels (fr, en). Example: fr
+     *
+     * @authenticated
+     */
+    public function organizerDashboardStats(Request $request, string $version): JsonResponse
+    {
+        $validated = $this->validateOrFail($request->all(), [
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date', 'after_or_equal:start_date'],
+            'event_ids' => ['sometimes', 'array'],
+            'event_ids.*' => ['integer'],
+            'granularity' => ['sometimes', 'string', 'in:daily,weekly,monthly'],
+            'chart_metric' => ['sometimes', 'string', 'in:revenue,orders,page_views,ticket_sales'],
+            'locale' => ['sometimes', 'string', 'in:fr,en'],
+        ]);
+
+        $start = Carbon::parse($validated['start_date'])->startOfDay();
+        $end = Carbon::parse($validated['end_date'])->startOfDay();
+        if ($start->diffInDays($end) + 1 > 366) {
+            return ResponseBuilder::asError(ApiCodes::VALIDATION_EXCEPTION)
+                ->withHttpCode(422)
+                ->withMessage(__('messages.event.dashboard_stats_period_too_long'))
+                ->build();
+        }
+
+        $granularity = $validated['granularity'] ?? 'weekly';
+        $chartMetric = $validated['chart_metric'] ?? 'revenue';
+        $locale = $validated['locale'] ?? $request->getPreferredLanguage(['fr', 'en']) ?? 'fr';
+        $eventIds = array_map('intval', $validated['event_ids'] ?? []);
+
+        $service = app(OrganizerDashboardStatsService::class);
+        $data = $service->build(
+            (int) $request->user()->id,
+            $start,
+            $end,
+            $eventIds,
+            $granularity,
+            $chartMetric,
+            $locale
+        );
+
+        return ResponseBuilder::asSuccess()
+            ->withMessage(__('messages.event.dashboard_stats_retrieved'))
+            ->withData($data)
+            ->build();
     }
 
     /**

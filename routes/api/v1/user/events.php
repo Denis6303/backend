@@ -10,6 +10,7 @@ Route::middleware('auth:api')->prefix('user')->group(function () {
 // Organizer-friendly "me" endpoints, as described in the Events prompt
 Route::middleware('auth:api')->prefix('users/me')->group(function () {
     Route::get('events', [EventController::class, 'userIndex']);
+    Route::get('events/dashboard-stats', [EventController::class, 'organizerDashboardStats']);
     Route::get('events/{id}', [EventController::class, 'userShow']);
 });
 
