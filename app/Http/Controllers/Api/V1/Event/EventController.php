@@ -153,7 +153,7 @@ class EventController extends Controller
      *
      * @queryParam start_date string required Period start (Y-m-d). Example: 2022-04-01
      * @queryParam end_date string required Period end (Y-m-d). Example: 2022-04-30
-     * @queryParam event_ids integer[] Optional restrict to these event IDs (must belong to the user). Example: 1
+     * @queryParam event_ids integer[] Optional restrict to these event IDs (must belong to the user). No-example
      * @queryParam granularity string Chart buckets: daily, weekly, monthly. Example: weekly
      * @queryParam chart_metric string Series metric: revenue, orders, page_views, ticket_sales. Example: revenue
      * @queryParam locale string Optional locale for chart labels (fr, en). Example: fr

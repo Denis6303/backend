@@ -193,12 +193,12 @@ endpoints:
       -
         custom: []
         status: 200
-        content: '{"data":{"id":1,"slug":"afrobeat-night-in-lome-1","title":"Afrobeat Night in Lom\u00e9 #1","description":"Demo event seeded for homepage and listings (upcoming).","status":"upcoming","is_private":false,"is_verified":true,"country_code":"tg","city":"Lom\u00e9","address":"10 Avenue de la Paix","online_link":null,"currency":"XOF","price_min":10000,"likes_count":0,"nb_visites":7,"category":{"id":8,"name":"Gastronomie","name_en":"Food","description":"Food, cooking and gastronomy events."},"cover_url":"http:\/\/localhost:8000\/storage\/1\/600.jpeg","occurrences":[{"id":1,"start_date":"2026-04-08T20:00:00+00:00","end_date":"2026-04-09T00:00:00+00:00","status":"upcoming","free_event":false,"ticket_types":[{"id":1,"name":"Category 1","description":"Access for category 1","general_conditions":null,"price":"44000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"},{"id":2,"name":"Category 2","description":"Access for category 2","general_conditions":null,"price":"31000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"}]},{"id":2,"start_date":"2026-05-13T20:00:00+00:00","end_date":"2026-05-14T00:00:00+00:00","status":"upcoming","free_event":false,"ticket_types":[{"id":3,"name":"Category 1","description":"Access for category 1","general_conditions":null,"price":"29000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"},{"id":4,"name":"Category 2","description":"Access for category 2","general_conditions":null,"price":"37000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"},{"id":5,"name":"Category 3","description":"Access for category 3","general_conditions":null,"price":"30000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"}]},{"id":3,"start_date":"2026-05-30T20:00:00+00:00","end_date":"2026-05-31T00:00:00+00:00","status":"upcoming","free_event":false,"ticket_types":[{"id":6,"name":"Category 1","description":"Access for category 1","general_conditions":null,"price":"10000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"}]}]}}'
+        content: '{"data":{"id":1,"slug":"afrobeat-night-in-lome-1","title":"Afrobeat Night in Lom\u00e9 #1","description":"Demo event seeded for homepage and listings (upcoming).","status":"upcoming","is_private":false,"is_verified":true,"country_code":"tg","city":"Lom\u00e9","address":"10 Avenue de la Paix","online_link":null,"currency":"XOF","price_min":18000,"likes_count":0,"nb_visites":4,"category":{"id":9,"name":"Business","name_en":"Business","description":"Business and networking events."},"cover_url":"http:\/\/localhost:8000\/storage\/1\/600.jpeg","occurrences":[{"id":1,"start_date":"2026-05-08T20:00:00+00:00","end_date":"2026-05-09T00:00:00+00:00","status":"upcoming","free_event":false,"ticket_types":[{"id":1,"name":"Category 1","description":"Access for category 1","general_conditions":null,"price":"46000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"},{"id":2,"name":"Category 2","description":"Access for category 2","general_conditions":null,"price":"18000.00","last_price":null,"total_quantity":100,"remaining_quantity":100,"real_remaining_quantity":100,"printed_quantity":0,"status":"active"}]}]}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '58'
+          x-ratelimit-remaining: '51'
           access-control-allow-origin: '*'
         description: null
     responseFields: []
@@ -377,6 +377,138 @@ endpoints:
       query: concert
       'statuses[]': null
       per_page: 15
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/{version}/users/me/events/dashboard-stats'
+    metadata:
+      custom: []
+      groupName: Events
+      groupDescription: |-
+
+        Public and organizer endpoints for listing and viewing events.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Organizer dashboard statistics (summary + chart series).'
+      description: |-
+        Returns revenue, orders, page views (cumulative counter on events), and ticket sales for the
+        selected period vs the immediately preceding period of the same length, plus time series for the chart.
+        Page views in the chart are an even split of the cumulative total across buckets (no per-day history).
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      version:
+        custom: []
+        name: version
+        description: ''
+        required: true
+        example: v1
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      version: v1
+    queryParameters:
+      start_date:
+        custom: []
+        name: start_date
+        description: 'Period start (Y-m-d).'
+        required: true
+        example: '2022-04-01'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      end_date:
+        custom: []
+        name: end_date
+        description: 'Period end (Y-m-d).'
+        required: true
+        example: '2022-04-30'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      event_ids:
+        custom: []
+        name: event_ids
+        description: 'Optional restrict to these event IDs (must belong to the user).'
+        required: false
+        example: null
+        type: 'integer[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      granularity:
+        custom: []
+        name: granularity
+        description: 'Chart buckets: daily, weekly, monthly.'
+        required: false
+        example: weekly
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      chart_metric:
+        custom: []
+        name: chart_metric
+        description: 'Series metric: revenue, orders, page_views, ticket_sales.'
+        required: false
+        example: revenue
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      locale:
+        custom: []
+        name: locale
+        description: 'Optional locale for chart labels (fr, en).'
+        required: false
+        example: fr
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      start_date: '2022-04-01'
+      end_date: '2022-04-30'
+      granularity: weekly
+      chart_metric: revenue
+      locale: fr
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []

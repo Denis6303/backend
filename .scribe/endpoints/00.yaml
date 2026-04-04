@@ -143,7 +143,7 @@ endpoints:
           location: 'http://localhost:3000/reset-password?token=abc123&email=user%40example.com'
           content-type: 'text/html; charset=utf-8'
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '59'
+          x-ratelimit-remaining: '52'
           access-control-allow-origin: '*'
         description: null
     responseFields: []

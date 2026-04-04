@@ -238,6 +238,9 @@ when creating or filtering events.</a>
                                                                                 <li class="tocify-item level-2" data-unique="events-GETapi--version--users-me-events">
                                 <a href="#events-GETapi--version--users-me-events">List current user's events.</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="events-GETapi--version--users-me-events-dashboard-stats">
+                                <a href="#events-GETapi--version--users-me-events-dashboard-stats">Organizer dashboard statistics (summary + chart series).</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="events-GETapi--version--users-me-events--id-">
                                 <a href="#events-GETapi--version--users-me-events--id-">Get details of one of the current user's events.</a>
                             </li>
@@ -336,7 +339,7 @@ when creating or filtering events.</a>
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: April 3, 2026</li>
+        <li>Last updated: April 4, 2026</li>
     </ul>
 </div>
 
@@ -412,7 +415,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 56
+x-ratelimit-remaining: 49
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -558,7 +561,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 55
+x-ratelimit-remaining: 48
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -999,7 +1002,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 54
+x-ratelimit-remaining: 47
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -1401,7 +1404,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 53
+x-ratelimit-remaining: 46
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -5583,7 +5586,7 @@ the basic event information and optional cover image.</p>
     --form "category_id=1"\
     --form "description=This is a great event."\
     --form "attendance_type=in_person"\
-    --form "image=@C:\Users\NUC - PC\AppData\Local\Temp\phpBD6B.tmp" </code></pre></div>
+    --form "image=@C:\Users\NUC - PC\AppData\Local\Temp\php48EE.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -5768,7 +5771,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>optional Event cover image (required when creating a new draft). Example: <code>C:\Users\NUC - PC\AppData\Local\Temp\phpBD6B.tmp</code></p>
+<p>optional Event cover image (required when creating a new draft). Example: <code>C:\Users\NUC - PC\AppData\Local\Temp\php48EE.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
@@ -7230,7 +7233,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 58
+x-ratelimit-remaining: 51
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -7248,21 +7251,21 @@ access-control-allow-origin: *
         &quot;address&quot;: &quot;10 Avenue de la Paix&quot;,
         &quot;online_link&quot;: null,
         &quot;currency&quot;: &quot;XOF&quot;,
-        &quot;price_min&quot;: 10000,
+        &quot;price_min&quot;: 18000,
         &quot;likes_count&quot;: 0,
-        &quot;nb_visites&quot;: 7,
+        &quot;nb_visites&quot;: 4,
         &quot;category&quot;: {
-            &quot;id&quot;: 8,
-            &quot;name&quot;: &quot;Gastronomie&quot;,
-            &quot;name_en&quot;: &quot;Food&quot;,
-            &quot;description&quot;: &quot;Food, cooking and gastronomy events.&quot;
+            &quot;id&quot;: 9,
+            &quot;name&quot;: &quot;Business&quot;,
+            &quot;name_en&quot;: &quot;Business&quot;,
+            &quot;description&quot;: &quot;Business and networking events.&quot;
         },
         &quot;cover_url&quot;: &quot;http://localhost:8000/storage/1/600.jpeg&quot;,
         &quot;occurrences&quot;: [
             {
                 &quot;id&quot;: 1,
-                &quot;start_date&quot;: &quot;2026-04-08T20:00:00+00:00&quot;,
-                &quot;end_date&quot;: &quot;2026-04-09T00:00:00+00:00&quot;,
+                &quot;start_date&quot;: &quot;2026-05-08T20:00:00+00:00&quot;,
+                &quot;end_date&quot;: &quot;2026-05-09T00:00:00+00:00&quot;,
                 &quot;status&quot;: &quot;upcoming&quot;,
                 &quot;free_event&quot;: false,
                 &quot;ticket_types&quot;: [
@@ -7271,7 +7274,7 @@ access-control-allow-origin: *
                         &quot;name&quot;: &quot;Category 1&quot;,
                         &quot;description&quot;: &quot;Access for category 1&quot;,
                         &quot;general_conditions&quot;: null,
-                        &quot;price&quot;: &quot;44000.00&quot;,
+                        &quot;price&quot;: &quot;46000.00&quot;,
                         &quot;last_price&quot;: null,
                         &quot;total_quantity&quot;: 100,
                         &quot;remaining_quantity&quot;: 100,
@@ -7284,77 +7287,7 @@ access-control-allow-origin: *
                         &quot;name&quot;: &quot;Category 2&quot;,
                         &quot;description&quot;: &quot;Access for category 2&quot;,
                         &quot;general_conditions&quot;: null,
-                        &quot;price&quot;: &quot;31000.00&quot;,
-                        &quot;last_price&quot;: null,
-                        &quot;total_quantity&quot;: 100,
-                        &quot;remaining_quantity&quot;: 100,
-                        &quot;real_remaining_quantity&quot;: 100,
-                        &quot;printed_quantity&quot;: 0,
-                        &quot;status&quot;: &quot;active&quot;
-                    }
-                ]
-            },
-            {
-                &quot;id&quot;: 2,
-                &quot;start_date&quot;: &quot;2026-05-13T20:00:00+00:00&quot;,
-                &quot;end_date&quot;: &quot;2026-05-14T00:00:00+00:00&quot;,
-                &quot;status&quot;: &quot;upcoming&quot;,
-                &quot;free_event&quot;: false,
-                &quot;ticket_types&quot;: [
-                    {
-                        &quot;id&quot;: 3,
-                        &quot;name&quot;: &quot;Category 1&quot;,
-                        &quot;description&quot;: &quot;Access for category 1&quot;,
-                        &quot;general_conditions&quot;: null,
-                        &quot;price&quot;: &quot;29000.00&quot;,
-                        &quot;last_price&quot;: null,
-                        &quot;total_quantity&quot;: 100,
-                        &quot;remaining_quantity&quot;: 100,
-                        &quot;real_remaining_quantity&quot;: 100,
-                        &quot;printed_quantity&quot;: 0,
-                        &quot;status&quot;: &quot;active&quot;
-                    },
-                    {
-                        &quot;id&quot;: 4,
-                        &quot;name&quot;: &quot;Category 2&quot;,
-                        &quot;description&quot;: &quot;Access for category 2&quot;,
-                        &quot;general_conditions&quot;: null,
-                        &quot;price&quot;: &quot;37000.00&quot;,
-                        &quot;last_price&quot;: null,
-                        &quot;total_quantity&quot;: 100,
-                        &quot;remaining_quantity&quot;: 100,
-                        &quot;real_remaining_quantity&quot;: 100,
-                        &quot;printed_quantity&quot;: 0,
-                        &quot;status&quot;: &quot;active&quot;
-                    },
-                    {
-                        &quot;id&quot;: 5,
-                        &quot;name&quot;: &quot;Category 3&quot;,
-                        &quot;description&quot;: &quot;Access for category 3&quot;,
-                        &quot;general_conditions&quot;: null,
-                        &quot;price&quot;: &quot;30000.00&quot;,
-                        &quot;last_price&quot;: null,
-                        &quot;total_quantity&quot;: 100,
-                        &quot;remaining_quantity&quot;: 100,
-                        &quot;real_remaining_quantity&quot;: 100,
-                        &quot;printed_quantity&quot;: 0,
-                        &quot;status&quot;: &quot;active&quot;
-                    }
-                ]
-            },
-            {
-                &quot;id&quot;: 3,
-                &quot;start_date&quot;: &quot;2026-05-30T20:00:00+00:00&quot;,
-                &quot;end_date&quot;: &quot;2026-05-31T00:00:00+00:00&quot;,
-                &quot;status&quot;: &quot;upcoming&quot;,
-                &quot;free_event&quot;: false,
-                &quot;ticket_types&quot;: [
-                    {
-                        &quot;id&quot;: 6,
-                        &quot;name&quot;: &quot;Category 1&quot;,
-                        &quot;description&quot;: &quot;Access for category 1&quot;,
-                        &quot;general_conditions&quot;: null,
-                        &quot;price&quot;: &quot;10000.00&quot;,
+                        &quot;price&quot;: &quot;18000.00&quot;,
                         &quot;last_price&quot;: null,
                         &quot;total_quantity&quot;: 100,
                         &quot;remaining_quantity&quot;: 100,
@@ -7878,6 +7811,252 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="query">
     <br>
 <p>Items per page (1-100). Example: <code>15</code></p>
+            </div>
+                </form>
+
+                    <h2 id="events-GETapi--version--users-me-events-dashboard-stats">Organizer dashboard statistics (summary + chart series).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Returns revenue, orders, page views (cumulative counter on events), and ticket sales for the
+selected period vs the immediately preceding period of the same length, plus time series for the chart.
+Page views in the chart are an even split of the cumulative total across buckets (no per-day history).</p>
+
+<span id="example-requests-GETapi--version--users-me-events-dashboard-stats">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/users/me/events/dashboard-stats?start_date=2022-04-01&amp;end_date=2022-04-30&amp;granularity=weekly&amp;chart_metric=revenue&amp;locale=fr" \
+    --header "Authorization: Bearer 6g43cv8PD1aE5beadkZfhV6" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/users/me/events/dashboard-stats"
+);
+
+const params = {
+    "start_date": "2022-04-01",
+    "end_date": "2022-04-30",
+    "granularity": "weekly",
+    "chart_metric": "revenue",
+    "locale": "fr",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Authorization": "Bearer 6g43cv8PD1aE5beadkZfhV6",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="json-example">
+    <pre><code class="language-json">{}</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi--version--users-me-events-dashboard-stats">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi--version--users-me-events-dashboard-stats" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi--version--users-me-events-dashboard-stats"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi--version--users-me-events-dashboard-stats"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi--version--users-me-events-dashboard-stats" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi--version--users-me-events-dashboard-stats">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi--version--users-me-events-dashboard-stats" data-method="GET"
+      data-path="api/{version}/users/me/events/dashboard-stats"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi--version--users-me-events-dashboard-stats', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi--version--users-me-events-dashboard-stats"
+                    onclick="tryItOut('GETapi--version--users-me-events-dashboard-stats');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi--version--users-me-events-dashboard-stats"
+                    onclick="cancelTryOut('GETapi--version--users-me-events-dashboard-stats');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi--version--users-me-events-dashboard-stats"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/{version}/users/me/events/dashboard-stats</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi--version--users-me-events-dashboard-stats"
+               value="Bearer 6g43cv8PD1aE5beadkZfhV6"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer 6g43cv8PD1aE5beadkZfhV6</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi--version--users-me-events-dashboard-stats"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi--version--users-me-events-dashboard-stats"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>version</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="version"                data-endpoint="GETapi--version--users-me-events-dashboard-stats"
+               value="v1"
+               data-component="url">
+    <br>
+<p>Example: <code>v1</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>start_date</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="start_date"                data-endpoint="GETapi--version--users-me-events-dashboard-stats"
+               value="2022-04-01"
+               data-component="query">
+    <br>
+<p>Period start (Y-m-d). Example: <code>2022-04-01</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>end_date</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="end_date"                data-endpoint="GETapi--version--users-me-events-dashboard-stats"
+               value="2022-04-30"
+               data-component="query">
+    <br>
+<p>Period end (Y-m-d). Example: <code>2022-04-30</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>event_ids</code></b>&nbsp;&nbsp;
+<small>integer[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="event_ids[0]"                data-endpoint="GETapi--version--users-me-events-dashboard-stats"
+               data-component="query">
+        <input type="number" style="display: none"
+               name="event_ids[1]"                data-endpoint="GETapi--version--users-me-events-dashboard-stats"
+               data-component="query">
+    <br>
+<p>Optional restrict to these event IDs (must belong to the user).</p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>granularity</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="granularity"                data-endpoint="GETapi--version--users-me-events-dashboard-stats"
+               value="weekly"
+               data-component="query">
+    <br>
+<p>Chart buckets: daily, weekly, monthly. Example: <code>weekly</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>chart_metric</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="chart_metric"                data-endpoint="GETapi--version--users-me-events-dashboard-stats"
+               value="revenue"
+               data-component="query">
+    <br>
+<p>Series metric: revenue, orders, page_views, ticket_sales. Example: <code>revenue</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>locale</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="locale"                data-endpoint="GETapi--version--users-me-events-dashboard-stats"
+               value="fr"
+               data-component="query">
+    <br>
+<p>Optional locale for chart labels (fr, en). Example: <code>fr</code></p>
             </div>
                 </form>
 
@@ -8413,7 +8592,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 57
+x-ratelimit-remaining: 50
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -9412,7 +9591,7 @@ fetch(url, {
 location: http://localhost:3000/reset-password?token=abc123&amp;email=user%40example.com
 content-type: text/html; charset=utf-8
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
+x-ratelimit-remaining: 52
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -11371,7 +11550,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"email\": \"recipient@example.com\",
-    \"email_confirmation\": \"recipient@example.com\"
+    \"password\": \"mypassword123\"
 }"
 </code></pre></div>
 
@@ -11389,7 +11568,7 @@ const headers = {
 
 let body = {
     "email": "recipient@example.com",
-    "email_confirmation": "recipient@example.com"
+    "password": "mypassword123"
 };
 
 fetch(url, {
@@ -11402,7 +11581,7 @@ fetch(url, {
 <div class="json-example">
     <pre><code class="language-json">{
     "email": "recipient@example.com",
-    "email_confirmation": "recipient@example.com"
+    "password": "mypassword123"
 }</code></pre></div>
 
 </span>
@@ -11531,16 +11710,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Recipient email. Example: <code>recipient@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>email_confirmation</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="email_confirmation"                data-endpoint="POSTapi--version--users-me-tickets--id--transfer"
-               value="recipient@example.com"
+                              name="password"                data-endpoint="POSTapi--version--users-me-tickets--id--transfer"
+               value="mypassword123"
                data-component="body">
     <br>
-<p>Email confirmation. Example: <code>recipient@example.com</code></p>
+<p>Current user password. Example: <code>mypassword123</code></p>
         </div>
         </form>
 

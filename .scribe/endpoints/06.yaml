@@ -250,12 +250,12 @@ endpoints:
         exampleWasSpecified: true
         nullable: false
         deprecated: false
-      email_confirmation:
+      password:
         custom: []
-        name: email_confirmation
-        description: 'Email confirmation.'
+        name: password
+        description: 'Current user password.'
         required: true
-        example: recipient@example.com
+        example: mypassword123
         type: string
         enumValues: []
         exampleWasSpecified: true
@@ -263,7 +263,7 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       email: recipient@example.com
-      email_confirmation: recipient@example.com
+      password: mypassword123
     fileParameters: []
     responses: []
     responseFields: []
