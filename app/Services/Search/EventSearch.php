@@ -36,6 +36,10 @@ class EventSearch
             $q->where('city', $filters['city']);
         }
 
+        if (! empty($filters['category_id'])) {
+            $q->where('category_id', (int) $filters['category_id']);
+        }
+
         $this->searchService->applyTerm($q, $filters['q'] ?? null, ['title', 'description', 'city', 'address', 'slug']);
 
         return $q->orderByDesc('order_priority')->orderByDesc('id');

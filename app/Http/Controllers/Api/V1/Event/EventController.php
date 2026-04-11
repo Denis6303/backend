@@ -29,6 +29,7 @@ class EventController extends Controller
      * @queryParam location string Filter by city or address. Example: Lomé
      * @queryParam country_code string Optional country code (tg or other). Example: tg
      * @queryParam statuses[] string[] Optional list of statuses to filter events (saved, upcoming, completed, cancelled). Example: upcoming
+     * @queryParam category_id integer Optional category id (from GET /categories). Example: 2
      * @queryParam per_page integer Items per page (1-100). Example: 15
      *
      * @response 200 scenario="Success" {
@@ -68,6 +69,11 @@ class EventController extends Controller
 
         if ($request->has('is_private')) {
             $filters['is_private'] = $request->boolean('is_private');
+        }
+
+        $categoryId = $request->input('category_id');
+        if ($categoryId !== null && $categoryId !== '' && filter_var($categoryId, FILTER_VALIDATE_INT) !== false && (int) $categoryId > 0) {
+            $filters['category_id'] = (int) $categoryId;
         }
 
         $events = $search->query($filters)->paginate((int) $request->get('per_page', 15));
