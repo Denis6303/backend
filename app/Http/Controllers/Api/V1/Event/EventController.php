@@ -67,6 +67,13 @@ class EventController extends Controller
             $filters['status'] = $request->input('status');
         }
 
+        // « À venir » côté public = au moins une occurrence encore en cours ou à venir (pas seulement events.status)
+        if (! empty($filters['statuses']) && in_array(Event::STATUS_UPCOMING, $filters['statuses'], true)) {
+            $filters['require_future_occurrence'] = true;
+        } elseif (! empty($filters['status']) && $filters['status'] === Event::STATUS_UPCOMING) {
+            $filters['require_future_occurrence'] = true;
+        }
+
         if ($request->has('is_private')) {
             $filters['is_private'] = $request->boolean('is_private');
         }

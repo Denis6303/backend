@@ -3,7 +3,9 @@
 namespace App\Services\Search;
 
 use App\Models\Event;
+use App\Models\EventOccurrence;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 
 class EventSearch
 {
@@ -38,6 +40,22 @@ class EventSearch
 
         if (! empty($filters['category_id'])) {
             $q->where('category_id', (int) $filters['category_id']);
+        }
+
+        if (! empty($filters['require_future_occurrence'])) {
+            // Référence temps : UTC (GMT+0), aligné sur les datetimes stockées côté API.
+            $now = Carbon::now('UTC');
+            $q->whereHas('occurrences', function (Builder $occ) use ($now) {
+                $occ->where('status', '!=', EventOccurrence::STATUS_CANCELLED)
+                    ->whereNull('cancelled_at')
+                    ->where(function (Builder $w) use ($now) {
+                        $w->where(function (Builder $x) use ($now) {
+                            $x->whereNotNull('end_date')->where('end_date', '>=', $now);
+                        })->orWhere(function (Builder $x) use ($now) {
+                            $x->whereNull('end_date')->where('start_date', '>=', $now);
+                        });
+                    });
+            });
         }
 
         $this->searchService->applyTerm($q, $filters['q'] ?? null, ['title', 'description', 'city', 'address', 'slug']);
