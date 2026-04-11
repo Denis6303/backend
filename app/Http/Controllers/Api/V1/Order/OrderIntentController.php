@@ -135,9 +135,9 @@ class OrderIntentController extends Controller
             'accept_terms' => 'required|accepted',
             'success_url' => 'nullable|url',
             'failure_url' => 'nullable|url',
-            'country' => 'nullable|string|max:2',
-            'operator' => 'nullable|string|max:32',
-            'phone_number' => 'nullable|string|max:32',
+            'country' => 'required_if:payment_method,yass,flooz|nullable|string|size:2',
+            'operator' => 'required_if:payment_method,yass,flooz|nullable|string|max:32',
+            'phone_number' => 'required_if:payment_method,yass,flooz|nullable|string|max:32',
             'customer_id' => 'nullable|integer|exists:users,id',
         ]);
 
