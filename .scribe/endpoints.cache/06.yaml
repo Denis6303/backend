@@ -40,8 +40,20 @@ endpoints:
         deprecated: false
     cleanUrlParameters:
       version: v1
-    queryParameters: []
-    cleanQueryParameters: []
+    queryParameters:
+      query:
+        custom: []
+        name: query
+        description: 'optional Search in event title/slug/city/address, ticket type name, ticket number, holder name/email/phone.'
+        required: false
+        example: Wine
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      query: Wine
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []

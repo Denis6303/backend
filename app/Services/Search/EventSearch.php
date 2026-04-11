@@ -36,7 +36,7 @@ class EventSearch
             $q->where('city', $filters['city']);
         }
 
-        $this->searchService->applyTerm($q, $filters['q'] ?? null, ['title', 'description', 'city', 'address']);
+        $this->searchService->applyTerm($q, $filters['q'] ?? null, ['title', 'description', 'city', 'address', 'slug']);
 
         return $q->orderByDesc('order_priority')->orderByDesc('id');
     }

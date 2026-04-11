@@ -23,6 +23,8 @@ class TicketController extends Controller
     /**
      * My tickets.
      *
+     * @queryParam query string optional Search in event title/slug/city/address, ticket type name, ticket number, holder name/email/phone. Example: Wine
+     *
      * @authenticated
      */
     public function myTickets(Request $request): JsonResponse
@@ -30,6 +32,7 @@ class TicketController extends Controller
         $validated = $this->validateOrFail($request->all(), [
             'statuses' => 'sometimes|array',
             'statuses.*' => 'string|in:' . implode(',', array_keys(Ticket::STATUSES)),
+            'query' => ['nullable', 'string', 'max:255'],
             'page' => ['nullable', 'integer', 'min:1'],
             'per_page' => ['nullable', 'integer', 'min:1', 'max:100'],
         ]);
@@ -41,6 +44,25 @@ class TicketController extends Controller
 
         if (!empty($validated['statuses'])) {
             $query->whereIn('status', (array) $validated['statuses']);
+        }
+
+        $term = trim((string) ($validated['query'] ?? ''));
+        if ($term !== '') {
+            $like = '%' . $term . '%';
+            $query->where(function (Builder $q) use ($like) {
+                $q->where('ticket_number', 'like', $like)
+                    ->orWhere('full_name', 'like', $like)
+                    ->orWhere('email', 'like', $like)
+                    ->orWhere('phone', 'like', $like)
+                    ->orWhereHas('ticketType', fn (Builder $tq) => $tq->where('name', 'like', $like))
+                    ->orWhereHas('occurrence.event', function (Builder $eq) use ($like) {
+                        $eq->where('title', 'like', $like)
+                            ->orWhere('slug', 'like', $like)
+                            ->orWhere('city', 'like', $like)
+                            ->orWhere('address', 'like', $like)
+                            ->orWhere('description', 'like', $like);
+                    });
+            });
         }
 
         $query->orderByDesc('created_at');

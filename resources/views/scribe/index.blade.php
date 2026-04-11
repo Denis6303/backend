@@ -339,7 +339,7 @@ when creating or filtering events.</a>
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: April 4, 2026</li>
+        <li>Last updated: April 11, 2026</li>
     </ul>
 </div>
 
@@ -415,7 +415,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 49
+x-ratelimit-remaining: 56
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -561,7 +561,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 48
+x-ratelimit-remaining: 55
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -1002,7 +1002,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 47
+x-ratelimit-remaining: 54
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -1404,7 +1404,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 46
+x-ratelimit-remaining: 53
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -5586,7 +5586,7 @@ the basic event information and optional cover image.</p>
     --form "category_id=1"\
     --form "description=This is a great event."\
     --form "attendance_type=in_person"\
-    --form "image=@C:\Users\NUC - PC\AppData\Local\Temp\php48EE.tmp" </code></pre></div>
+    --form "image=@C:\Users\NUC - PC\AppData\Local\Temp\php3C2D.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -5771,7 +5771,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>optional Event cover image (required when creating a new draft). Example: <code>C:\Users\NUC - PC\AppData\Local\Temp\php48EE.tmp</code></p>
+<p>optional Event cover image (required when creating a new draft). Example: <code>C:\Users\NUC - PC\AppData\Local\Temp\php3C2D.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
@@ -7233,7 +7233,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 51
+x-ratelimit-remaining: 58
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -7253,7 +7253,7 @@ access-control-allow-origin: *
         &quot;currency&quot;: &quot;XOF&quot;,
         &quot;price_min&quot;: 18000,
         &quot;likes_count&quot;: 0,
-        &quot;nb_visites&quot;: 4,
+        &quot;nb_visites&quot;: 5,
         &quot;category&quot;: {
             &quot;id&quot;: 9,
             &quot;name&quot;: &quot;Business&quot;,
@@ -8592,7 +8592,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 50
+x-ratelimit-remaining: 57
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -9591,7 +9591,7 @@ fetch(url, {
 location: http://localhost:3000/reset-password?token=abc123&amp;email=user%40example.com
 content-type: text/html; charset=utf-8
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 52
+x-ratelimit-remaining: 59
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -11055,7 +11055,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/v1/users/me/tickets" \
+    --get "http://localhost:8000/api/v1/users/me/tickets?query=Wine" \
     --header "Authorization: Bearer 6g43cv8PD1aE5beadkZfhV6" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -11065,6 +11065,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/v1/users/me/tickets"
 );
+
+const params = {
+    "query": "Wine",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Authorization": "Bearer 6g43cv8PD1aE5beadkZfhV6",
@@ -11198,7 +11204,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>v1</code></p>
             </div>
-                    </form>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>query</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="query"                data-endpoint="GETapi--version--users-me-tickets"
+               value="Wine"
+               data-component="query">
+    <br>
+<p>optional Search in event title/slug/city/address, ticket type name, ticket number, holder name/email/phone. Example: <code>Wine</code></p>
+            </div>
+                </form>
 
                     <h2 id="user-tickets-GETapi--version--users-me-tickets-transferred">Get user&#039;s transferred tickets.</h2>
 
