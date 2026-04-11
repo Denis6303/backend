@@ -54,8 +54,8 @@ class EventController extends Controller
     {
         $filters = [];
 
-        // Map new query params to existing search filters
-        $filters['q'] = $request->input('query', $request->input('q'));
+        // Map new query params to existing search filters (`q` is an alias for `query`)
+        $filters['q'] = $this->normalizedPublicSearchTerm($request);
         $filters['country_code'] = $request->input('country_code');
         $filters['city'] = $request->input('location', $request->input('city'));
 
@@ -119,7 +119,7 @@ class EventController extends Controller
     public function userIndex(Request $request, EventSearch $search): JsonResponse
     {
         $filters = [];
-        $filters['q'] = $request->input('query', $request->input('q'));
+        $filters['q'] = $this->normalizedPublicSearchTerm($request);
 
         $statuses = (array) $request->input('statuses', []);
         if (! empty($statuses)) {
@@ -222,6 +222,23 @@ class EventController extends Controller
         return response()->json([
             'data' => $event->toArrayApi(),
         ]);
+    }
+
+    /**
+     * Search term from `query` or legacy `q`: trim, empty → null, max 255 chars.
+     */
+    protected function normalizedPublicSearchTerm(Request $request): ?string
+    {
+        $raw = $request->input('query', $request->input('q'));
+        if ($raw === null || ! is_string($raw)) {
+            return null;
+        }
+        $t = trim($raw);
+        if ($t === '') {
+            return null;
+        }
+
+        return mb_strlen($t) > 255 ? mb_substr($t, 0, 255) : $t;
     }
 }
 
