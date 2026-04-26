@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Event;
 use App\Models\User;
+use Database\Seeders\EventSeeder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\App;
@@ -69,6 +71,17 @@ class ResetApp extends Command
         $this->info('Réinitialisation de la base de données (migrate:fresh --seed)...');
         Artisan::call('migrate:fresh', ['--seed' => true]);
         $this->line(Artisan::output());
+
+        // Filet de sécurité: garantir des events de démonstration après reset.
+        // (utile si un seeder échoue silencieusement en environnement distant)
+        if (Event::query()->count() === 0) {
+            $this->warn('Aucun événement détecté après --seed. Relance de EventSeeder...');
+            Artisan::call('db:seed', [
+                '--class' => EventSeeder::class,
+                '--force' => true,
+            ]);
+            $this->line(Artisan::output());
+        }
 
         // Sécurité prod: s'assurer que les tables Passport existent bien avant
         // d'appeler passport:client (sinon SQLSTATE 42S02 sur oauth_clients).
