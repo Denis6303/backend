@@ -108,6 +108,17 @@ class ResetApp extends Command
             return self::FAILURE;
         }
 
+        // Clés OAuth nécessaires à createToken()/login API.
+        // Sans elles, on obtient souvent "Invalid key supplied" en prod.
+        $this->info('(Re)génération des clés Passport (passport:keys --force)...');
+        $passportKeysExit = Artisan::call('passport:keys', ['--force' => true]);
+        $this->line(Artisan::output());
+        if ($passportKeysExit !== 0) {
+            $this->error('Échec de passport:keys. Vérifiez les permissions de storage/.');
+
+            return self::FAILURE;
+        }
+
         // Ensure storage symlink exists so seeded images are publicly accessible.
         $this->info('Vérification du lien de stockage public (storage:link)...');
         Artisan::call('storage:link');
