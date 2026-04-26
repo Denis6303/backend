@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -68,6 +69,14 @@ class ResetApp extends Command
         $this->info('Réinitialisation de la base de données (migrate:fresh --seed)...');
         Artisan::call('migrate:fresh', ['--seed' => true]);
         $this->line(Artisan::output());
+
+        // Sécurité prod: s'assurer que les tables Passport existent bien avant
+        // d'appeler passport:client (sinon SQLSTATE 42S02 sur oauth_clients).
+        if (! $this->ensurePassportTables()) {
+            $this->error('Les tables OAuth Passport sont absentes. Vérifiez les migrations 2016_06_01_*.php et relancez la commande.');
+
+            return self::FAILURE;
+        }
 
         // Ensure storage symlink exists so seeded images are publicly accessible.
         $this->info('Vérification du lien de stockage public (storage:link)...');
@@ -155,6 +164,31 @@ class ResetApp extends Command
         $this->info('Réinitialisation terminée.');
 
         return self::SUCCESS;
+    }
+
+    private function ensurePassportTables(): bool
+    {
+        $required = [
+            'oauth_clients',
+            'oauth_access_tokens',
+            'oauth_refresh_tokens',
+            'oauth_auth_codes',
+            'oauth_personal_access_clients',
+        ];
+
+        $allPresent = static fn (): bool => collect($required)->every(
+            fn (string $table): bool => Schema::hasTable($table)
+        );
+
+        if ($allPresent()) {
+            return true;
+        }
+
+        $this->warn('Tables Passport manquantes après migrate:fresh. Tentative de migration ciblée OAuth...');
+        Artisan::call('migrate', ['--force' => true]);
+        $this->line(Artisan::output());
+
+        return $allPresent();
     }
 
     private function setEnvValue(string $envPath, string $key, string $value): void
