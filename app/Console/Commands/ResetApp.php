@@ -39,6 +39,10 @@ class ResetApp extends Command
             return self::FAILURE;
         }
 
+        // Sur certains hébergements, ces dossiers peuvent être absents après deploy.
+        // Sans eux, SESSION_DRIVER=file plante avec "storage/framework/sessions ... No such file or directory".
+        $this->ensureRuntimeDirectories();
+
         $this->info('Nettoyage des caches (config, route, vue, cache, opcache)...');
         Artisan::call('optimize:clear');
         $this->line(Artisan::output());
@@ -69,18 +73,31 @@ class ResetApp extends Command
         }
 
         $this->info('Réinitialisation de la base de données (migrate:fresh --seed)...');
-        Artisan::call('migrate:fresh', ['--seed' => true]);
+        $migrateFreshExit = Artisan::call('migrate:fresh', [
+            '--seed' => true,
+            '--force' => true,
+        ]);
         $this->line(Artisan::output());
+        if ($migrateFreshExit !== 0) {
+            $this->error('Échec de migrate:fresh --seed. Vérifiez la sortie ci-dessus.');
+
+            return self::FAILURE;
+        }
 
         // Filet de sécurité: garantir des events de démonstration après reset.
         // (utile si un seeder échoue silencieusement en environnement distant)
         if (Event::query()->count() === 0) {
             $this->warn('Aucun événement détecté après --seed. Relance de EventSeeder...');
-            Artisan::call('db:seed', [
+            $eventSeedExit = Artisan::call('db:seed', [
                 '--class' => EventSeeder::class,
                 '--force' => true,
             ]);
             $this->line(Artisan::output());
+            if ($eventSeedExit !== 0 || Event::query()->count() === 0) {
+                $this->error('EventSeeder a échoué ou n\'a créé aucun événement.');
+
+                return self::FAILURE;
+            }
         }
 
         // Sécurité prod: s'assurer que les tables Passport existent bien avant
@@ -217,6 +234,30 @@ class ResetApp extends Command
         }
 
         File::put($envPath, $content);
+    }
+
+    private function ensureRuntimeDirectories(): void
+    {
+        $dirs = [
+            storage_path('framework'),
+            storage_path('framework/cache'),
+            storage_path('framework/cache/data'),
+            storage_path('framework/sessions'),
+            storage_path('framework/views'),
+            storage_path('framework/testing'),
+            storage_path('logs'),
+        ];
+
+        foreach ($dirs as $dir) {
+            try {
+                if (! File::exists($dir)) {
+                    File::makeDirectory($dir, 0755, true, true);
+                    $this->line("Dossier runtime créé: {$dir}");
+                }
+            } catch (\Throwable $e) {
+                $this->warn("Impossible de créer {$dir}: ".$e->getMessage());
+            }
+        }
     }
 }
 
