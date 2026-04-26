@@ -374,7 +374,9 @@ class DashboardController extends Controller
                     'customer_name' => $order->full_name,
                     'customer_email' => $order->email,
                     'tickets_count' => $ticketCount,
-                    'amount' => (float) $order->amount,
+                    // Afficher "total vendu" net (hors frais plateforme).
+                    'amount' => max(0.0, (float) $order->amount - (float) ($order->fees ?? 0)),
+                    'platform_fees' => (float) ($order->fees ?? 0),
                     'currency' => $order->currency,
                     'status' => $order->status,
                     'created_at' => optional($order->created_at)?->toIso8601String(),

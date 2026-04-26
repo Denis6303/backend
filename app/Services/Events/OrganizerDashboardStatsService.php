@@ -87,7 +87,9 @@ class OrganizerDashboardStatsService
             ->whereIn('event_occurrence_id', $occurrenceIds)
             ->where('status', 'active')
             ->whereBetween('created_at', [$start, $end])
-            ->selectRaw('COALESCE(SUM(amount - COALESCE(discount_amount, 0)), 0) as net')
+            // "Total vendu" côté organisateur = montant ticket net (hors frais plateforme).
+            // amount inclut déjà les frais dans ce projet: net sold = amount - fees.
+            ->selectRaw('COALESCE(SUM(amount - COALESCE(fees, 0)), 0) as net')
             ->value('net');
 
         $orders = (int) Order::query()
@@ -218,14 +220,14 @@ class OrganizerDashboardStatsService
             ->whereIn('event_occurrence_id', $occurrenceIds)
             ->where('status', 'active')
             ->whereBetween('created_at', [$start, $end])
-            ->get(['created_at', 'amount', 'discount_amount']);
+            ->get(['created_at', 'amount', 'fees']);
 
         foreach ($rows as $row) {
             $k = $this->bucketKeyForDate(Carbon::parse($row->created_at), $granularity);
             if (! array_key_exists($k, $base)) {
                 continue;
             }
-            $base[$k] += (float) $row->amount - (float) ($row->discount_amount ?? 0);
+            $base[$k] += max(0.0, (float) $row->amount - (float) ($row->fees ?? 0));
         }
 
         return $base;

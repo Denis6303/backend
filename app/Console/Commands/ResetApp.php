@@ -2,11 +2,14 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ResetApp extends Command
 {
@@ -109,9 +112,64 @@ class ResetApp extends Command
         $this->newLine();
         $this->warn('Frontend : copiez le Client ID / Secret affichés ci-dessus dans le .env du projet frontend (VOTIX_API_CLIENT_ID et VOTIX_API_CLIENT_SECRET), puis php artisan config:clear sur le frontend.');
 
+        // Admin dashboard: connexion automatique au backend via mode "password".
+        // Objectif: éviter la régénération manuelle d'un PAT à chaque app:reset.
+        $this->info('Configuration de la connexion API pour l\'admin (mode password)...');
+        $adminServiceEmail = env('ADMIN_SERVICE_EMAIL', 'admin.service@votxevent.local');
+        $adminServicePassword = env('ADMIN_SERVICE_PASSWORD');
+        if (! is_string($adminServicePassword) || trim($adminServicePassword) === '') {
+            $adminServicePassword = 'AdminSvc@'.Str::random(10);
+        }
+
+        /** @var User $adminServiceUser */
+        $adminServiceUser = User::query()->updateOrCreate(
+            ['email' => $adminServiceEmail],
+            [
+                'first_name' => 'Admin',
+                'last_name' => 'Service',
+                'password' => Hash::make($adminServicePassword),
+                'is_admin' => true,
+                'email_verified_at' => now(),
+            ]
+        );
+        $adminServiceUser->forceFill(['is_admin' => true])->save();
+
+        $adminProjectPath = base_path('../admin');
+        $adminEnvPath = $adminProjectPath.DIRECTORY_SEPARATOR.'.env';
+        if (File::exists($adminEnvPath)) {
+            $this->setEnvValue($adminEnvPath, 'BACKEND_ADMIN_API_URL', 'http://127.0.0.1:8000/api/admin');
+            $this->setEnvValue($adminEnvPath, 'BACKEND_ADMIN_AUTH', 'password');
+            $this->setEnvValue($adminEnvPath, 'BACKEND_ADMIN_LOGIN_URL', 'http://127.0.0.1:8000/api/v1/auth/login');
+            $this->setEnvValue($adminEnvPath, 'BACKEND_ADMIN_SERVICE_EMAIL', $adminServiceEmail);
+            $this->setEnvValue($adminEnvPath, 'BACKEND_ADMIN_SERVICE_PASSWORD', $adminServicePassword);
+            // Ne pas garder un ancien PAT quand le mode password est activé.
+            $this->setEnvValue($adminEnvPath, 'BACKEND_ADMIN_API_TOKEN', '');
+            $this->info('Admin .env mis à jour automatiquement (mode password).');
+            $this->warn('Admin : exécutez `php artisan config:clear` dans le projet admin si le serveur était déjà lancé.');
+        } else {
+            $this->warn('Fichier admin/.env introuvable. Configurez manuellement BACKEND_ADMIN_AUTH=password, BACKEND_ADMIN_LOGIN_URL, BACKEND_ADMIN_SERVICE_EMAIL et BACKEND_ADMIN_SERVICE_PASSWORD.');
+            $this->line('BACKEND_ADMIN_SERVICE_EMAIL='.$adminServiceEmail);
+            $this->line('BACKEND_ADMIN_SERVICE_PASSWORD='.$adminServicePassword);
+        }
+
         $this->info('Réinitialisation terminée.');
 
         return self::SUCCESS;
+    }
+
+    private function setEnvValue(string $envPath, string $key, string $value): void
+    {
+        $content = File::get($envPath);
+        $normalizedValue = str_replace(["\r", "\n"], '', $value);
+        $line = $key.'='.$normalizedValue;
+
+        if (preg_match('/^'.preg_quote($key, '/').'=.*/m', $content) === 1) {
+            $content = preg_replace('/^'.preg_quote($key, '/').'=.*/m', $line, $content) ?? $content;
+        } else {
+            $content = rtrim($content).PHP_EOL.$line.PHP_EOL;
+        }
+
+        File::put($envPath, $content);
     }
 }
 
