@@ -98,6 +98,17 @@ class ResetApp extends Command
         ]);
         $this->line(Artisan::output());
 
+        // Client « client_credentials » : obligatoire pour le frontend Laravel (ApiService → oauth/token).
+        $this->info('Création du client Passport « client credentials » (frontend public)...');
+        Artisan::call('passport:client', [
+            '--client' => true,
+            '--name' => 'Votix Frontend',
+            '--no-interaction' => true,
+        ]);
+        $this->line(Artisan::output());
+        $this->newLine();
+        $this->warn('Frontend : copiez le Client ID / Secret affichés ci-dessus dans le .env du projet frontend (VOTIX_API_CLIENT_ID et VOTIX_API_CLIENT_SECRET), puis php artisan config:clear sur le frontend.');
+
         $this->info('Réinitialisation terminée.');
 
         return self::SUCCESS;

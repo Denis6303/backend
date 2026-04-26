@@ -15,7 +15,8 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    // oauth/* : Passport expose POST /oauth/token hors de /api/* — indispensable pour le front (ex. Vite sur un autre port).
+    'paths' => ['api/*', 'oauth/*', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],
 

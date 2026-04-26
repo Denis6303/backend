@@ -39,7 +39,8 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            // URL absolue des fichiers /storage/... (JSON API, mails). Si le front appelle l’API sur un autre host:port qu’APP_URL, définir MEDIA_URL identique à l’URL publique du backend.
+            'url' => rtrim(env('MEDIA_URL', env('APP_URL', 'http://localhost')), '/').'/storage',
             'visibility' => 'public',
             'throw' => false,
         ],
