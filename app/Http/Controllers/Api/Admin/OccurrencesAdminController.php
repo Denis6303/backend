@@ -28,24 +28,23 @@ class OccurrencesAdminController extends Controller
     public function earnings(int $id): JsonResponse
     {
         $occurrence = EventOccurrence::query()->with(['commission', 'serviceCosts'])->findOrFail($id);
+        $gross = $occurrence->calculateTotalRevenue();
+        $discount = $occurrence->calculateTotalDiscount();
+        $fees = $occurrence->calculateTotalFees();
+        $commission = $occurrence->calculateCommissionTotal($gross);
+        $recipe = $occurrence->calculateRecipe();
 
-        $earning = $occurrence->itemEarning;
-        if (! $earning) {
-            $gross = $occurrence->calculateTotalRevenue();
-            $discount = $occurrence->calculateTotalDiscount();
-            $fees = (float) $occurrence->orders()->where('status', 'confirmed')->sum('fees');
-            $recipe = $occurrence->calculateRecipe();
-
-            $earning = EventEarning::create([
-                'event_occurrence_id' => $occurrence->id,
+        $earning = EventEarning::query()->updateOrCreate(
+            ['event_occurrence_id' => $occurrence->id],
+            [
                 'gross_revenue' => $gross,
                 'discount_total' => $discount,
                 'fees_total' => $fees,
-                'commission_total' => max(0, $gross - $fees - $recipe),
+                'commission_total' => $commission,
                 'net_revenue' => $recipe,
                 'calculated_at' => now(),
-            ]);
-        }
+            ]
+        );
 
         return response()->json([
             'data' => $earning,

@@ -15,7 +15,7 @@ class EventStatsQuery
             ->selectRaw('coalesce(sum(fees),0) as total_fees')
             ->selectRaw('coalesce(sum(discount_amount),0) as total_discounts')
             ->where('event_occurrence_id', $occurrenceId)
-            ->where('status', 'confirmed');
+            ->where('status', 'active');
     }
 }
 

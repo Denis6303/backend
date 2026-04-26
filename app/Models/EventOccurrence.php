@@ -126,8 +126,67 @@ class EventOccurrence extends Model
     public function calculateTotalRevenue(): float
     {
         return (float) $this->orders()
-            ->selectRaw('COALESCE(SUM(total_price), 0) as total')
+            ->where('status', 'active')
+            ->selectRaw('COALESCE(SUM(amount), 0) as total')
             ->value('total');
+    }
+
+    public function calculateTotalDiscount(): float
+    {
+        return (float) $this->orders()
+            ->where('status', 'active')
+            ->selectRaw('COALESCE(SUM(discount_amount), 0) as total')
+            ->value('total');
+    }
+
+    public function calculateTotalFees(): float
+    {
+        return (float) $this->orders()
+            ->where('status', 'active')
+            ->selectRaw('COALESCE(SUM(fees), 0) as total')
+            ->value('total');
+    }
+
+    public function calculateServiceCostsTotal(): float
+    {
+        return (float) $this->serviceCosts()
+            ->selectRaw('COALESCE(SUM(amount), 0) as total')
+            ->value('total');
+    }
+
+    public function calculateCommissionTotal(float $grossRevenue): float
+    {
+        $this->loadMissing(['commission', 'event']);
+
+        $percentage = null;
+        $fixed = null;
+        if ($this->commission) {
+            $percentage = $this->commission->commission_percentage;
+            $fixed = $this->commission->commission_amount;
+        }
+
+        if ($percentage === null) {
+            $percentage = $this->event?->commission_percentage;
+        }
+        if ($fixed === null) {
+            $fixed = $this->event?->commission_amount;
+        }
+
+        $pct = (float) ($percentage ?? 0);
+        $fixedAmount = (float) ($fixed ?? 0);
+        $commission = (($grossRevenue * $pct) / 100) + $fixedAmount;
+
+        return max(0.0, round($commission, 2));
+    }
+
+    public function calculateRecipe(): float
+    {
+        $gross = $this->calculateTotalRevenue();
+        $fees = $this->calculateTotalFees();
+        $commission = $this->calculateCommissionTotal($gross);
+        $serviceCosts = $this->calculateServiceCostsTotal();
+
+        return max(0.0, round($gross - $fees - $commission - $serviceCosts, 2));
     }
 
     public function toArrayApi(): array

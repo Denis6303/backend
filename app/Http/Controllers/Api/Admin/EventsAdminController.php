@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\EventEarning;
+use App\Models\EventOccurrence;
 use App\Models\EventOccurrenceCommission;
 use App\Models\EventOccurrenceServiceCost;
 use Illuminate\Http\JsonResponse;
@@ -61,18 +63,26 @@ class EventsAdminController extends Controller
         ]);
 
         $event = Event::query()->findOrFail($id);
+        $occurrence = null;
+        if (! empty($data['occurrence_id'])) {
+            $occurrence = EventOccurrence::query()
+                ->where('event_id', $event->id)
+                ->findOrFail((int) $data['occurrence_id']);
+        }
+
         $event->commission_percentage = $data['commission_percentage'] ?? $event->commission_percentage;
         $event->commission_amount = $data['commission_amount'] ?? $event->commission_amount;
         $event->save();
 
-        if (! empty($data['occurrence_id'])) {
+        if ($occurrence) {
             EventOccurrenceCommission::updateOrCreate(
-                ['event_occurrence_id' => (int) $data['occurrence_id']],
+                ['event_occurrence_id' => $occurrence->id],
                 [
                     'commission_percentage' => $data['commission_percentage'] ?? null,
                     'commission_amount' => $data['commission_amount'] ?? null,
                 ]
             );
+            $this->recalculateOccurrenceEarning($occurrence);
         }
 
         return response()->json(['data' => $event->fresh()->toArrayApi()]);
@@ -88,6 +98,9 @@ class EventsAdminController extends Controller
         ]);
 
         $event = Event::query()->findOrFail($id);
+        $occurrence = EventOccurrence::query()
+            ->where('event_id', $event->id)
+            ->findOrFail((int) $data['occurrence_id']);
 
         DB::transaction(function () use ($data) {
             EventOccurrenceServiceCost::query()
@@ -102,6 +115,7 @@ class EventsAdminController extends Controller
                 ]);
             }
         });
+        $this->recalculateOccurrenceEarning($occurrence);
 
         return response()->json(['data' => $event->fresh()->toArrayApi()]);
     }
@@ -146,6 +160,29 @@ class EventsAdminController extends Controller
         return response()->json([
             'data' => [],
         ]);
+    }
+
+    private function recalculateOccurrenceEarning(EventOccurrence $occurrence): void
+    {
+        $occurrence->loadMissing(['commission', 'serviceCosts', 'event']);
+
+        $gross = $occurrence->calculateTotalRevenue();
+        $discount = $occurrence->calculateTotalDiscount();
+        $fees = $occurrence->calculateTotalFees();
+        $commission = $occurrence->calculateCommissionTotal($gross);
+        $net = $occurrence->calculateRecipe();
+
+        EventEarning::query()->updateOrCreate(
+            ['event_occurrence_id' => $occurrence->id],
+            [
+                'gross_revenue' => $gross,
+                'discount_total' => $discount,
+                'fees_total' => $fees,
+                'commission_total' => $commission,
+                'net_revenue' => $net,
+                'calculated_at' => now(),
+            ]
+        );
     }
 }
 

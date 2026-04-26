@@ -71,64 +71,172 @@ class DashboardController extends Controller
 
     private function buildKpis(): array
     {
-        $revenueTotal = (float) Order::query()
-            ->where('status', 'active')
-            ->sum('amount');
+        $salesTotal = $this->computeSalesSnapshot();
+        $salesLast30 = $this->computeSalesSnapshot(now()->subDays(30), null);
+        $salesPrev30 = $this->computeSalesSnapshot(now()->subDays(60), now()->subDays(30));
 
-        $revenueLast30 = (float) Order::query()
-            ->where('status', 'active')
-            ->where('created_at', '>=', now()->subDays(30))
-            ->sum('amount');
+        $revenueTotal = $salesTotal['net_sold'];
+        $revenueLast30 = $salesLast30['net_sold'];
+        $revenuePrev30 = $salesPrev30['net_sold'];
+        $platformCommissionTotal = $salesTotal['platform_commission'];
+        $platformCommissionLast30 = $salesLast30['platform_commission'];
+        $platformCommissionPrev30 = $salesPrev30['platform_commission'];
+        $ticketsSold = $salesTotal['tickets_sold'];
+        $ticketsLast30 = $salesLast30['tickets_sold'];
+        $ticketsPrev30 = $salesPrev30['tickets_sold'];
 
-        $revenuePrev30 = (float) Order::query()
-            ->where('status', 'active')
-            ->whereBetween('created_at', [now()->subDays(60), now()->subDays(30)])
-            ->sum('amount');
-
-        $ticketsSold = Ticket::query()->where('status', '!=', 'cancelled')->count();
-        $ticketsLast30 = Ticket::query()
-            ->where('status', '!=', 'cancelled')
-            ->where('created_at', '>=', now()->subDays(30))
+        // Total événements en base (hors annulés) — ce que l’on attend souvent sous « nombre d’événements ».
+        $totalEvents = Event::query()
+            ->where('status', '!=', Event::STATUS_CANCELLED)
             ->count();
-        $ticketsPrev30 = Ticket::query()
-            ->where('status', '!=', 'cancelled')
-            ->whereBetween('created_at', [now()->subDays(60), now()->subDays(30)])
-            ->count();
-
-        $activeEvents = Event::query()->where('status', Event::STATUS_UPCOMING)->count();
-        $activeEventsWeek = Event::query()
+        // Événements actuellement à la vente (publiés « upcoming »).
+        $eventsOnSale = Event::query()->where('status', Event::STATUS_UPCOMING)->count();
+        $eventsOnSaleWeek = Event::query()
             ->where('status', Event::STATUS_UPCOMING)
             ->where('created_at', '>=', now()->subDays(7))
             ->count();
 
-        $customersTotal = User::query()->where('is_admin', false)->count();
-        $customersLast30 = User::query()
-            ->where('is_admin', false)
-            ->where('created_at', '>=', now()->subDays(30))
-            ->count();
-        $customersPrev30 = User::query()
-            ->where('is_admin', false)
-            ->whereBetween('created_at', [now()->subDays(60), now()->subDays(30)])
-            ->count();
+        // Acheteurs distincts (emails de commandes payées) — plus représentatif que le seul compte `users`.
+        $buyersTotal = $this->distinctBuyerCount();
+        $buyersLast30 = $this->distinctBuyerCount(now()->subDays(30), null);
+        $buyersPrev30 = $this->distinctBuyerCount(now()->subDays(60), now()->subDays(30));
+
+        $accountsTotal = User::query()->where('is_admin', false)->count();
 
         return [
+            'currency' => 'FCFA',
             'total_revenue' => [
                 'value' => round($revenueTotal, 2),
                 'growth_percent' => $this->growthPercent($revenueLast30, $revenuePrev30),
+            ],
+            'platform_commission' => [
+                'value' => round($platformCommissionTotal, 2),
+                'growth_percent' => $this->growthPercent($platformCommissionLast30, $platformCommissionPrev30),
             ],
             'tickets_sold' => [
                 'value' => $ticketsSold,
                 'growth_percent' => $this->growthPercent($ticketsLast30, $ticketsPrev30),
             ],
             'active_events' => [
-                'value' => $activeEvents,
-                'new_this_week' => $activeEventsWeek,
+                'value' => $totalEvents,
+                'on_sale' => $eventsOnSale,
+                'new_this_week' => $eventsOnSaleWeek,
             ],
             'total_customers' => [
-                'value' => $customersTotal,
-                'growth_percent' => $this->growthPercent($customersLast30, $customersPrev30),
+                'value' => $buyersTotal,
+                'growth_percent' => $this->growthPercent($buyersLast30, $buyersPrev30),
+                'registered_accounts' => $accountsTotal,
             ],
         ];
+    }
+
+    /**
+     * Calcule les ventes depuis les billets (prix net client) pour éviter d'inclure
+     * les frais techniques dans les montants affichés.
+     *
+     * - Commission par occurrence/event:
+     *   1) override occurrence (event_occurrence_commissions)
+     *   2) fallback event
+     *   3) défaut plateforme = 10%
+     *
+     * @return array{gross_sold: float, platform_commission: float, net_sold: float, tickets_sold: int}
+     */
+    private function computeSalesSnapshot(?Carbon $from = null, ?Carbon $until = null): array
+    {
+        $ticketsQuery = Ticket::query()
+            ->selectRaw('event_occurrence_id, COUNT(*) as tickets_count, COALESCE(SUM(price), 0) as gross')
+            ->where('status', '!=', 'cancelled');
+
+        if ($from !== null) {
+            $ticketsQuery->where('created_at', '>=', $from);
+        }
+        if ($until !== null) {
+            $ticketsQuery->where('created_at', '<', $until);
+        }
+
+        $rows = $ticketsQuery
+            ->groupBy('event_occurrence_id')
+            ->get();
+
+        if ($rows->isEmpty()) {
+            return [
+                'gross_sold' => 0.0,
+                'platform_commission' => 0.0,
+                'net_sold' => 0.0,
+                'tickets_sold' => 0,
+            ];
+        }
+
+        $occurrenceIds = $rows
+            ->pluck('event_occurrence_id')
+            ->filter()
+            ->map(fn ($id) => (int) $id)
+            ->values()
+            ->all();
+
+        $occurrences = EventOccurrence::query()
+            ->with(['event:id,commission_percentage,commission_amount', 'commission'])
+            ->whereIn('id', $occurrenceIds)
+            ->get()
+            ->keyBy('id');
+
+        $grossTotal = 0.0;
+        $commissionTotal = 0.0;
+        $ticketsTotal = 0;
+
+        foreach ($rows as $row) {
+            $occurrenceId = (int) ($row->event_occurrence_id ?? 0);
+            $gross = round((float) ($row->gross ?? 0), 2);
+            $tickets = (int) ($row->tickets_count ?? 0);
+
+            $occurrence = $occurrences->get($occurrenceId);
+            $commissionPct = $occurrence?->commission?->commission_percentage;
+            $commissionFixed = $occurrence?->commission?->commission_amount;
+
+            if ($commissionPct === null) {
+                $commissionPct = $occurrence?->event?->commission_percentage;
+            }
+            if ($commissionFixed === null) {
+                $commissionFixed = $occurrence?->event?->commission_amount;
+            }
+
+            $pct = (float) ($commissionPct ?? 10.0);
+            $fixed = (float) ($commissionFixed ?? 0.0);
+            $commission = max(0.0, round(($gross * $pct / 100) + $fixed, 2));
+
+            $grossTotal += $gross;
+            $commissionTotal += $commission;
+            $ticketsTotal += $tickets;
+        }
+
+        $netSold = max(0.0, round($grossTotal - $commissionTotal, 2));
+
+        return [
+            'gross_sold' => round($grossTotal, 2),
+            'platform_commission' => round($commissionTotal, 2),
+            'net_sold' => $netSold,
+            'tickets_sold' => $ticketsTotal,
+        ];
+    }
+
+    /**
+     * Nombre d’emails distincts ayant au moins une commande « active » (montant encaissé côté modèle Order).
+     */
+    private function distinctBuyerCount(?Carbon $from = null, ?Carbon $until = null): int
+    {
+        $q = Order::query()
+            ->where('status', 'active')
+            ->whereNotNull('email')
+            ->where('email', '!=', '');
+
+        if ($from !== null) {
+            $q->where('created_at', '>=', $from);
+        }
+        if ($until !== null) {
+            $q->where('created_at', '<', $until);
+        }
+
+        return (int) $q->selectRaw('COUNT(DISTINCT LOWER(TRIM(email))) as c')->value('c');
     }
 
     private function buildSalesOverview(int $months): array
@@ -158,7 +266,7 @@ class DashboardController extends Controller
         }
 
         return [
-            'currency' => 'XOF',
+            'currency' => 'FCFA',
             'series' => $series,
         ];
     }
@@ -293,7 +401,7 @@ class DashboardController extends Controller
                     'event_occurrence_id' => $row->event_occurrence_id,
                     'event_title' => $row->occurrence?->event?->title,
                     'amount' => (float) $row->net_revenue,
-                    'currency' => 'XOF',
+                    'currency' => 'FCFA',
                     'status' => 'calculated',
                     'reference' => 'EARNING-'.$row->id,
                     'created_at' => optional($row->updated_at)?->toIso8601String(),

@@ -11,6 +11,7 @@
 */
 
 require base_path('routes/api/admin/events.php');
+require base_path('routes/api/admin/dashboard.php');
 require base_path('routes/api/admin/ticket-tags.php');
 require base_path('routes/api/admin/transferred-tickets.php');
 require base_path('routes/api/admin/tickets.php');
