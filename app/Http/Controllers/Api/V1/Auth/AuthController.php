@@ -10,6 +10,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /**
  * @group User authentication
@@ -97,6 +98,70 @@ class AuthController extends Controller
         $tokenResult = $user->createToken('api');
         $dataResponse = $this->buildAuthData($tokenResult, $user);
 
+        event(new UserAuthenticated($user));
+
+        return response()->json([
+            'success' => true,
+            'code' => 0,
+            'locale' => self::LOCALE,
+            'message' => 'Connexion réussie',
+            'data' => $dataResponse,
+        ]);
+    }
+
+    /**
+     * Social login/register with trusted provider profile from frontend callback.
+     *
+     * @bodyParam provider string required Supported values: google, tiktok.
+     * @bodyParam provider_id string required Unique user id from provider.
+     * @bodyParam email string optional Email from provider profile.
+     * @bodyParam first_name string optional First name.
+     * @bodyParam last_name string optional Last name.
+     * @bodyParam name string optional Fallback display name.
+     */
+    public function socialLogin(Request $request): JsonResponse
+    {
+        $data = $request->validate([
+            'provider' => ['required', 'string', 'in:google,tiktok'],
+            'provider_id' => ['required', 'string', 'max:255'],
+            'email' => ['nullable', 'email', 'max:255'],
+            'first_name' => ['nullable', 'string', 'max:255'],
+            'last_name' => ['nullable', 'string', 'max:255'],
+            'name' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        $providerEmail = isset($data['email']) ? mb_strtolower(trim((string) $data['email'])) : null;
+        $socialAlias = trim($data['provider'] . '_' . $data['provider_id']);
+        $syntheticEmail = $providerEmail ?: substr($socialAlias, 0, 180) . '@social.votix.local';
+
+        /** @var User|null $user */
+        $user = User::query()->where('email', $syntheticEmail)->first();
+        if (! $user && $providerEmail) {
+            $user = User::query()->where('email', $providerEmail)->first();
+        }
+
+        if (! $user) {
+            $firstName = trim((string) ($data['first_name'] ?? ''));
+            $lastName = trim((string) ($data['last_name'] ?? ''));
+            if ($firstName === '' && $lastName === '' && ! empty($data['name'])) {
+                $parts = preg_split('/\s+/', trim((string) $data['name'])) ?: [];
+                $firstName = (string) ($parts[0] ?? '');
+                $lastName = (string) implode(' ', array_slice($parts, 1));
+            }
+
+            $user = User::create([
+                'email' => $syntheticEmail,
+                'password' => Hash::make(Str::random(40)),
+                'first_name' => $firstName ?: null,
+                'last_name' => $lastName ?: null,
+                'email_verified_at' => now(),
+            ]);
+        } elseif (! $user->email_verified_at) {
+            $user->forceFill(['email_verified_at' => now()])->save();
+        }
+
+        $tokenResult = $user->createToken('api');
+        $dataResponse = $this->buildAuthData($tokenResult, $user);
         event(new UserAuthenticated($user));
 
         return response()->json([

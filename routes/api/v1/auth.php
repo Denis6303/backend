@@ -15,6 +15,7 @@ Route::prefix('auth')->group(function () {
     // Auth core
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
+    Route::post('social-login', [AuthController::class, 'socialLogin']);
     Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api');
     Route::post('exchange-ticket', [AuthController::class, 'exchangeTicket']);
 
