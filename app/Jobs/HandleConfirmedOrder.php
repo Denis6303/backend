@@ -6,6 +6,8 @@ use App\Models\Order;
 use App\Models\OrderIntent;
 use App\Models\Ticket;
 use App\Models\TicketType;
+use App\Models\User;
+use App\Notifications\OrderConfirmedNotification;
 use App\Services\Payments\FeeCalculator;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,6 +15,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use RuntimeException;
 
@@ -29,7 +32,7 @@ class HandleConfirmedOrder implements ShouldQueue
 
     public function handle(FeeCalculator $feeCalculator): void
     {
-        DB::transaction(function () use ($feeCalculator) {
+        $mailPayload = DB::transaction(function () use ($feeCalculator) {
             /** @var OrderIntent $intent */
             $intent = OrderIntent::query()->lockForUpdate()->with(['occurrence.event', 'discount', 'paymentProvider'])->findOrFail($this->orderIntentId);
 
@@ -38,7 +41,16 @@ class HandleConfirmedOrder implements ShouldQueue
             }
 
             if (Order::query()->where('order_intent_id', $intent->id)->exists()) {
-                return;
+                $existing = Order::query()->where('order_intent_id', $intent->id)->first();
+                if (! $existing) {
+                    return null;
+                }
+
+                return [
+                    'order' => $existing->fresh(['occurrence.event', 'tickets.ticketType']),
+                    'buyer_email' => $existing->email,
+                    'buyer_user_id' => $existing->user_id,
+                ];
             }
 
             $meta = (array) ($intent->meta ?? []);
@@ -101,7 +113,35 @@ class HandleConfirmedOrder implements ShouldQueue
                 $type->remaining_quantity = $type->real_remaining_quantity;
                 $type->save();
             }
+
+            return [
+                'order' => $order->fresh(['occurrence.event', 'tickets.ticketType']),
+                'buyer_email' => $order->email,
+                'buyer_user_id' => $order->user_id,
+            ];
         });
+
+        if (! is_array($mailPayload) || ! isset($mailPayload['order'])) {
+            return;
+        }
+
+        /** @var Order $order */
+        $order = $mailPayload['order'];
+        $buyerEmail = (string) ($mailPayload['buyer_email'] ?? '');
+        $buyerUserId = (int) ($mailPayload['buyer_user_id'] ?? 0);
+
+        // 1) Envoi par e-mail brut pour couvrir les achats invités/sans compte.
+        if ($buyerEmail !== '') {
+            Notification::route('mail', $buyerEmail)->notify(new OrderConfirmedNotification($order));
+        }
+
+        // 2) Envoi au user notifiable quand il existe (historique notifications).
+        if ($buyerUserId > 0) {
+            $buyer = User::query()->find($buyerUserId);
+            if ($buyer && $buyer->email !== $buyerEmail) {
+                $buyer->notify(new OrderConfirmedNotification($order));
+            }
+        }
     }
 
     private function calculateDiscountAmount(?Discount $discount, float $baseAmount): float

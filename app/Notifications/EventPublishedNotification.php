@@ -26,27 +26,48 @@ class EventPublishedNotification extends Notification implements ShouldQueue
     public function toMail(mixed $notifiable): MailMessage
     {
         $eventTitle = $this->event->title ?? 'Votre évènement';
-        $statusKey = $this->publishNow ? 'upcoming' : 'saved';
-
         $subject = $this->publishNow
             ? 'Votre évènement a été publié'
             : 'Votre évènement a été enregistré';
 
-        $lineStatus = $this->publishNow
+        $statusText = $this->publishNow
             ? 'Votre évènement est maintenant publié et visible pour les participants.'
             : 'Votre évènement a été enregistré. Il n’est pas encore publié.';
 
-        $mail = (new MailMessage())
-            ->subject($subject . ' - Votix')
-            ->greeting('Bonjour,')
-            ->line("L’évènement « {$eventTitle} » a été traité par Votix.")
-            ->line($lineStatus);
+        $frontendUrl = $this->resolveFrontendBaseUrl();
+        $logoUrl = $frontendUrl . '/images/logos/black.jpeg';
+        $eventUrl = $this->publishNow && $this->event->slug
+            ? $frontendUrl . '/fr/evenements/' . $this->event->slug
+            : null;
 
-        if ($this->publishNow && $this->event->slug) {
-            $mail->line('Vous pouvez le consulter sur la plateforme.');
+        return (new MailMessage())
+            ->subject($subject . ' - Votix')
+            ->view('emails.event-published', [
+                'subject' => $subject,
+                'headline' => $this->publishNow ? 'Évènement publié avec succès' : 'Brouillon enregistré',
+                'intro' => "L’évènement « {$eventTitle} » a été traité par Votix.",
+                'eventTitle' => $eventTitle,
+                'statusText' => $statusText,
+                'eventUrl' => $eventUrl,
+                'logoUrl' => $logoUrl,
+                'actionUrl' => $eventUrl ?: ($frontendUrl . '/fr/tableau-de-bord/mes-evenements'),
+                'actionText' => $this->publishNow ? 'Voir la page publique' : 'Gérer mes évènements',
+                'footerNote' => 'Merci d’utiliser Votix pour vos évènements.',
+            ]);
+    }
+
+    private function resolveFrontendBaseUrl(): string
+    {
+        $configured = trim((string) config('app.frontend_url', ''));
+        if ($configured !== '' && $configured !== 'http://localhost') {
+            return rtrim($configured, '/');
         }
 
-        return $mail->line('Merci d’utiliser Votix.');
+        if (app()->environment('local', 'development', 'testing')) {
+            return 'http://127.0.0.1:4000';
+        }
+
+        return 'https://votxevent.com';
     }
 }
 
